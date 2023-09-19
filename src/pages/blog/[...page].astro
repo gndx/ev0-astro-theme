@@ -1,0 +1,33 @@
+---
+import Base from "@layouts/Base.astro";
+import Posts from "@layouts/Posts.astro";
+import Pagination from "@components/Pagination.astro";
+import config from "@config/config.json";
+
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection("blog");
+  const formattedPosts = allPosts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return paginate(formattedPosts, {
+    pageSize: config.site.pageSize,
+  });
+}
+const { page } = Astro.props;
+---
+
+<Base meta_title="Blog">
+  <h1 class="text-2xl md:text-3xl font-bold mb-8">Blog</h1>
+  <Posts posts={page.data} />
+  <Pagination
+    length={page.lastPage}
+    currentUrl={page.url.current}
+    currentPage={page.currentPage}
+    firstUrl={`/blog/`}
+    prevUrl={page.url.prev}
+    nextUrl={page.url.next}
+    lastUrl={`/blog/${page.lastPage}`}
+  />
+</Base>

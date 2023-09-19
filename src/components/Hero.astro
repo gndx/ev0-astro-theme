@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import config from "@config/config.json";
+import social from "@config/social";
+
+export interface SocialMedia {
+  icon: string;
+  url: string;
+  svg: string;
+}
+
+interface Props {
+  socialItems?: SocialMedia[];
+}
+
+const socialItems = social.networks;
+---
+
+<section class="bg-gray-50">
+  <div class="mx-auto max-w-screen-lg px-4 py-0 sm:px-6 pb-6 sm:pb-12 lg:px-8">
+    <div class="flex items-start justify-between">
+      <div class="rounded-lg w-3/5">
+        <h1
+          class="text-lg md:text-2xl font-bold text-gray-900 sm:text-3xl mb-0"
+        >
+          {config.autor.name}
+        </h1>
+        <p class="mt-1.5 text-sm md:text-lg text-gray-500">
+          {config.autor.bio}
+        </p>
+        <div class="flex space-x-5 pt-8 m-auto">
+          {
+            socialItems?.map((item) => (
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <figure>
+                  <Fragment set:html={item.svg} />
+                </figure>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div class="rounded-lg">
+        <figure class="right-0">
+          <Image
+            class="rounded-lg w-24 md:w-32"
+            width={512}
+            height={512}
+            src={config.autor.avatar}
+            alt={config.autor.name}
+            decoding="async"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

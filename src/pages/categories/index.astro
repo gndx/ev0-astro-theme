@@ -1,0 +1,29 @@
+---
+import Base from "@layouts/Base.astro";
+import CategoryIcon from "@icons/CategoryIcon.astro";
+import { getTaxonomy } from "@utils/getAllTags";
+
+const categories = await getTaxonomy("blog", "categories");
+---
+
+<Base>
+  <section class="grid grid-cols-1">
+    <h1 class="text-2xl md:text-3xl font-bold mb-8">Categories:</h1>
+    <ul class="flex flex-wrap gap-3 text-gray-500">
+      {
+        Object?.keys(categories)?.map((category: string) => (
+          <li class="flex items-center justify-between mr-4">
+            <CategoryIcon />
+            <a
+              class="text-lg text-gray-500 hover:text-gray-800 capitalize"
+              href={`/categories/${categories[category as any]}`}
+              title={`View posts with the tag: ${category}`}
+            >
+              {categories[category as any]}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

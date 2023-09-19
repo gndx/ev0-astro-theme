@@ -1,0 +1,87 @@
+---
+import Base from "@layouts/Base.astro";
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@components/FormattedDate.astro";
+import CalendarIcon from "@icons/CalendarIcon.astro";
+import CategoryIcon from "@icons/CategoryIcon.astro";
+import { Image } from "astro:assets";
+import config from "@config/config.json";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, pubDate, heroImage, categories, tags } =
+  Astro.props;
+---
+
+<Base meta_title={title} description={description} image={heroImage} blogpost>
+  <article>
+    <div class="rounded-lg block overflow-hidden mb-8">
+      {
+        heroImage && (
+          <figure class="w-auto h-auto md:h-[480px] object-cover">
+            <Image
+              class="transition duration-300 ease-in-out hover:scale-110 cursor-progress"
+              src={heroImage}
+              alt={title}
+              width={960}
+              height={480}
+              decoding="async"
+              loading="lazy"
+            />
+          </figure>
+        )
+      }
+    </div>
+    <div class="md:col-10 text-center mb-12">
+      <h1 class="text-2xl md:text-4xl font-bold">{title}</h1>
+      <div class="mt-4 flex flex-wrap items-center justify-center text-text">
+        <div class="mx-3 flex items-center flex-wrap font-medium mt-2">
+          <figure>
+            <Image
+              alt={config.autor.name}
+              class="mr-2 h-6 w-6 rounded-full"
+              width={50}
+              height={50}
+              src={config.autor.avatar}
+              decoding="async"
+              loading="lazy"
+            />
+          </figure>
+          <span>{config.autor.name}</span>
+        </div>
+        <div class="mx-3 flex items-center flex-wrap font-medium mt-2">
+          <CalendarIcon />
+          <FormattedDate date={pubDate} />
+        </div>
+        <div class="mx-3 flex items-center flex-wrap font-medium mt-2">
+          <CategoryIcon />
+          {
+            categories?.slice(0, 1).map((category) => (
+              <a
+                href={`/categories/${category}`}
+                class="mr-2 hover:text-primary font-medium capitalize"
+              >
+                {category}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div class="prose prose-green prose-md md:prose-lg min-w-full">
+      <slot />
+    </div>
+    <div class="mt-8">
+      {
+        tags?.map((tag) => (
+          <a
+            href={`/tags/${tag}`}
+            class="capitalize inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          >
+            #{tag}
+          </a>
+        ))
+      }
+    </div>
+  </article>
+</Base>

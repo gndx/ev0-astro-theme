@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import menu from "@config/menu.json";
+import config from "@config/config.json";
+import HamburgerIcon from "@icons/HamburgerIcon.astro";
+import CloseIcon from "@icons/CloseIcon.astro";
+import HomeIcon from "@icons/HomeIcon.astro";
+
+export interface NavigationLink {
+  name: string;
+  url: string;
+}
+
+const { main }: { main: NavigationLink[] } = menu;
+---
+
+<header class="bg-gray-50">
+  <div class="mx-auto max-w-screen-lg px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div class="flex items-start md:items-center justify-between sm:gap-4">
+      <a href="/" class="logo flex items-center" aria-current="page">
+        <figure>
+          <Image
+            src={config.site.logo}
+            alt={config.site.title}
+            class="w-16 rounded mr-8"
+            width={512}
+            height={512}
+            decoding="async"
+            loading="lazy"
+          />
+        </figure>
+      </a>
+      <div class="flex relative">
+        <!-- navbar toggler -->
+        <input id="nav-toggle" type="checkbox" class="hidden" />
+        <label
+          id="show-button"
+          for="nav-toggle"
+          class="order-2 flex cursor-pointer items-center text-black md:hidden"
+        >
+          <HamburgerIcon />
+        </label>
+        <label
+          id="hide-button"
+          for="nav-toggle"
+          class="order-2 hidden cursor-pointer items-center text-black"
+        >
+          <CloseIcon />
+        </label>
+        <!-- /navbar toggler -->
+        <div
+          id="nav-menu"
+          class="absolute top-8 right-0 p-2 z-10 mt-2 hidden w-44 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+        >
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+            {
+              main?.map((menu) => (
+                <li>
+                  <a
+                    href={menu?.url}
+                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  >
+                    {menu?.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+      <ul class="ml-auto hidden md:flex items-center gap-6 lg:flex">
+        {
+          main?.map((menu) => (
+            <li class="block rounded-lg px-2 py-2 text-md text-gray-500 hover:text-gray-800">
+              <a href={menu?.url} class="flex items-center relative">
+                {menu?.name === "Home" ? <HomeIcon /> : menu?.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</header>

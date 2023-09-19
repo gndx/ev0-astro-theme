@@ -1,0 +1,20 @@
+---
+import config from "@config/config.json";
+const year = new Date().getFullYear();
+---
+
+<footer class="mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8">
+  <div class="border-t border-gray-100">
+    <p class="text-center text-xs/relaxed text-gray-500 mt-8 mb-8">
+      &copy; {year}. {config.site.title} - EV0. All rights REVERSED
+      <span class="block mt-2">
+        Made with ♥ in Medellín, Colombia. by
+        <a
+          href="https://gndx.dev"
+          class="text-gray-700 decoration-dashed transition hover:text-gray-700/75"
+          >GNDX</a
+        >
+      </span>
+    </p>
+  </div>
+</footer>
