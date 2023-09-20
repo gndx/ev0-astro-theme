@@ -72,7 +72,7 @@ To configure your blog, edit the `src/config/config.json` file. This file contai
     "meta_author": "Oscar Barajas @gndx",
     "meta_description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript."
   },
-  "autor": {
+  "author": {
     "name": "Oscar Barajas Tavares @gndx",
     "avatar": "https://s3.amazonaws.com/gndx.dev/gndx-astro-avatar.png",
     "bio": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript."
