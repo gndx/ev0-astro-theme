@@ -68,6 +68,9 @@ To configure your blog, edit the `src/config/config.json` file. This file contai
     "description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript.",
     "pageSize": 6
   },
+  "features": {
+    "youtube": true
+  },
   "metadata": {
     "meta_author": "Oscar Barajas @gndx",
     "meta_description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript."
@@ -116,6 +119,14 @@ npm run youtube
 Your YouTube API is not used in production.
 
 Requires an API KEY for YouTube API V3 - [Google Console](https://console.cloud.google.com/)
+
+You can disable the youtube integration by modifying the `src/config/config.json`.
+
+```json
+  "features": {
+    "youtube": false
+  },
+```
 
 ## 📝 Adding New Posts
 
