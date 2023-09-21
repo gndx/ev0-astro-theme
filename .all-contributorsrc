@@ -16,6 +16,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dcyar",
+      "name": "Jhon Achata Limachi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7337141?v=4",
+      "profile": "https://jhonachata.dev/",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ]
 }
