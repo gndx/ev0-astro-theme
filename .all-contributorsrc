@@ -1,4 +1,21 @@
 {
   "projectName": "ev0-astro-theme",
-  "projectOwner": "ev0-astro-theme"
+  "projectOwner": "gndx",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "gndx",
+      "name": "Oscar Barajas Tavares",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10554486?v=4",
+      "profile": "https://gndx.io",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ]
 }
