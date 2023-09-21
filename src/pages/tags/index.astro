@@ -26,14 +26,14 @@ const getRandomClass = (classList: string[]): string => {
     <h1 class="text-2xl md:text-3xl font-bold mb-8">Tags:</h1>
     <ul class="flex justify-center flex-wrap align-center gap-3">
       {
-        Object?.keys(tags)?.map((tag: string) => (
+        tags.map((tag) => (
           <li>
             <a
               class={getRandomClass(textClasses)}
-              href={`/tags/${tags[tag as any]}`}
-              title={`View posts with the tag: ${tag}`}
+              href={`/tags/${tag.slug}`}
+              title={`View posts with the tag: ${tag.name}`}
             >
-              {tags[tag as any]}
+              {tag.name}
             </a>
           </li>
         ))
