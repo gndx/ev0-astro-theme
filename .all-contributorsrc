@@ -1,4 +1,21 @@
 {
   "projectName": "ev0-astro-theme",
-  "projectOwner": "ev0-astro-theme"
+  "projectOwner": "gndx",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "dcyar",
+      "name": "Jhon Achata Limachi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7337141?v=4",
+      "profile": "https://jhonachata.dev/",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ]
 }
