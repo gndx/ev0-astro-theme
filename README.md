@@ -174,6 +174,15 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 
 Contributions to this project are welcome. If you find a bug or have a suggestion for improvement, please open an issue or submit a pull request.
 
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## 📃 License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
