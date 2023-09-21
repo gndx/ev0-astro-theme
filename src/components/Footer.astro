@@ -1,5 +1,6 @@
 ---
 import config from "@config/config.json";
+import HeartIcon from "@components/icons/HeartIcon.astro";
 const year = new Date().getFullYear();
 ---
 
@@ -8,7 +9,9 @@ const year = new Date().getFullYear();
     <p class="text-center text-xs/relaxed text-gray-500 mt-8 mb-8">
       &copy; {year}. {config.site.title} - EV0. All rights REVERSED
       <span class="block mt-2">
-        Made with ♥ in Medellín, Colombia. by
+        Made with
+        <HeartIcon />       
+        in Medellín, Colombia. by
         <a
           href="https://gndx.dev"
           class="text-gray-700 decoration-dashed transition hover:text-gray-700/75"
