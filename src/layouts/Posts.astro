@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import FormattedDate from "@components/FormattedDate.astro";
 import config from "@config/config.json";
+import { slugify } from "@utils/slug";
 
 const { posts } = Astro.props;
 
@@ -47,7 +48,7 @@ type PostType = {
           <FormattedDate date={post.data.pubDate} />
           {post.data.categories.slice(0, 2).map((item) => (
             <a
-              href={`/categories/${item}`}
+              href={`/categories/${slugify(item)}`}
               class="capitalize text-md relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
             >
               {item}

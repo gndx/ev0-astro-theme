@@ -1,10 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "@layouts/Base.astro";
 import Posts from "@layouts/Posts.astro";
 import Pagination from "@components/Pagination.astro";
 import config from "@config/config.json";
-
-import { getCollection } from "astro:content";
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection("blog");

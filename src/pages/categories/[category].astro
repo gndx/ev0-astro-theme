@@ -1,17 +1,17 @@
 ---
 import Base from "@layouts/Base.astro";
 import CategoryIcon from "@components/icons/CategoryIcon.astro";
-
 import { getTaxonomy } from "@utils/getAllTags";
 import { getSinglePage } from "@utils/getAllTags";
 import { taxonomyFilter } from "@utils/getAllTags";
+import { deslugify } from "@utils/slug";
 
 export async function getStaticPaths() {
   const categories = await getTaxonomy("blog", "categories");
 
   return categories.map((category) => {
     return {
-      params: { category },
+      params: { category: category.slug },
     };
   });
 }
@@ -23,7 +23,7 @@ const filterByCategory = taxonomyFilter(posts, "categories", category);
 ---
 
 <Base>
-  <h1 class="text-2xl md:text-3xl font-bold mb-8">Category: {category}</h1>
+  <h1 class="text-2xl md:text-3xl font-bold mb-8 capitalize">Category: {deslugify(category)}</h1>
   <ul class="space-y-4 text-left ml-4 text-gray-500 dark:text-gray-400">
     {
       filterByCategory?.map((post) => (
