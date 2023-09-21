@@ -177,6 +177,13 @@ Contributions to this project are welcome. If you find a bug or have a suggestio
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://gndx.io"><img src="https://avatars.githubusercontent.com/u/10554486?v=4?s=100" width="100px;" alt="Oscar Barajas Tavares"/><br /><sub><b>Oscar Barajas Tavares</b></sub></a><br /><a href="#doc-gndx" title="Documentation">📖</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
