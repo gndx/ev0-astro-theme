@@ -168,6 +168,7 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 
 ## 🚀 Release History
 
+- 1.0.2: Fix Titles 🐛 - (28/09/23)
 - 1.0.1: Minimal changes, New icons, Fix profile 🚀 - (20/09/23)
 - 1.0.0: Initial Release 🚀 - (18/09/23)
 
@@ -183,6 +184,7 @@ Contributions to this project are welcome. If you find a bug or have a suggestio
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://gndx.io"><img src="https://avatars.githubusercontent.com/u/10554486?v=4?s=100" width="100px;" alt="Oscar Barajas Tavares"/><br /><sub><b>Oscar Barajas Tavares</b></sub></a><br /><a href="#doc-gndx" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://jhonachata.dev/"><img src="https://avatars.githubusercontent.com/u/7337141?v=4?s=100" width="100px;" alt="Jhon Achata Limachi"/><br /><sub><b>Jhon Achata Limachi</b></sub></a><br /><a href="#bug-dcyar" title="Bug reports">🐛</a> <a href="#ideas-dcyar" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://erasmoh.dev"><img src="https://avatars.githubusercontent.com/u/12125288?v=4?s=100" width="100px;" alt="Erasmo Hernández"/><br /><sub><b>Erasmo Hernández</b></sub></a><br /><a href="#bug-erasmoh" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
