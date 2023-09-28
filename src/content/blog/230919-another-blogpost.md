@@ -1,5 +1,5 @@
 ---
-title: "Another blogpost"
+title: "Another blogpost with a long title"
 description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
 pubDate: "2023-09-19T01:09:01.514Z"
 heroImage: "/blog-placeholder.jpg"
