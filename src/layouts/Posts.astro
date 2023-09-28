@@ -28,7 +28,7 @@ type PostType = {
 >
   {
     posts?.slice(0, config.site.pageSize).map((post: PostType) => (
-      <article class="flex w-full flex-col items-start justify-between">
+      <article class="flex w-full flex-col items-start">
         <div class="rounded-lg block overflow-hidden mb-4">
           {post.data.heroImage && (
             <figure class="w-auto h-auto md:h-[150px] object-cover">
