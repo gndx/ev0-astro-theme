@@ -1,6 +1,6 @@
-import { getCollection } from "astro:content";
-import type { MDXInstance } from "astro";
-import { slugify, deslugify } from "./slug";
+import { getCollection } from 'astro:content';
+import type { MDXInstance } from 'astro';
+import { slugify, deslugify } from './slug';
 
 interface Post {
   title: string;
@@ -29,8 +29,8 @@ export const getTaxonomy = async (collection: string, name: string) => {
     const categoryArray = taxonomyPages[i];
     for (let j = 0; j < categoryArray.length; j++) {
       taxonomies.push({
-        "name": categoryArray[j],
-        "slug": slugify(categoryArray[j])
+        name: categoryArray[j],
+        slug: slugify(categoryArray[j]),
       });
     }
   }
@@ -45,7 +45,5 @@ export const getSinglePage = async (collection: any) => {
   return removeDrafts;
 };
 
-export const taxonomyFilter = (posts: any[], name: string, key: any) => 
-  posts.filter((post) =>
-    post.data[name].map((name: string) => deslugify(name)).includes(deslugify(key))
-  );
+export const taxonomyFilter = (posts: any[], name: string, key: any) =>
+  posts.filter((post) => post.data[name].map((name: string) => deslugify(name)).includes(deslugify(key)));
