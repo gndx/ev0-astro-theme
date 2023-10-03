@@ -1,10 +1,10 @@
 ---
-title: "The Space Race: From Sputnik to the Moon Landing"
-description: "Relive the historic moments of the Cold War-era space race between the United States and the Soviet Union."
-pubDate: "2021-09-19T01:21:03.940Z"
-heroImage: "/blog-placeholder.jpg"
-categories: ["space history"]
-tags: ["Space Race", "Cold War", "Apollo 11", "Sputnik"]
+title: 'The Space Race: From Sputnik to the Moon Landing'
+description: 'Relive the historic moments of the Cold War-era space race between the United States and the Soviet Union.'
+pubDate: '2021-09-19T01:21:03.940Z'
+heroImage: '/blog-placeholder.jpg'
+categories: ['space history']
+tags: ['Space Race', 'Cold War', 'Apollo 11', 'Sputnik']
 author: '["gndx"]'
 ---
 

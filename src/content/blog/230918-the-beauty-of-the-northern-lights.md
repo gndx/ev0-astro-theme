@@ -1,11 +1,10 @@
 ---
-title: "The Beauty of the Northern Lights"
-description: "Witness the stunning auroras and learn the science behind these natural light shows in the polar regions."
-pubDate: "2021-09-19T01:20:44.275Z"
-heroImage: "/blog-placeholder.jpg"
-categories: ["astronomy"]
-tags:
-  ["Aurora Borealis", "Space Weather", "Polar Regions", "Atmospheric Phenomena"]
+title: 'The Beauty of the Northern Lights'
+description: 'Witness the stunning auroras and learn the science behind these natural light shows in the polar regions.'
+pubDate: '2021-09-19T01:20:44.275Z'
+heroImage: '/blog-placeholder.jpg'
+categories: ['astronomy']
+tags: ['Aurora Borealis', 'Space Weather', 'Polar Regions', 'Atmospheric Phenomena']
 author: '["gndx"]'
 ---
 

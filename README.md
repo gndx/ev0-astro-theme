@@ -168,6 +168,7 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 
 ## 🚀 Release History
 
+- 1.0.3: Prettier - (02/10/23)
 - 1.0.2: Fix Titles 🐛 - (28/09/23)
 - 1.0.1: Minimal changes, New icons, Fix profile 🚀 - (20/09/23)
 - 1.0.0: Initial Release 🚀 - (18/09/23)
