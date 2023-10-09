@@ -5,7 +5,7 @@ import youtube from "@config/youtube.json";
 
 <section class="max-w-screen-lg px-4 mx-auto pb-12 sm:px-6 lg:px-8">
   <h3
-    class="mt-3 text-lg md:text-2xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600 mb-4"
+    class="mt-3 text-lg md:text-2xl font-semibold leading-6 text-zinc-900 dark:text-white group-hover:text-zinc-600 mb-4"
   >
     Latest videos on YouTube:
   </h3>
@@ -31,9 +31,9 @@ import youtube from "@config/youtube.json";
                 loading="lazy"
               />
             </figure>
-            <div class="bg-gray-900 p-4">
+            <div class="bg-zinc-900 p-4">
               <span class="text-sm">{item.channelTitle}</span>
-              <p class="mt-1 text-xs text-gray-400 h-8">{item.title}</p>
+              <p class="mt-1 text-xs text-zinc-400 h-8">{item.title}</p>
             </div>
           </a>
         </li>
