@@ -5,6 +5,7 @@ import config from "@config/config.json";
 import HamburgerIcon from "@icons/HamburgerIcon.astro";
 import CloseIcon from "@icons/CloseIcon.astro";
 import HomeIcon from "@icons/HomeIcon.astro";
+import ThemeIcon from "@components/ThemeIcon.astro";
 
 export interface NavigationLink {
   name: string;
@@ -14,15 +15,15 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 ---
 
-<header class="bg-gray-50">
+<header class="bg-zinc-50 dark:bg-zinc-900">
   <div class="mx-auto max-w-screen-lg px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-    <div class="flex items-start md:items-center justify-between sm:gap-4">
+    <div class="flex items-start justify-between gap-2 sm:gap-4 md:items-center">
       <a href="/" class="logo flex items-center" aria-current="page">
         <figure>
           <Image
             src={config.site.logo}
             alt={config.site.title}
-            class="w-16 rounded mr-8"
+            class="mr-8 w-16 rounded"
             width={512}
             height={512}
             decoding="async"
@@ -30,35 +31,27 @@ const { main }: { main: NavigationLink[] } = menu;
           />
         </figure>
       </a>
-      <div class="flex relative">
+      <div class="relative flex order-3">
         <!-- navbar toggler -->
         <input id="nav-toggle" type="checkbox" class="hidden" />
-        <label
-          id="show-button"
-          for="nav-toggle"
-          class="order-2 flex cursor-pointer items-center text-black md:hidden"
-        >
+        <label id="show-button" for="nav-toggle" class="order-2 flex cursor-pointer items-center text-zinc-400 md:hidden">
           <HamburgerIcon />
         </label>
-        <label
-          id="hide-button"
-          for="nav-toggle"
-          class="order-2 hidden cursor-pointer items-center text-black"
-        >
+        <label id="hide-button" for="nav-toggle" class="order-2 hidden cursor-pointer items-center text-zinc-400">
           <CloseIcon />
         </label>
         <!-- /navbar toggler -->
         <div
           id="nav-menu"
-          class="absolute top-8 right-0 p-2 z-10 mt-2 hidden w-44 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+          class="absolute right-0 top-8 z-10 mt-2 hidden w-44 divide-y divide-zinc-100 rounded-md border border-zinc-100 bg-white dark:bg-zinc-800 dark:border-zinc-900 p-2 shadow-lg"
         >
-          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+          <ul class="py-2 text-sm text-zinc-700 dark:text-zinc-200">
             {
               main?.map((menu) => (
                 <li>
                   <a
                     href={menu?.url}
-                    class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                    class="block rounded-lg px-4 py-2 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-zinc-700 dark:hover:text-zinc-800"
                   >
                     {menu?.name}
                   </a>
@@ -68,17 +61,18 @@ const { main }: { main: NavigationLink[] } = menu;
           </ul>
         </div>
       </div>
-      <ul class="ml-auto hidden md:flex items-center gap-6 lg:flex">
+      <ul class="ml-auto hidden items-center gap-6 md:flex lg:flex">
         {
           main?.map((menu) => (
-            <li class="block rounded-lg px-2 py-2 text-md text-gray-500 hover:text-gray-800">
-              <a href={menu?.url} class="flex items-center relative">
-                {menu?.name === "Home" ? <HomeIcon /> : menu?.name}
+            <li class="text-md block rounded-lg px-2 py-2 text-zinc-500 dark:text-zinc-400 transition-all hover:text-zinc-800">
+              <a href={menu?.url} class="relative flex items-center">
+                {menu?.name === 'Home' ? <HomeIcon /> : menu?.name}
               </a>
             </li>
           ))
-        }
+        }       
       </ul>
+      <ThemeIcon />
     </div>
   </div>
 </header>

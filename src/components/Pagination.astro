@@ -13,7 +13,7 @@ const paginationList = Array.from({ length }, (_, i) => i + 1);
         <li>
           <a
             href={prevUrl}
-            class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100  text-gray-900 rtl:rotate-180"
+            class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100  text-zinc-900 dark:text-white rtl:rotate-180"
           >
             <span class="sr-only">Prev Page</span>
             <PrevIcon />
@@ -25,7 +25,7 @@ const paginationList = Array.from({ length }, (_, i) => i + 1);
       paginationList?.map((num) => (
         <a
           href={`${firstUrl}${num == 1 ? "" : "" + num}`}
-          class={`block h-8 w-8 rounded border text-center leading-8 text-gray-900 ${
+          class={`block h-8 w-8 rounded border text-center leading-8 text-zinc-900 dark:text-white ${
             currentPage == num
               ? "border-indigo-600 bg-indigo-500 text-white"
               : ""
@@ -40,7 +40,7 @@ const paginationList = Array.from({ length }, (_, i) => i + 1);
         <li>
           <a
             href={nextUrl}
-            class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+            class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-zinc-900 dark:text-white rtl:rotate-180"
           >
             <span class="sr-only">Next Page</span>
             <NextIcon />
