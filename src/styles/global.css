@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    .prose code {
+  .prose code {
     @apply text-base;
   }
   h1,
@@ -38,4 +38,17 @@ input#nav-toggle:checked ~ label#hide-button {
 
 input#nav-toggle:checked ~ #nav-menu {
   @apply block md:flex;
+}
+
+.sun {
+  @apply stroke-zinc-500;
+}
+.moon {
+  @apply stroke-transparent;
+}
+:global(.dark) .sun {
+  @apply stroke-transparent;
+}
+:global(.dark) .moon {
+  @apply stroke-zinc-400;
 }

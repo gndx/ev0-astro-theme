@@ -171,7 +171,8 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 
 ## 🚀 Release History
 
-- 1.1.1: Update Dependencies  🛠️ - (10/10/23)
+- 1.1.2: Fix Dark Mode 🐛 - (10/10/23)
+- 1.1.1: Update Dependencies 🛠️ - (10/10/23)
 - 1.1.0: Dark Mode 🎨 - (08/10/23)
 - 1.0.3: Prettier 🛠️ - (02/10/23)
 - 1.0.2: Fix Titles 🐛 - (28/09/23)
