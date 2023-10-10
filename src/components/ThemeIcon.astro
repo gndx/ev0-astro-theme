@@ -1,8 +1,4 @@
----
-
----
-
-<button id="themeToggle" class="ml-auto md:ml-0">
+<button id="themeToggle" class="ml-auto md:ml-0" aria-label="Theme Toggle">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} class="h-6 w-6">
     <path
       class="sun"
@@ -18,21 +14,6 @@
     ></path>
   </svg>
 </button>
-
-<style>
-  .sun {
-    @apply stroke-zinc-500;
-  }
-  .moon {
-    @apply stroke-transparent;
-  }
-  :global(.dark) .sun {
-    @apply stroke-transparent;
-  }
-  :global(.dark) .moon {
-    @apply stroke-zinc-400;
-  }
-</style>
 
 <script is:inline>
   const theme = (() => {
