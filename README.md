@@ -6,6 +6,8 @@ EV0 Astro Theme is a free and open-source serverless blog template, built with A
   <img align="center" alt="EV0 Astro Theme" src="https://s3.amazonaws.com/gndx.dev/ev0-astro-theme.png"/>
 </p>
 
+<a href="https://astro.build"><img src="https://astro.badg.es/v2/built-with-astro/tiny.svg" alt="Built with Astro" width="120" height="20"></a>
+
 ## 🔥 DEMOS
 
 - [EV0 Astro Theme - DEMO](https://ev0.gndx.io/)
@@ -169,6 +171,7 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 
 ## 🚀 Release History
 
+- 1.1.1: Update Dependencies  🛠️ - (10/10/23)
 - 1.1.0: Dark Mode 🎨 - (08/10/23)
 - 1.0.3: Prettier 🛠️ - (02/10/23)
 - 1.0.2: Fix Titles 🐛 - (28/09/23)

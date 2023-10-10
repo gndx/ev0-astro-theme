@@ -1,6 +1,6 @@
 {
   "name": "ev0",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript.",
   "license": "MIT",
   "private": true,
@@ -36,11 +36,11 @@
     "format": "prettier -w ."
   },
   "dependencies": {
-    "@astrojs/mdx": "1.0.3",
+    "@astrojs/mdx": "1.1.1",
     "@astrojs/rss": "3.0.0",
-    "@astrojs/sitemap": "3.0.0",
-    "@astrojs/tailwind": "5.0.0",
-    "astro": "3.0.13",
+    "@astrojs/sitemap": "3.0.1",
+    "@astrojs/tailwind": "5.0.1",
+    "astro": "3.2.3",
     "dotenv": "16.3.1",
     "tailwindcss": "3.3.3"
   },
@@ -52,7 +52,7 @@
     "googleapis": "126.0.1",
     "prettier": "3.0.3",
     "prettier-plugin-astro": "0.12.0",
-    "prettier-plugin-tailwindcss": "0.5.4",
+    "prettier-plugin-tailwindcss": "0.5.5",
     "vite-plugin-pwa": "0.16.5"
   }
 }
