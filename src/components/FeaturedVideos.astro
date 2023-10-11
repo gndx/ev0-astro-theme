@@ -19,10 +19,12 @@ import youtube from "@config/youtube.json";
             href={`https://www.youtube.com/watch?v=${item.videoId}`}
             target="_blank"
             class="relative top-0 block overflow-hidden rounded-2xl"
+            title={item.title}
           >
             <figure>
               <Image
                 alt={item.title}
+                title={item.title}
                 src={`https://i.ytimg.com/vi/${item.videoId}/maxresdefault.jpg`}
                 class="h-44 w-full object-cover"
                 width={309}

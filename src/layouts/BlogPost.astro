@@ -24,6 +24,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
               class="transition duration-300 ease-in-out hover:scale-110 cursor-progress"
               src={heroImage}
               alt={title}
+              title={title}
               width={960}
               height={480}
               decoding="async"
@@ -40,6 +41,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
           <figure>
             <Image
               alt={config.author.name}
+              title={config.author.name}
               class="mr-2 h-6 w-6 rounded-full"
               width={50}
               height={50}
@@ -61,6 +63,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
               <a
                 href={`/categories/${slugify(category)}`}
                 class="mr-2 hover:text-primary font-medium capitalize"
+                title={category}
               >
                 {category}
               </a>
@@ -78,6 +81,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
           <a
             href={`/tags/${slugify(tag)}`}
             class="capitalize inline-block bg-zinc-200 rounded-full px-3 py-1 text-sm font-semibold text-zinc-700 mr-2 mb-2 dark:bg-zinc-900 dark:text-zinc-400"
+            title={tag}
           >
             #{tag}
           </a>
