@@ -10,7 +10,8 @@
     "pageSize": 6
   },
   "features": {
-    "youtube": true
+    "youtube": true,
+    "dark_mode": true
   },
   "metadata": {
     "meta_author": "Oscar Barajas @gndx",

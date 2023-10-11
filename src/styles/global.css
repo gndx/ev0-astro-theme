@@ -14,8 +14,18 @@
   h6 {
     @apply text-zinc-800 dark:text-zinc-200 !important;
   }
-  p {
+  p,
+  li,
+  strong,
+  blockquote,
+  table * {
     @apply text-zinc-700 dark:text-zinc-300;
+  }
+  kbd {
+    @apply bg-white text-zinc-700;
+  }
+  mark {
+    @apply bg-yellow-300;
   }
 }
 
@@ -41,14 +51,26 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .sun {
-  @apply stroke-zinc-500;
+  @apply stroke-zinc-500 transition-all;
 }
 .moon {
+  @apply stroke-transparent transition-all;
+}
+.dark .sun {
   @apply stroke-transparent;
 }
-:global(.dark) .sun {
-  @apply stroke-transparent;
-}
-:global(.dark) .moon {
+.dark .moon {
   @apply stroke-zinc-400;
+}
+#themeToggle:hover .sun {
+  @apply stroke-zinc-800;
+}
+#themeToggle:hover .moon {
+  @apply stroke-transparent;
+}
+.dark #themeToggle:hover .sun {
+  @apply stroke-transparent;
+}
+.dark #themeToggle:hover .moon {
+  @apply stroke-zinc-200;
 }

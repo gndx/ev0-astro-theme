@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import menu from "@config/menu.json";
-import config from "@config/config.json";
-import HamburgerIcon from "@icons/HamburgerIcon.astro";
-import CloseIcon from "@icons/CloseIcon.astro";
-import HomeIcon from "@icons/HomeIcon.astro";
-import ThemeIcon from "@components/ThemeIcon.astro";
+import { Image } from 'astro:assets';
+import menu from '@config/menu.json';
+import config from '@config/config.json';
+import HamburgerIcon from '@icons/HamburgerIcon.astro';
+import CloseIcon from '@icons/CloseIcon.astro';
+import HomeIcon from '@icons/HomeIcon.astro';
+import ThemeIcon from '@components/ThemeIcon.astro';
 
 export interface NavigationLink {
   name: string;
@@ -23,7 +23,7 @@ const { main }: { main: NavigationLink[] } = menu;
           <Image
             src={config.site.logo}
             alt={config.site.title}
-            class="mr-8 w-16 rounded"
+            class="w-16 rounded bg-zinc-950"
             width={512}
             height={512}
             decoding="async"
@@ -31,10 +31,14 @@ const { main }: { main: NavigationLink[] } = menu;
           />
         </figure>
       </a>
-      <div class="relative flex order-3">
+      <div class="relative order-3 flex">
         <!-- navbar toggler -->
         <input id="nav-toggle" type="checkbox" class="hidden" />
-        <label id="show-button" for="nav-toggle" class="order-2 flex cursor-pointer items-center text-zinc-400 md:hidden">
+        <label
+          id="show-button"
+          for="nav-toggle"
+          class="order-2 flex cursor-pointer items-center text-zinc-400 md:hidden"
+        >
           <HamburgerIcon />
         </label>
         <label id="hide-button" for="nav-toggle" class="order-2 hidden cursor-pointer items-center text-zinc-400">
@@ -43,7 +47,7 @@ const { main }: { main: NavigationLink[] } = menu;
         <!-- /navbar toggler -->
         <div
           id="nav-menu"
-          class="absolute right-0 top-8 z-10 mt-2 hidden w-44 divide-y divide-zinc-100 rounded-md border border-zinc-100 bg-white dark:bg-zinc-800 dark:border-zinc-900 p-2 shadow-lg"
+          class="absolute right-0 top-8 z-10 mt-2 hidden w-44 divide-y divide-zinc-100 rounded-md border border-zinc-100 bg-white p-2 shadow-lg dark:border-zinc-900 dark:bg-zinc-800"
         >
           <ul class="py-2 text-sm text-zinc-700 dark:text-zinc-200">
             {
@@ -51,7 +55,7 @@ const { main }: { main: NavigationLink[] } = menu;
                 <li>
                   <a
                     href={menu?.url}
-                    class="block rounded-lg px-4 py-2 text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-200 hover:text-zinc-700 dark:hover:text-zinc-800"
+                    class="block rounded-lg px-4 py-2 text-sm text-zinc-500 hover:bg-zinc-50 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-200 dark:hover:text-zinc-800"
                   >
                     {menu?.name}
                   </a>
@@ -64,7 +68,7 @@ const { main }: { main: NavigationLink[] } = menu;
       <ul class="ml-auto hidden items-center gap-6 md:flex lg:flex">
         {
           main?.map((menu) => (
-            <li class="text-md block rounded-lg px-2 py-2 text-zinc-500 dark:text-zinc-400 transition-all hover:text-zinc-800">
+            <li class="text-md block rounded-lg px-2 py-2 text-zinc-500 transition-all hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200">
               <a href={menu?.url} class="relative flex items-center">
                 {menu?.name === 'Home' ? <HomeIcon /> : menu?.name}
               </a>
@@ -72,7 +76,7 @@ const { main }: { main: NavigationLink[] } = menu;
           ))
         }
       </ul>
-      <ThemeIcon />
+      {config.features.dark_mode && <ThemeIcon />}
     </div>
   </div>
 </header>
