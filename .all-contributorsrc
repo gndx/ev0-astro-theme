@@ -1,7 +1,9 @@
 {
   "projectName": "ev0-astro-theme",
   "projectOwner": "gndx",
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "commitType": "docs",
   "commitConvention": "angular",
   "contributorsPerLine": 7,
@@ -11,28 +13,38 @@
       "name": "Oscar Barajas Tavares",
       "avatar_url": "https://avatars.githubusercontent.com/u/10554486?v=4",
       "profile": "https://gndx.io",
-      "contributions": ["doc"]
+      "contributions": [
+        "doc"
+      ]
     },
     {
       "login": "dcyar",
       "name": "Jhon Achata Limachi",
       "avatar_url": "https://avatars.githubusercontent.com/u/7337141?v=4",
       "profile": "https://jhonachata.dev/",
-      "contributions": ["bug", "ideas"]
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     },
     {
       "login": "erasmoh",
       "name": "Erasmo Hernández",
       "avatar_url": "https://avatars.githubusercontent.com/u/12125288?v=4",
       "profile": "https://erasmoh.dev",
-      "contributions": ["bug"]
+      "contributions": [
+        "bug"
+      ]
     },
     {
       "login": "franciscoagx",
       "name": "Francisco Araujo",
       "avatar_url": "https://avatars.githubusercontent.com/u/49659840?v=4",
       "profile": "http://francisco-araujo.com",
-      "contributions": ["design"]
+      "contributions": [
+        "design",
+        "bug"
+      ]
     }
   ]
 }
