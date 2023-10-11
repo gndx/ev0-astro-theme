@@ -72,7 +72,8 @@ To configure your blog, edit the `src/config/config.json` file. This file contai
     "pageSize": 6
   },
   "features": {
-    "youtube": true
+    "youtube": true,
+    "dark_mode": true
   },
   "metadata": {
     "meta_author": "Oscar Barajas @gndx",
