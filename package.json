@@ -1,5 +1,5 @@
 {
-  "name": "ev0",
+  "name": "ev0-astro-theme",
   "version": "1.1.2",
   "description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript.",
   "license": "MIT",
@@ -7,6 +7,7 @@
   "author": {
     "name": "GNDX"
   },
+  "homepage": "https://ev0.gndx.io",
   "contributors": [
     {
       "name": "Oscar Barajas @gndx",
@@ -33,26 +34,30 @@
     "astro": "astro",
     "youtube": "node scripts/youtube.cjs",
     "newpost": "node scripts/newpost.cjs",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "lint:eslint": "eslint . --ext .js,.ts,.astro"
   },
-  "dependencies": {
+  "devDependencies": {
     "@astrojs/mdx": "1.1.1",
     "@astrojs/rss": "3.0.0",
     "@astrojs/sitemap": "3.0.1",
     "@astrojs/tailwind": "5.0.1",
-    "astro": "3.2.3",
-    "dotenv": "16.3.1",
-    "tailwindcss": "3.3.3"
-  },
-  "devDependencies": {
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.10",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "astro": "3.2.3",
     "astro-compress": "2.0.15",
     "astro-robots-txt": "1.0.0",
+    "dotenv": "16.3.1",
+    "eslint": "^8.51.0",
+    "eslint-plugin-astro": "^0.29.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
     "googleapis": "126.0.1",
     "prettier": "3.0.3",
     "prettier-plugin-astro": "0.12.0",
     "prettier-plugin-tailwindcss": "0.5.5",
+    "tailwindcss": "3.3.3",
     "vite-plugin-pwa": "0.16.5"
   }
 }
