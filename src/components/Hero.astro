@@ -3,16 +3,6 @@ import { Image } from "astro:assets";
 import config from "@config/config.json";
 import social from "@config/social";
 
-export interface SocialMedia {
-  icon: string;
-  url: string;
-  svg: string;
-}
-
-interface Props {
-  socialItems?: SocialMedia[];
-}
-
 const socialItems = social.networks;
 ---
 
