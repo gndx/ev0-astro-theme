@@ -155,7 +155,6 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 │   └── favicon.png
 │   └── humans.txt
 ├── scripts/
-│   └── newpost.cjs
 │   └── youtube.cjs
 ├── src/
 │   ├── components/
