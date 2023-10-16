@@ -1,9 +1,10 @@
 {
   "name": "EV0",
   "short_name": "EV0",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#fff",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "theme_color": "#ffffff",
+  "background_color": "#0e0d0d",
   "description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript.",
   "icons": [
     {
