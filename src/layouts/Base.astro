@@ -64,6 +64,10 @@ const ogImage = createOgImage({
       name="description"
       content={description ? description : config.metadata.meta_description}
     />
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />
     <!-- og-title -->

@@ -1,0 +1,20 @@
+{
+  "name": "EV0",
+  "short_name": "EV0",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript.",
+  "icons": [
+    {
+      "src": "/favicons/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
