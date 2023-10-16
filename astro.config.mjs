@@ -1,16 +1,19 @@
-import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import prefetch from "@astrojs/prefetch";
+import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import Compress from 'astro-compress';
-import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
+import { defineConfig } from 'astro/config';
 import { VitePWA } from 'vite-plugin-pwa';
 
+import config from './src/config/config.json';
 import { manifest } from './src/utils/manifest';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'http://localhost:4322/',
+  site: config.site.base_url ? config.site.base_url : 'http://localhost:4321/',
+  base: config.site.base_path ? config.site.base_path : '/',
   image: {
     remotePatterns: [{ protocol: 'https' }],
   },
@@ -31,9 +34,29 @@ export default defineConfig({
       drafts: true,
     }),
     Compress(),
-    sitemap(),
+    prefetch(),
+    robotsTxt({
+      host: config.site.base_url ? config.site.base_url : 'http://localhost:4321/',
+      policy: [
+        {
+          userAgent: 'Googlebot',
+          allow: '/',
+          crawlDelay: 10,
+        },
+        {
+          userAgent: '*',
+          allow: '/',
+          crawlDelay: 10,
+        },
+      ],
+    }),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      entryLimit: 10000,
+    }),
     tailwind(),
-    robotsTxt(),
   ],
   vite: {
     plugins: [
