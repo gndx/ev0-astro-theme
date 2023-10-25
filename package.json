@@ -46,7 +46,7 @@
     "@tailwindcss/typography": "0.5.10",
     "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.5",
-    "astro": "3.3.3",
+    "astro": "3.3.4",
     "astro-compress": "2.0.15",
     "astro-md-generator": "1.0.0",
     "astro-robots-txt": "1.0.0",
