@@ -13,6 +13,8 @@ EV0 Astro Theme is a free and open-source serverless blog template, built with A
 - [EV0 Astro Theme - DEMO](https://ev0.gndx.io/)
 - [GNDX - My Personal Blog (ES)](https://gndx.dev)
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gndx/ev0-astro-theme#NODE_VERSION=18)
+
 ## 🔥 Features
 
 - ✅ Minimal styling (Tailwind CSS)
@@ -22,6 +24,7 @@ EV0 Astro Theme is a free and open-source serverless blog template, built with A
 - ✅ Sitemap support
 - ✅ RSS Feed support
 - ✅ Markdown & MDX support
+- ✅ View Transitions
 - ✅ PWA-ready
 - ✅ Fully responsive
 - ✅ Robots.txt & Humans.txt
@@ -153,7 +156,6 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 │   └── favicon.png
 │   └── humans.txt
 ├── scripts/
-│   └── newpost.cjs
 │   └── youtube.cjs
 ├── src/
 │   ├── components/
@@ -169,16 +171,6 @@ Follow the instructions and this will generate a new markdown file in the `src/c
 └── tsconfig.json
 └── .gitignore
 ```
-
-## 🚀 Release History
-
-- 1.1.2: Fix Dark Mode 🐛 - (10/10/23)
-- 1.1.1: Update Dependencies 🛠️ - (10/10/23)
-- 1.1.0: Dark Mode 🎨 - (08/10/23)
-- 1.0.3: Prettier 🛠️ - (02/10/23)
-- 1.0.2: Fix Titles 🐛 - (28/09/23)
-- 1.0.1: Minimal changes, New icons, Fix profile 🚀 - (20/09/23)
-- 1.0.0: Initial Release 🚀 - (18/09/23)
 
 ## 💻 Contributing
 

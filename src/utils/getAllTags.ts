@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { getCollection } from 'astro:content';
 import type { MDXInstance } from 'astro';
 import { slugify, deslugify } from './slug';
