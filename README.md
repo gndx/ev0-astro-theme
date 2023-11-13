@@ -10,7 +10,7 @@ EV0 Astro Theme is a free and open-source serverless blog template, built with A
 
 ## 🔥 DEMOS
 
-- [EV0 Astro Theme - DEMO](https://ev0.gndx.io/)
+- [EV0 Astro Theme - DEMO](https://ev0.gndx.dev/)
 - [GNDX - My Personal Blog (ES)](https://gndx.dev)
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gndx/ev0-astro-theme#NODE_VERSION=18)

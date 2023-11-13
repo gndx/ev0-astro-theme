@@ -1,5 +1,10 @@
 # Change Log
 
+
+## [1.1.4] 2023-11-13
+### Enhancement ✨
+- Fixes, merge PRs
+
 ## [1.1.3] 2023-10-13
 ### Enhancement ✨
 - astro-md-generator
