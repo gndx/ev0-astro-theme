@@ -31,9 +31,10 @@ type PostType = {
       <article class="flex w-full flex-col items-start">
         <div class="rounded-lg block overflow-hidden mb-4">
           {post.data.heroImage && (
+            <a href={`/blog/${post.slug}/`}>
             <figure class="w-auto h-auto md:h-[150px] object-cover">
               <Image
-                class="transition duration-300 ease-in-out hover:scale-110 cursor-progress"
+                class="transition duration-300 ease-in-out hover:scale-110"
                 src={post.data.heroImage}
                 alt={post.data.title}
                 width={960}
@@ -42,6 +43,7 @@ type PostType = {
                 loading="lazy"
               />
             </figure>
+            </a>
           )}
         </div>
         <div class="flex items-center gap-x-4 text-xs text-zinc-900 dark:text-white">
