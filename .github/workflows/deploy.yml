@@ -18,8 +18,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout your repository using git
         uses: actions/checkout@v2
+      - name: Installa dependances
+        uses: actions/setup-node@v4
+          with:
+            node-version: 18
+        - run: npm install
       - name: Install, build, and upload your site
         uses: withastro/action@v0
         #with:
