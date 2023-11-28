@@ -23,10 +23,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Install, build, and upload your site
         uses: withastro/action@v0
-        with:
-             path: .
-             node-version: 18
-             package-manager: npm
 
   deploy:
     needs: build
