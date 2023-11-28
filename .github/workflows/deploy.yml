@@ -21,17 +21,12 @@ jobs:
 
       - name: Checkout your repository using git
         uses: actions/checkout@v2
-      - name: Installa dependances
-        uses: actions/setup-node@v4
-        with:
-            node-version: 18
-        - run: npm install
       - name: Install, build, and upload your site
         uses: withastro/action@v0
-        #with:
-             # path: . # L'emplacement racine de votre projet Astro dans le dépôt. (facultatif)
-             # node-version: 18 # The specific version of Node that should be used to build your site. Defaults to 18. (facultatif)
-             # package-manager: npm # Le gestionnaire de paquets Node qui doit être utilisé pour installer les dépendances et build votre site. Détecté automatiquement en fonction de votre lockfile. (facultatif)
+        with:
+             path: .
+             node-version: 18
+             package-manager: npm
 
   deploy:
     needs: build
