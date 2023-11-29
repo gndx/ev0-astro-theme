@@ -11,7 +11,7 @@ import { manifest } from './src/utils/manifest';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mcflypartages.github.io',
-  base: '/mcflypartages.github.io',
+  base: '/',
   image: {
     remotePatterns: [{ protocol: 'https' }],
   },
