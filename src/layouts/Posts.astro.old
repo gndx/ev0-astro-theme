@@ -12,6 +12,7 @@ type PostType = {
   body: string;
   collection: string;
   data: {
+    draft: booleen;
     title: string;
     description: string;
     heroImage: string;
