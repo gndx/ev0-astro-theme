@@ -1,4 +1,17 @@
-import { getCollection } from 'astro:content';
-const blogEntries = await getCollection('blog', ({ data }) => {
-  return import.meta.env.PROD ? data.draft !== true : true;
+import { defineCollection, z } from 'astro:content';
+
+const blog = defineCollection({
+  schema: z.object({
+    draft: z.boolean().optional(true),
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    heroImage: z.string().optional(),
+    categories: z.array(z.string()).default(['others']),
+    tags: z.array(z.string()).default(['others']),
+    authors: z.array(z.string()).default(['mcfly']),
+  }),
 });
+
+export const collections = { blog };
