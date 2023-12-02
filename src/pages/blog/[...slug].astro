@@ -5,7 +5,9 @@ import BlogPost from "@layouts/BlogPost.astro";
 import Code from "@components/mdx/Code.astro";
 
 export async function getStaticPaths() {
+  const allPosts = await getCollection("blog");
   const posts = allPosts.filter((post) => !post.frontmatter.draft && post.frontmatter.slug);
+
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
