@@ -1,11 +1,11 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "Accueil",
       "url": "/"
     },
     {
-      "name": "About",
+      "name": "A Propos",
       "url": "/about"
     },
     {
@@ -13,7 +13,7 @@
       "url": "/tags"
     },
     {
-      "name": "Categories",
+      "name": "Catégories",
       "url": "/categories"
     }
   ]
