@@ -1,26 +1,27 @@
 {
   "site": {
-    "title": "EV0 ",
+    "title": "McFlyPartages, le partage pour tous",
     "base_url": "https://mcflypartages.github.io",
     "base_path": "/",
     "favicon": "/favicon.png",
-    "logoLight": "/logoLight.png",
-    "logoDark": "/logoDark.png",
-    "lang": "en",
-    "description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript.",
+    "logoLight": "/logoLight.webp",
+    "logoDark": "/logoDark.webp",
+    "lang": "fr",
+    "description": "Mémos & Bloc-notes pour débutants autour de la Domotique, Vie Privée, Auto-hébergement, Linux, Serveur.",
+    "keywords": "Domotique, Home Assistant, Linux, Docker, NAS, OpenMediaVault, Vie Privée, HP MicroServer Gen 8",
     "pageSize": 6
   },
   "features": {
-    "youtube": true,
+    "youtube": false,
     "dark_mode": true
   },
   "metadata": {
-    "meta_author": "Oscar Barajas @gndx",
-    "meta_description": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript."
+    "meta_author": "Anthony, McFly",
+    "meta_description": "Passionné de domotique depuis 2018 et n'ayant aucun bagage informatique, j'essaie de rendre accessibles ces outils au grand débutant que je suis toujours dans certains domaines."
   },
   "author": {
-    "name": "Oscar Barajas Tavares @gndx",
-    "avatar": "https://s3.amazonaws.com/gndx.dev/gndx-astro-avatar.png",
-    "bio": "EV0 is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript."
+    "name": "McFly, Anthony",
+    "avatar": "/images/mcfly.webp",
+    "bio": "Passionné de domotique depuis 2018 (Jeedom, Domotics et le meilleur, Home Assistant) et n'ayant aucun bagage informatique, j'essaie de rendre accessibles ces outils au grand débutant que je suis toujours dans certains domaines."
   }
 }
