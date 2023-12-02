@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 
 const blog = defineCollection({
   schema: z.object({
+    draft: z.boolean(),
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
@@ -9,7 +10,7 @@ const blog = defineCollection({
     heroImage: z.string().optional(),
     categories: z.array(z.string()).default(['others']),
     tags: z.array(z.string()).default(['others']),
-    authors: z.array(z.string()).default(['gndx']),
+    authors: z.array(z.string()).default(['mcfly']),
   }),
 });
 
