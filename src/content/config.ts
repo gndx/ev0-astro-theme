@@ -1,7 +1,4 @@
-import { defineCollection, z } from 'astro:content';
-
-const blog = await defineCollection('blog', ({ data }) => {
-  return data.draft != true;
+import { getCollection } from 'astro:content';
+const blogEntries = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
 });
-
-export const collections = { blog };
