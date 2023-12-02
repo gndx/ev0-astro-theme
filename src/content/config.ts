@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 
-const blog = defineCollection({
+const blog = await defineCollection('blog', ({ data }) =>
+  return data.draft != true; {
   schema: z.object({
     published: z.boolean().default(['true']),
     title: z.string(),
