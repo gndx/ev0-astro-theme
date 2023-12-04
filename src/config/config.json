@@ -17,11 +17,12 @@
   },
   "metadata": {
     "meta_author": "Anthony, McFly",
-    "meta_description": "Passionné de domotique depuis 2018 et n'ayant aucun bagage informatique, j'essaie de rendre accessibles ces outils au grand débutant que je suis toujours dans certains domaines."
+    "meta_description": "Passionné de domotique et d'informatique, mais n'ayant aucun bagage dans ces domaines,  je découvre, j'apprends et j'essaie de le rendre accessible au grand débutant que je suis toujours. La domotique, l'auto-hébergement et le retour d'une vie numérique, respectueuse et contrôlée seront les piliers de ce blog."
   },
   "author": {
     "name": "McFly, Anthony",
     "avatar": "/mcfly.webp",
-    "bio": "Passionné de domotique depuis 2018 (Jeedom, Domotics et Home Assistant, le meilleur du moment) et n'ayant aucun bagage informatique, j'essaie de rendre accessibles ces outils au grand débutant que je suis toujours dans certains domaines."
+    "bio1": "Passionné de domotique et d'informatique, mais n'ayant aucun bagage dans ces domaines,  je découvre, j'apprends et j'essaie de le rendre accessible au grand débutant que je suis toujours.",
+    "bio2": "La Domotique, l'Auto-hébergement et le retour d'une Vie numérique, Respectueuse et Contrôlée seront les piliers de ce blog."
   }
 }
