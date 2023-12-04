@@ -1,0 +1,108 @@
+---
+draft: false
+title: Installer une application .deb sous Linux
+description: "Comment installer une application avec l'extension .deb sur un système Linux."
+pubDate: 12/04/2023
+heroImage: '/images/keyboard-895556_1920.jpg'
+categories: 
+- Linux
+authors: 
+- mcfly
+tags:
+- Debian
+- Ubuntu
+- ElementaryOS
+- LinuxMint
+---
+Sur un système Linux, il y a plusieurs méthodes pour installer un logiciel.
+Soit, vous passez par :
+- Le magasin d'applications (logithèque) pré-installé (ex. Ubuntu Software sous Ubuntu),
+- Un magasin alternatif comme Flatpak (article bientôt disponible),
+- Une AppImage (C'est une version portable d'un logiciel),
+- Un `.deb` (ce que l'on va voir ici),
+- Via un Terminal en ligne de commande (CLI)
+
+Rassurez-vous, cette dernière méthode est pour des besoins plus spécifiques. La plupart des logiciels grand public sont installables via les magasins d'applications ou en AppImage.
+
+## Qu'est-ce que les fichiers .deb.
+Les fichiers `.deb` viennent de la distribution Debian, d'où le raccourci `.deb`. Ils sont l'équivalent du `.exe` sous Windows, à la différence qu'ils nécessitent une ligne de commande pour être installés (dans la plupart des cas).
+
+Nous allons voir dans cet article comment installer un `.deb` sur une distribution Ubuntu, mais cela marche aussi sous Debian (logique), LinuxMint entre autres.
+
+## Installer une application en .deb sur Linux.
+
+Pour installer un logiciel via son paquet `.deb`, il faut :
+- Un fichier `.deb`,
+- Ouvrir un Terminal dans le dossier contenant le fichier `.deb` (dans l'explorateur de fichier, faites un clic-droit, puis ouvrir un Terminal)
+- Lancer la commande suivante :
+
+```bash
+sudo dpkg -i chemin/vers/l_application
+```
+ou
+```bash
+sudo dpkg -i nom_de_l_application.deb
+```
+_Explications :_
+
+`-i` pour `install`
+
+>Dans la plupart des distributions Linux vous pouvez utiliser la touche <span><kbd>TAB</kbd></span> une fois les premiers caractéres tapés pour completer automatiquement le nom en fonction des fichiers disponnibles.
+
+À ce stade,  votre application/logiciel sera installé et vous devriez le voir depuis votre lanceur d'applications.
+
+### Dépendances manquantes.
+
+Il se peut que des dépendances soient nécessaires. Dans ce cas, taper la commande suivante :
+
+```bash
+sudo apt install --fix-broken
+```
+
+ou (même commande, mais plus courte)
+
+```bash
+sudo apt install -f
+```
+
+### Installer plusieurs applications `.deb` en une seule fois.
+
+_Normalement, vous ne devriez pas en avoir besoin, mais ça me permet de garder cette commande dans mes notes._
+
+Si vous avez une application en plusieurs `.deb` vous pouvez lancer la commande suivante qui installera tous les `.deb` d'un coup.
+
+```bash
+sudo dpkg -i chemin/vers/le_dossier/deb/*.deb
+```
+ou
+```bash
+sudo dpkg -i *.deb
+```
+
+## Désinstaller une application .deb.
+
+Et oui, on trouve toujours comment tout installer sur Internet, mais trop peu souvent comment désinstaller, alors voilà comment faire.
+
+Si votre application n'est pas accessible dans votre magasin ou gestionnaire d'application, il vous faudra rechercher son nom de paquet installé avec la commande suivante.
+
+Remplacer `expression_recherchée` par un mot pouvant être contenu dans l'application à supprimer (ex. VLC, Firefox, etc).
+
+```bash
+dpkg -S expression_recherchée
+```
+-S indique une recherche des paquets contenant dans leur nom `expression_cherchée`.
+
+Une fois le nom du paquet trouvé, il suffit de la supprimer avec la commande suivante.
+```bash
+sudo dpkg -r nom_du_paquet
+```
+
+ou, pour supprimer **et** purger les fichiers de configuration.
+```bash
+sudo dpkg -P nom_du_paquet
+```
+
+Ceci est plus un mémo qu'un article, mais cela permet d'avoir les commandes sous la main.
+
+#### Sources.
+https://www.numetopia.fr/installer-logiciel-depuis-fichier-deb/
