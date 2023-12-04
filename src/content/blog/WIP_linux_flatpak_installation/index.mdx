@@ -1,0 +1,88 @@
+---
+draft: true
+title: Installer FlatPak et découvrer les applications conteneurisées
+description: "Comment installer Flatpak sur Ubuntu et accéder à un énorme catalogue d'applications conteneurisées sans toucher à votre système.."
+pubDate: 12/04/2023
+heroImage: '/images/flatpak-linux-box.webp'
+categories: 
+- Linux
+authors: 
+- mcfly
+tags:
+- Debian
+- Ubuntu
+- ElementaryOS
+- LinuxMint
+- Flatpak
+- FlatHub
+---
+
+---
+## Todo
+Ajouter une description de Flatpak
+Ajouter le lien dans linux installer .deb
+
+---
+Sur un système Linux, il y a plusieurs méthodes pour installer un logiciel.
+Soit, vous passez par :
+- Le magasin d'applications (logithèque) pré-installé (ex. Ubuntu Software sous Ubuntu),
+- Un magasin alternatif comme Flatpak (article bientôt disponible),
+- Une AppImage (C'est une version portable d'un logiciel),
+- Un `.deb` (ce que l'on va voir ici),
+- Via un Terminal en ligne de commande (CLI)
+
+Aujourd'hui, c'est au tour de [FlatPak](https://flatpak.org), qui permet d'installer des applications de manière conteneurisée, comprendre isolées de votre système.
+
+Il y a un magasin d'application bien connu [FlatHub](https://flathub.org/fr) pour faire vos courses.
+
+_Attention : ca va aller vite même trés vite._
+
+## Installer FlatPak
+Pour installer Flatpak, il suffit simplement de lancer la commande suivante dans un Terminal.
+
+```bash
+sudo add-apt-repository ppa:flatpak/stable ## Ajoute le dépôt officiel à votre liste de dépôts
+sudo apt update ## Mise à jour de votre liste d'application (en intégrant le nouveau dépôt)
+sudo apt install flatpak ## Installationde Flatpak
+```
+
+Flatpak est installé, vous pouvez dès à présent installer des applications FlatPak via les lignes de commande suivantes :
+
+```bash
+## Pour installer
+flatpak install flathub votre_application
+
+## Pour l'executer
+flatpak run votre_application
+
+## Pour supprimer
+flatpak uninstall --user votre_application ## Le -user permet de supprimer le dossier de l'appli dans le dossier de l'utilisateur.
+```
+
+Pas très pratique la ligne de commande, non ? Passons à la suite.
+
+### Ajouter le plugin Software Flatpak pour Gnome.
+
+Cela permet de gérer (rechercher, installer, supprimer) ses applications Flatpak depuis le gestionnaire d'applications de Gnome.
+
+Allez une petite ligne dans le Terminal :
+
+```bash
+sudo apt install gnome-software-plugin-flatpak
+```
+
+Ajouter le dépot FlatHub
+```bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
+Redemarrer votre système et c'est fini.
+
+Rendez-vous dans le gestionnaire d'application de Gnome, vous devriez pouvoir choisir entre une installation Snap ou FlatHub sur certaines applications.
+
+## Conclusion
+Flatpak permet de bénéficier des dernières mises à jour des applications avant qu'elles ne soient sur les dépôts officiels de votre distribution. Elle a aussi l'avantage de lancer les applications dans un "conteneur" ce qui veut dire que l'application est globalement isolée de votre système. 
+Même si l'isolation est un avantage, elle peut aussi être un inconvénient pour certaines applications, il faut le garder en mémoire.
+
+## Sources
+* [Site Officiel (EN)](https://flatpak.org/setup/Ubuntu)
