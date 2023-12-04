@@ -6,7 +6,7 @@ import Posts from "@layouts/Posts.astro";
 
 
 const posts = ( await getCollection('blog',
-    ({ data }) => data.draft != true)).sort(
+    ({ data }) => import.meta.env.PROD ? data.draft !== true : true)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
