@@ -6,10 +6,11 @@ import Pagination from "@components/Pagination.astro";
 import config from "@config/config.json";
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection("blog");
+  const allPosts = await getCollection('blog', ({ data }) => import.meta.env.PROD ? data.draft !== true : true);
   const formattedPosts = allPosts.sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
+
   return paginate(formattedPosts, {
     pageSize: config.site.pageSize,
   });
