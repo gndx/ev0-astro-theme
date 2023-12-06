@@ -6,7 +6,10 @@ import Code from "@components/mdx/Code.astro";
 
 
   export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = (await getCollection("blog", ({ data }) => import.meta.env.PROD ? data.draft !== true : true)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
