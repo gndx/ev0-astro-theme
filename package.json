@@ -60,5 +60,9 @@
     "prettier-plugin-tailwindcss": "0.5.9",
     "tailwindcss": "3.3.6",
     "vite-plugin-pwa": "0.17.3"
+  },
+  "dependencies": {
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "@rollup/plugin-terser": "^0.4.4"
   }
 }
