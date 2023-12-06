@@ -1,3 +1,15 @@
+
+## Update des dependances et d'Astro v4
+
+```
+     ◼  @astrojs/sitemap is up to date on v3.0.3
+      ●  @astrojs/tailwind will be updated to v5.0.3
+      ▲  astro will be updated to  v4.0.2 
+      ▲  @astrojs/mdx will be updated to  v2.0.0 
+      ▲  @astrojs/rss will be updated to  v4.0.0 
+```
+
+
 # 🚀 EV0 Astro Theme - Blog Template
 
 EV0 Astro Theme is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript. It serves as a starting point for creating your personal portfolio website or showcasing your projects online. The template is open-source and released under the MIT license, meaning you are free to use, modify, and distribute it for personal or commercial purposes.
