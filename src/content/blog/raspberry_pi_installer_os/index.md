@@ -68,6 +68,7 @@ De retour dans la fenêtre de customisation, cliquez maintenant sur `OUI`, une f
 
 Raspberry Pi Imager va désormais récupérer la dernière image disponible et l'écrire sur la MicroSD en y insérant les paramètres que vous avez configurés, puis vérifier que tout s'est bien passé.
 
+![Raspberry Pi Imager installation de l'OS terminée](./img/raspberry_pi_imager_fini.png)
 Une fois toutes les étapes finies, éjecter proprement votre carte MicroSD de votre ordinateur et insérez là dans votre Raspberry Pi, brancher son alimentation et l'écran (si version Desktop), et attendez.
 
 Si vous avez installé une image serveur, alors il vous faudra récupérer l'adresse IP de votre Raspberry via votre routeur/Box et vous connecter en SSH via un Terminal dans Linux en tapant la commande suivante.
