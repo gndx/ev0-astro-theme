@@ -41,8 +41,8 @@ export default defineConfig({
       enabled: import.meta.env.PROD, // Only load in production
       host: "https://matomo.mcflypartages.fr/",
       setCookieDomain: "*.mcflypartages.fr",
-      trackerUrl: "js/", // defaults to matomo.php
-      srcUrl: "js/", // defaults to matomo.js
+      trackerUrl: "js/matomo.php", // defaults to matomo.php
+      srcUrl: "js/matomo.js", // defaults to matomo.js
       siteId: 1,
       heartBeatTimer: 5,
       disableCookies: true,
