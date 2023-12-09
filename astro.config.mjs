@@ -4,7 +4,6 @@ import tailwind from '@astrojs/tailwind';
 import Compress from 'astro-compress';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
-import matomo from 'astro-matomo';
 
 import { VitePWA } from 'vite-plugin-pwa';
 
@@ -37,17 +36,6 @@ export default defineConfig({
     sitemap(),
     tailwind(),
     robotsTxt(),
-    matomo({
-      enabled: import.meta.env.PROD, // Only load in production
-      host: "https://matomo.mcflypartages.fr/",
-      setCookieDomain: "*.mcflypartages.fr",
-      trackerUrl: "js/matomo.php", // defaults to matomo.php
-      srcUrl: "js/matomo.js", // defaults to matomo.js
-      siteId: 1,
-      heartBeatTimer: 5,
-      disableCookies: true,
-      debug: false,
-    }),
   ],
   vite: {
     plugins: [

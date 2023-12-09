@@ -64,6 +64,5 @@
   "dependencies": {
     "@jridgewell/sourcemap-codec": "^1.4.15",
     "@rollup/plugin-terser": "^0.4.4",
-    "astro-matomo": "^1.4.1"
   }
 }
