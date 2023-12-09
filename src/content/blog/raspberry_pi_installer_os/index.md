@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: Raspberry Pi - Installer un OS avec Raspberry Pi Imager
 description: "Comment installer très simplement un système d'exploitation dans votre Raspberry Pi avec Raspberry Pi Imager"
 pubDate: 12/09/2023
