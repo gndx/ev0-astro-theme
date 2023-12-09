@@ -19,7 +19,7 @@ Dans cet article, nous allons voir comment bien commencer avec son Raspberry Pi.
 
 ## Préparation.
 
-Transférer l'image via [Balena Etcher](https://www.balena.io/etcher/) ou [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+Transférer l'image via [Balena Etcher](https://www.balena.io/etcher/) ou [Raspberry Pi Imager](/blog/raspberry_pi_installer_os)
 
 ### Utilisation sans clavier ni souris. 
 
