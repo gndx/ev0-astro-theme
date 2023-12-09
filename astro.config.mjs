@@ -4,13 +4,15 @@ import tailwind from '@astrojs/tailwind';
 import Compress from 'astro-compress';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
+import matomo from 'astro-matomo';
+
 import { VitePWA } from 'vite-plugin-pwa';
 
 import { manifest } from './src/utils/manifest';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mcflypartages.github.io',
+  site: 'https://mcflypartages.fr',
   base: '/',
   image: {
     remotePatterns: [{ protocol: 'https' }],
@@ -35,6 +37,17 @@ export default defineConfig({
     sitemap(),
     tailwind(),
     robotsTxt(),
+    matomo({
+      enabled: import.meta.env.PROD, // Only load in production
+      host: "https://matomo.mcflypartages.fr/",
+      setCookieDomain: "*.mcflypartages.fr",
+      trackerUrl: "js/", // defaults to matomo.php
+      srcUrl: "js/", // defaults to matomo.js
+      siteId: 1,
+      heartBeatTimer: 5,
+      disableCookies: true,
+      debug: false,
+    }),
   ],
   vite: {
     plugins: [
