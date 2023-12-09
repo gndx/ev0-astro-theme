@@ -106,6 +106,8 @@ const ogImage = createOgImage({
     <script>
       var _paq = window._paq = window._paq || [];
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+      _paq.push(["setDoNotTrack", true]);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
@@ -116,7 +118,9 @@ const ogImage = createOgImage({
         g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
       })();
     </script>
+    <noscript><p><img src="//matomo.mcflypartages.fr/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
     <!-- End Matomo Code -->
+
 
   </head>
   <body class="bg-white dark:bg-zinc-900/95">
