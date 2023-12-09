@@ -107,6 +107,7 @@ const ogImage = createOgImage({
       var _paq = window._paq = window._paq || [];
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+      _paq.push(["setCookieDomain", "*.mcflypartages.fr"]);
       _paq.push(["setDoNotTrack", true]);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
@@ -120,6 +121,7 @@ const ogImage = createOgImage({
     </script>
     <noscript><p><img src="//matomo.mcflypartages.fr/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
     <!-- End Matomo Code -->
+
 
 
   </head>
