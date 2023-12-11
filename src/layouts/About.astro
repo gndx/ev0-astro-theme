@@ -1,0 +1,138 @@
+---
+import Header from "@components/Header.astro";
+import Hero from "@components/Hero.astro";
+import FeaturedVideos from "@components/FeaturedVideos.astro";
+import Footer from "@components/Footer.astro";
+import config from "@config/config.json";
+import { createOgImage } from "@utils/createOgImage";
+
+import "@styles/global.css";
+
+import { ViewTransitions } from "astro:transitions";
+
+export interface Props {
+  title?: string;
+  meta_title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  canonical?: string;
+  blogpost?: boolean;
+}
+
+const { title, meta_title, description, noindex, blogpost } = Astro.props;
+
+const ogImage = createOgImage({
+  title: meta_title ? meta_title : title ? title : config.site.title,
+  meta: [config.site.title, config.site.base_url].join(" · "),
+});
+---
+
+<!doctype html>
+<html lang={config.site.lang}>
+  <head>
+    <!-- favicon -->
+    <link rel="shortcut icon" href={config.site.favicon} />
+    <!-- theme meta -->
+    <meta name="theme-name" content="bookworm-light-astro" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#fff"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- responsive meta -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
+
+    <title>{meta_title ? meta_title : title ? title : config.site.title}</title>
+    <meta
+      name="title"
+      content={meta_title ? meta_title : title ? title : config.site.title}
+    />
+    <link
+      rel="canonical"
+      href={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+      item-prop="url"
+    />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta
+      name="description"
+      content={description ? description : config.metadata.meta_description}
+    />
+    <!-- author from config.json -->
+    <meta name="author" content={config.metadata.meta_author} />
+    <!-- og-title -->
+    <meta
+      property="og:title"
+      content={meta_title ? meta_title : title ? title : config.site.title}
+    />
+    <!-- og-description -->
+    <meta
+      property="og:description"
+      content={description ? description : config.metadata.meta_description}
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+    />
+
+    <!-- twitter-title -->
+    <meta
+      name="twitter:title"
+      content={meta_title ? meta_title : title ? title : config.site.title}
+    />
+    <!-- twitter-description -->
+    <meta
+      name="twitter:description"
+      content={description ? description : config.metadata.meta_description}
+    />
+    <!-- og-image -->
+    <meta property="og:image" content={ogImage} />
+    <!-- twitter-image -->
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script is:inline src="/registerSW.js"></script>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <ViewTransitions />
+    <!-- Ajout du code pour matomo -->
+
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+      _paq.push(["setCookieDomain", "*.mcflypartages.fr"]);
+      _paq.push(["setDoNotTrack", true]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//matomo.mcflypartages.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//matomo.mcflypartages.fr/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body class="bg-white dark:bg-zinc-900/95">
+    <Header />
+    <main class="mx-auto max-w-screen-lg px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // This is a hack to get vite-plugin-pwa to generate a sw.js file.
+      // Do not remove this script tag.
+    </script>
+  </body>
+</html>
