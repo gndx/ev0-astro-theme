@@ -1,0 +1,48 @@
+---
+import BaseSimple from "@layouts/BaseSimple.astro";
+import Page from "@layouts/Page.astro";
+---
+
+<BaseSimple meta_title="Protection des données">
+  <Page title="Protection des données">
+    <p><strong> <em>Cette page est en cours de rédaction, elle sera complétée au fur à mesure</em> </strong></p>
+    <p>Actuellement, le site n&#39;installe aucun cookie suiveurs.</p> 
+    <p>Il y a maintenant, des moyens de suivre son audience en respectant la vie privée de ses utilisateurs et cela va être mon défi. 
+      Je ne peux pas vous parler &quot;respect de la vie privée&quot; si je vous piste via les médias que j&#39;utilise.</p>
+    <p>La RGPD est quand même une usine à gaz, mais pour une fois que cela va dans le sens de l&#39;utilisateur....</p>
+    <p>Pour aider les webmasters a respecter de la vie privée des visiteurs, la CNIL a écrit <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs" target="_blank">différents articles concernant la gestion des cookies</a> et autres données privées pouvant être recueillis lors de vos sessions web.</p>
+    <p>Voici les informations concernant l&#39;analyse du blog.</p>
+    <h2>Construction du blog.</h2>
+    <p>Le blog est construit via un générateur de site statique, appelé <a href="https://astro.build/" target="_blank">AstroJS</a>.
+    Pour simplifier, à chaque nouveau contenu, il régénère chaque page HTML. 
+    Cela permet de ne pas utiliser de :</p>
+    <ul>
+    <li>Serveur PHP, </li>
+    <li>Base de données,
+    Rien qui puisse adapter l&#39;affichage du blog en fonction de l&#39;utilisateur.</li>
+    </ul>
+    <p>De plus, cette technologie limite la surface d&#39;attaque d&#39;un site (faille PHP et SQL) et est moins énergivore (pas de serveur traitant en permanence les requêtes des utilisateurs).</p>
+    <p>Je proposerai peut-être plusieurs articles sur AstroJS, mais la documentation, disponible en plusieurs langues, dont le français, est très bien faite.</p>
+    <h2>Analyse de l&#39;audience du site web.</h2>
+    <p>L&#39;analyse d&#39;audience est le nerf de la guerre sur un site web professionnel, mais pour un particulier ?</p>
+    <p>La plupart des services d&#39;analyse d&#39;audience s&#39;adapte au grand publique dans l&#39;optique de récupérer un maximum d&#39;informations sur les visiteurs qui serviront à leur clientèle pro. 
+    Ils vous fournissent, en échange quelques informations, un service qui dans la plupart des cas n&#39;est peu, voir pas analysé par les webmasters amateurs.</p>
+    <p>Voici une <a href="https://www.cnil.fr/fr/cookies-solutions-pour-les-outils-de-mesure-daudience" target="_blank">liste des services d&#39;audience pouvant être exempté du bandeau de gestion de cookie</a> en respectant le guide de configuration associé.</p>
+    <p>Pour le suivi du blog, j&#39;utilise <a href="https://matomo.org/" target="_blank">Matomo</a> en respectant le <a href="https://www.cnil.fr/sites/default/files/atoms/files/matomo_analytics_-_exemption_-_guide_de_configuration.pdf" target="_blank">guide fourni par la CNIL</a>.</p>
+    <p>Cela me permet de ne  pas avoir besoin d&#39;afficher de bandeau de gestion de cookie.
+    Ce dernier est très utile pour prendre conscience de la traque organisée, mais (je trouve) très pénible lorsque l&#39;on navigue sur un site et qu&#39;il s&#39;affiche en bloquant toute possibilité de voir l&#39;article. De plus, le bouton <strong>continuer sans accepter</strong>, censé être obligatoire, est soit introuvable soit caché.</p>
+    <p>Cet outil remplace trés largement Google Analytics tout en gardant les données récoltées a l&#39;endroit ou il est installé. Aucune donnée sur vous n&#39;est envoyée, échangée ou <strong>vendue</strong>.</p>
+    <p>Personnellement, je n&#39;ai pas besoin de savoir où vous avez cliqué ni combien de temps vous avez laissé votre souris au même endroit.</p>
+    <p>Je découvre encore cet outil et je ne peux donc pas vous en dire plus pour le moment.</p>
+    <p><em>Si vous souhaitez analyser le comportement des sites que vous visitez, je vous recommande l&#39;outil de la CNIL <a href="https://github.com/LINCnil/CookieViz" target="_blank">CookieViz</a>, vous serez très surpris du resultat.</em></p>
+
+    <h2>Fonction de partage sur les réseaux sociaux.</h2>
+    <p><strong>N'est actuellement pas en place</strong>, mais pour vous permettre de partager mes articles sur les différents réseaux sociaux, j&#39;utiliserai une balise de lien HTML brut et non une API ou autres services fournissant un code tout fait incluant une ribambelle de pisteurs.</p>
+
+    <h2>L&#39;utilisation des réseaux et medias sociaux.</h2>
+    <p>Malheureusement, j&#39;utilise aussi des services &quot;avaleurs de données&quot; qui ont pignon sur rue, YouTube par exemple.
+    Je pense essayer de les doubler avec des alternatives libres comme PeerTube, Mastodon, Mattermost, etc, mais je serais aussi moins visible alors je compte sur vous.</p>
+
+    <p><strong> <em>Cette page est en cours de rédaction, elle sera complétée au fur à mesure</em> </strong></p>
+  </Page>
+</BaseSimple>

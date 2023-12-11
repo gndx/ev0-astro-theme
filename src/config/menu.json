@@ -9,6 +9,10 @@
       "url": "/about"
     },
     {
+      "name": "RGPD",
+      "url": "/rgpd"
+    },
+    {
       "name": "Tags",
       "url": "/tags"
     },
