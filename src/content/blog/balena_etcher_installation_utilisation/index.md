@@ -40,7 +40,7 @@ Une fois récupéré et exécuté, il ne vous reste plus que trois étapes :
 
 Voici une série d'images.
 
-![Écran d'accueil de Balena Etcher](./balena/01_balena_etcher_acceuil.png)
+![Écran d'accueil de Balena Etcher](./balena/01_balena_etcher_accueil.png)
 ![Récupération d'OS via une URL ou depuis un serveur](./balena/02_balena_etcher_url.png)
 ![Sélection du support dans Balena Etcher](./balena/03_balena_etcher_clone_drive.png)
 ![Écran avant de lancer le Flash](./balena/04_balena_etcher.png)
