@@ -5,7 +5,7 @@ description: "Explication de quelques principes de base du Home Assistant. Cet a
 pubDate: 12/12/2023
 heroImage: '/images/homeassistant.webp'
 categories: 
-- Linux
+- Home Assistant
 authors: 
 - mcfly
 tags:
