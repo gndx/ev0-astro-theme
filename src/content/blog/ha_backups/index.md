@@ -1,6 +1,6 @@
 ---
 draft: true
-title: Articles Vide
+title: Home Assistant - Sauvegarder votre installation
 description: "Description vide"
 pubDate: 12/11/2023
 heroImage: '/images/flatpak-linux-box.webp'

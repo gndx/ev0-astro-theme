@@ -12,3 +12,6 @@ tags:
 - tag
 ---
 
+
+## Sources
+* https://www.home-assistant.io/getting-started/concepts-terminology/
