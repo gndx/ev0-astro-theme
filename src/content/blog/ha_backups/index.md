@@ -49,6 +49,8 @@ Pour rapatrier une sauvegarde sur votre ordinateur (par exemple), il vous suffit
 #### Restaurer une sauvegarde
 *Il est possible de restaurer une sauvegarde lors du premier lancement de Home Assistant, ce qui rend très rapide la réinstallation de Home Assistant.*
 
+![Restaurer une sauvegarde lors de la première configuration](./img/restaurer_premiere_configuration.png "Restaurer une sauvegarde lors de la première configuration")
+
 **Depuis une sauvegarde locale**
 * Cliquer sur la sauvegarde,
 * Cliquer sur RESTORE.

@@ -80,7 +80,7 @@ Je n'ai pas parlé de la connexion du Raspberry au Wifi. Ce n'est pas un oubli, 
 
 Rendez-vous, depuis votre navigateur, sur `[http://homeassistant:8123](http://homeassistant:8123)` ou `[homeassistant.local:8123](http://homeassistant.local:8123)` ou alors via `ipdevotremateriel:8123` (récupérable sur votre routeur/box)
 
-![Image d'attente du premier lancement de Home Assistant](./img/installation_prepring_home_assistant.jpg "Écran d'attente lors du premier lancement de Home Assistant")
+![Image d'attente du premier lancement de Home Assistant](./img/installation_prepring_home_assistant.png "Écran d'attente lors du premier lancement de Home Assistant")
 
 *Il peut falloir 2-3 minutes avant que cette page s'affiche.*
 
@@ -93,7 +93,9 @@ Une fois la préparation terminée, il va vous demander quelques paramétrages :
 * Un nom pour votre utilisateur,
 * Un nom d'utilisateur,
 * Un mot de passe et sa confirmation
-  
+
+![Crétion de l'utilisateur principal de Home Assistant](./img/creation_utilisateur.png "Crétion de l'utilisateur principal de Home Assistant")
+
 **Cet utilisateur sera l'utilisateur avec tous les droits alors ne pas hésiter à mettre un bon mot de passe.**
 
 *La seconde page concerne votre logement :*
@@ -103,14 +105,20 @@ Une fois la préparation terminée, il va vous demander quelques paramétrages :
 * Rentrer l'altitude de son domicile ([récupérable ici](https://www.calcmaps.com/fr/map-elevation/)),
 * Choisir le système métrique.
 
+![Définir l'emplacement de votre logement](./img/emplacement_logement.png "Définir l'emplacement de votre logement")
+
 La troisième vous permet de partager anonymement certaines données, pour aider Home Assistant à améliorer le système.
+
+![Partage des informations anonymes](./img/trackeur.png "Partage des informations anonymes")
 
 La quatrième concerne les matériels détectés automatiquement par Home Assistant chez vous.
 Vous pouvez passer cette étape, on y reviendra plus tard. Ils peuvent être retrouvés dans `Paramètres` -> `Appareils et Services`
 
+![Matériels automatiquement détectés par Home Assistant](./img/materiels_auto_detectes.png "Matériels automatiquement détectés par Home Assistant")
+
 Vous voilà enfin sur l'interface de Home Assistant.
 
-![Page d'accueil de Home Assistant](./img/ha_ecran_acceuil.png)
+![Page d'accueil de Home Assistant](./img/ha_ecran_accueil.png)
 
 ### Activer les paramètres avancés
 
