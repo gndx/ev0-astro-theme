@@ -1,9 +1,10 @@
 ---
-draft: true
+draft: false
 title: Home Assistant - Installer HAOS sur Raspberry ou autres SBC.
 description: "Comment installer Home Assistant OS sur Raspberry Pi, Odroid, Tinkerboard, NUC ou autres, de manière simple et rapide. Commençons dans la domotique avec un système Open source, gratuit, international et évolutif avec plus de 1900 intégrations et des centaines d'add-ons."
-pubDate: 12/11/2023
-heroImage: '/images/smart-home-3653452_1920.jpg'
+pubDate: 12/12/2023
+#heroImage: '/images/smart-home-3653452_1920.jpg'
+heroImage: '/images/home-assistant-blue.jpg'
 categories: 
 - Home Assistant
 authors: 
@@ -30,7 +31,7 @@ Il est open-source, international, responsive (s'adapte à tous les écrans), é
 
 Il y a plusieurs moyens d'installer Home Assistant et nous allons en voir deux sur mon blog :
 * Sur un Raspberry avec carte Micro SD et disque dur optionnellement (obligatoire pour une installation en production). C'est la méthode préconisée par Home Assistant,
-* Sur Proxmox (solution de virtualisation libre) avec une Machine Virtuelle (VM).
+* Sur Proxmox (solution de virtualisation libre) avec une Machine Virtuelle (VM). ([Article](/blog/ha_haos_proxmox_installation))
 
 Dans les deux cas, nous installerons Home Assistant OS qui est la version "Supervised" de Home Assistant.
 
@@ -39,7 +40,7 @@ Dans les deux cas, nous installerons Home Assistant OS qui est la version "Super
 
 * **Pour les débutants**, il est préférable de commencer avec Home Assistant OS, afin de vous concentrer sur la domotique pure.*
 
-***Matériels utilisés :*** 
+***Matériels utilisés :***
 * Raspberry Pi 4,
 * Un boitier et son alimentation*,
 * Une micro SD (16 Go minimum si disque dur en plus, sinon 32 Go minimum)
@@ -59,7 +60,7 @@ Dans les deux cas, nous installerons Home Assistant OS qui est la version "Super
 
 *J'ai tourné sur cette solution et je n'ai eu aucun problème, si vous installez Home Assistant sur un autre Raspberry et que le disque externe est branché, il récupère automatiquement vos données.*
 
-## Installation.
+## Installation
 ### Avec Raspberry Pi Imager
 C'est la méthode la plus simple et j'ai déjà [écrit un article dessus](/blog/raspberry_pi_installer_os/), il vous suffit de sectionner Home Assistant comme OS dans `Select Choose OS`, sélectionnez `Other specific-purpose OS` > `Home assistants and home automation` > `Home Assistant`.
 
@@ -73,10 +74,10 @@ Sélectionnez votre [image](https://github.com/home-assistant/operating-system/r
 
 Une fois la copie terminée, il vous suffit de mettre votre carte Micro SD dans votre Raspberry Pi, brancher le câble Ethernet et l'alimenter.
 
-### Connexion en Wi-Fi.
+### Connexion en Wi-Fi
 Je n'ai pas parlé de la connexion du Raspberry au Wifi. Ce n'est pas un oubli, mais un système domotique efficace ne repose pas sur du Wi-Fi. De plus, Home Assistant ne le recommande pas, mais sachez qu'il est possible de le configurer facilement, surtout si vous passez par [Raspberry Pi OS](/blog/raspberry_pi_installer_os/).
 
-## Première configuration.
+## Première configuration
 
 Rendez-vous, depuis votre navigateur, sur `[http://homeassistant:8123](http://homeassistant:8123)` ou `[homeassistant.local:8123](http://homeassistant.local:8123)` ou alors via `ipdevotremateriel:8123` (récupérable sur votre routeur/box)
 
@@ -86,7 +87,7 @@ Rendez-vous, depuis votre navigateur, sur `[http://homeassistant:8123](http://ho
 
 Il faut maintenant patienter quelques minutes, plus ou moins longues, en fonction de votre connexion internet avant de pouvoir lancer la première configuration qui est **commune à toutes les installations**.
 
-AJOUTER IMAGE GIF
+![Home Assistant première configuration](./img/home_assistant_premiere_configuration.gif "Home Assistant première configuration")
 
 Une fois la préparation terminée, il va vous demander quelques paramétrages :
 *Sur la première page :*
@@ -112,14 +113,14 @@ Vous voilà enfin sur l'interface de Home Assistant.
 
 ![Page d'accueil de Home Assistant](./img/ha_ecran_acceuil.png)
 
-### Activer les paramètres avancés.
+### Activer les paramètres avancés
 
 Le mode avancé vous permet d'avoir plus de contrôle sur votre serveur.
 Cliquer sur votre utilisateur (dans le menu en bas à gauche) puis activer `Mode avancé`.
 
-AJOUTER IMAGE GIF
+![Activation des paramètres avancés dans Home Assistant](./img/activer_parametres_avances.gif "Activation des paramètres avancés dans Home Assistant")
 
-### Déplacer ses données vers un support externe.
+### Déplacer ses données vers un support externe
 Pour préserver la carte Micro SD tout en gardant un système rapide, Home Assistant préconise de déplacer les données utilisateur sur un support externe (il peut être interne avec un boitier adapté).
 
 Pour cela rien de plus simple :
@@ -129,11 +130,11 @@ Pour cela rien de plus simple :
 
 Home Assistant devrait redémarrer.
 
-AJOUTER IMAGE GIF
+![Déplacer ses données vers un support externe dans Home Assistant](./img/deplacer_donnees_support_externe.gif "Déplacer ses données vers un support externe dans Home Assistant")
 
 Vos données seront maintenant sur le disque dur et les écritures ne viendront plus abimer votre carte Micro SD.
 
-## Conclusion.
+## Conclusion
 Vous venez d'installer Home Assistant de la plus simple manière qu'il soit, la plus optimisée et surtout de manière pérenne sur un appareil peu énergivore.
 
 Cette méthode (MicroSD + disque dur) permet d'éviter les problèmes de détection du disque dur lié à l'USB3 (sur Raspberry) et permet aussi au système de profiter d'un démarrage rapide. Home Assistant est optimisé pour cela et non pour tourner sur un disque dur externe au système.
