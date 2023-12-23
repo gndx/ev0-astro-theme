@@ -60,5 +60,9 @@
     "prettier-plugin-tailwindcss": "0.5.9",
     "tailwindcss": "3.4.0",
     "vite-plugin-pwa": "0.17.4"
+  },
+  "resolutions": {
+    "astro/sharp": "0.33.1",
+    "astro-compress/sharp": "0.33.1"
   }
 }
