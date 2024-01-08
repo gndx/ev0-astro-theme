@@ -1,9 +1,9 @@
 ---
 draft: true
-title: HP MicroServer Gen8 - Mise en service et installion d'un OS
-description: "Découvrons ensemble le MicoServeur HP Gen 8, la machine idéale pour un NAS ou de la virtualisation. Nous nous intéresserons à la fonction ILo puis nous allons remplacer le lecteur DVD par un disque SSD qui servira pour l'installation d'un OS."
+title: HP MicroServer Gen8 et OpenMediaVault - Un NAS au top et pas cher
+description: "Comment installer la solution NAS gratuite et Open sources OpenMediaVault sur un serveur semi professionnel a moins de 200 euros le HP MicroServer Gen8"
 pubDate: 01/08/2024
-heroImage: '/images/hp_proliant.webp'
+heroImage: '/images/openmediavault-b.webp'
 categories:
 - Auto Hebergement
 - Linux
@@ -16,30 +16,33 @@ tags:
 - Proxmox
 ---
 
-J'ai depuis quelques années, un NAS fait maison, qui au début était un PC sous Debian avec une configuration faite à la main, puis j'ai voulu réduire la place que prenait ce PC, j'ai donc acheté le boîtier [Fractal Design Node 804 (Amazon 135€)](https://amzn.to/48Lh5og) qui avait l'avantage d'avoir plusieurs emplacements pour disque dur. Le problème est que j'avais du matériel de PC de bureau à l'intérieur et la consommation était assez importante. J'ai donc décidé de revoir les données stockées puis j'ai pu descendre sur d'autres gammes de produits qui m'ont ensuite amené à découvrir le MicroServer HP Gen 8.
+J'ai depuis quelques années, un NAS fait maison, qui au début était un PC sous Debian bourré de disque dur et fait à la main, puis j'ai voulu réduire la place que prenait ce PC, j'ai donc acheté un boîtier. 
 
-Ce Microserver HP est assez polyvalent. Il vous permet soit de faire un NAS avec la solution OpenMediaVault ou autre, soit de faire de la virtualisation avec Proxmox. Mais ce qui est génial avec ce MicroServer, c'est que vous n'avez plus besoin d'écran branché dessus, même pour installer un OS, grâce au système ILo de HP.
+Ce qui est génial avec ce MicroServer, c'est que vous n'aurez jamais besoin de brancher un écran dessus, même pour installer un OS, grâce au système ILo de HP.
 
-J'ai actuellement deux MicroServer HP Gen 8, un me servant uniquement de NAS (quand même sous Proxmox ;)), que je coupe lorsque je n'en ai pas besoin (La nuit, les jours Tempo Rouge ou pendant les vacances) et le deuxième en attente de la fibre pour augmenter ma part d'auto-hébergement.
+J'ai actuellement deux MicroServer HP Gen 8, un me servant uniquement de NAS (quand même sous Proxmox ;)), que je coupe lorsque je n'en ai pas besoin (La nuit, les jours Tempo Rouge ou pendant les vacances).
 
 La consommation, sans disque dur, est d'environ 28W pour la version processeur CPU G1610T (2c/2t) avec 12Go de RAM ou Xeon avec 16Go de RAM.
+
+Ce qui en fait un bon outil pour faire de l'auto-hébergement ou héberger tous types de services ou d'applications.
 
 À l'origine, il était destiné aux petites entreprises, mais il est facilement trouvable sur les sites de petite annonce entre 150/200 euros sans disque.
 
 Il dispose de :
 * 4 baies pour disque dur 3.5" et un lecteur CD/DVD qu'il est possible (conseillé) de remplacer par un disque dur en 2.5" (SSD de préférence ;)).
 * 2 ports Ethernet Gb et 1 Ilo,
-* 4 Ports USB 2, 2 en façade, 2 à l'arrière,
-* 2 Ports USB3 à l'arrière,
+* 4 Ports USB 2, 2 en Facade, 2 à l'arrière,
+* 2 Ports USB3 à l'arriere,
 * 2 emplacements de DDR3,
 * 1 Port PCIe 2.0 x16,
 * 1 Port VGA.
 
-Il peut donc être destiné à plusieurs utilisations, NAS, Virtualisation (Proxmox ou autres), Routeur, Pare-feu, etc.
+Il peut donc etre destiné a plusieurs utilisations, NAS, Virtualisation (Proxmox ou autres), Routeur, etc.
 
-## Ilo, Késako ?
-ILo veut dire "Integrated Lights Out"
+*Pour ceux qui veulent simplment installer OpenMediaVault vous pouvez passer directement a installation.*
 
+## Ilo, Kesako ?
+Ilo veut dire "Integrated Lights Out"
 >La technologie Integrated Lights-Out (iLO) est un outil de gestion propriétaire intégré aux produits HPE qui permet de contrôler à distance l’accès aux serveurs ProLiant, même sans être connecté au réseau principal de l’organisation, d’où l’expression « Lights Out ».
 >
 >**Sources :** [HP](https://www.hpe.com/fr/fr/what-is/ilo.html)
@@ -65,6 +68,10 @@ Vous voila sur l'interface d'administration de votre MicroServer HP Hen 8.
 **POWER: OFF** vous permet de gérer l'alimentation de votre serveur, qu'il soit ou non allumé.
 
 Pour le reste, je vous laisse fouiller dans les menus.
+
+### Reinitialiser l'ILO
+*(facultatif)*
+A REDIGER
 
 ## Remplacer le lecteur par un disque dur
 Pour remplacer le lecteur CD/DVD par un disque dur, rien de vraiment compliqué.
@@ -95,7 +102,7 @@ Quand vous avez l'écran ci-dessous, appuyez sur la touche <span><kbd>F10</kbd><
 
 Attendre le moment où il vous propose d'appuyer sur <span><kbd>F5</kbd></span> (HPE Smart Storage Administrator) puis faites-le.
 
-*Si vous n'arrivez pas à accéder au HPE Smart Storage Administrator il est peut-être désactivé. Le seul moyen est de réinitialiser l`ILO avec la procédure vue plus bas.*
+*Si vous n'arrivez pas à accéder au HPE Smart Storage Administrator il est peut-être désactivé. Le seul moyen est de réinitialiser l`ILO avec la procédure vue plus haut.*
 
 Voici quelques captures d'écran.
 ![Écran de démarrage HP](./img/ecran_demarrage_hp.png)
@@ -121,7 +128,7 @@ Vous devez être de nouveau sur l'écran principal dans `Dynamic Smart Array B12
 Ensuite, fermez `HPE Smart Storage Administrator` en cliquant sur la croix en haut à droite puis sur l'icône de redémarrage et `reboot`.
 
 ## Installation d'un OS
-Cette procédure marche avec n'importe quel système d'exploitation (OS)(ici OpenMediaVault).
+*Dans cet article, je vais installer la solution OpenMediaVault en tant que système d'exploitation, mais le principe reste le même pour n'importe quel système d'exploitation (OS) comme Proxmox, par exemple.*
 
 **Prérequis**
 Avoir la dernière version de [OpenMediaVault](https://www.openmediavault.org/download.html) sur une [clé USB bootable comme Ventoy](/blog/ventoy_installation_update/) et la brancher sur votre serveur HP Gen 8.
@@ -138,18 +145,14 @@ Une fois l'installation terminée, débrancher la clé USB et redémarrer.
 
 Ensuite, rendez-vous sur l'adresse IP de votre serveur (pas celle de l'ILO) et connectez-vous avec le couple login/mot de passe par défaut **admin/openmediavault**.
 
-## Reinitialiser l'ILO
-*(facultatif)*
-**Arrive prochainement.**
-
 ## Conclusion
-Vous avez, normalement, quelques bases pour vous amuser avec votre serveur.
+Je vais m'arreter là pour cet article, mais un article sur les premieres choses a faire sur OMV est en cours de redaction.
 
-Comme vous pouvez le voir, l'installation n'est pas compliquée et ces petits serveurs vous permettent de faire vraiment plein de choses comme un NAS pas cher et OpenSource mais aussi un serveur de virtualisation sur lequel vous pouvez installer tout un tas de service comme Adguard, Home Assistant, Nextcloud, etc. Nous en verrons au fil des articles.
+Comme vous pouvez le voir l'installation et pas compliqué et ces petits serveurs vous permettent de faire vraiment plein de choses comme un NAS pas cher et OpenSource mais aussi un serveur de virtualisation sur lequel vous pouvez installer tout un tas de service comme Adguard, Home Assistant, Nextcloud, etc etc. Nous en verrons au fil des articles.
 
-Un NAS quatre baies avec les solutions propriétaires, c'est minimum 400 euros sans disque pour des performances bien moindres.
+L'interface de OpenMediaVault est accessible au débutant et surtout un NAS quatres baies avec les solutions propriétaires c'est minimum 400 euros sans disque pour des performances bien moindres.
 
-Alors pour ma part quand c'est moins cher, gratuit et Open source et que ce n'est pas moi le produit, je fonce... Faites de même. ;)
+Alors pour ma part quand c'esdt moins cher, gratuit et Open source et que c'est pas moi le produits, j'adopte...
 
 ## Sources
 * https://www.admfactory.com/hp-microserver-gen8-boot-from-ssd-install-on-odd-bay/
