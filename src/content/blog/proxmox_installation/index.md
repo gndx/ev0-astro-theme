@@ -1,7 +1,7 @@
 ---
-draft: true
+draft: false
 title: Proxmox - Découvrez le monde de la virtualisation
-description: "Dans cet article, nous allons voir comment installer Proxmox mais aussi comment créer votre première VM, lui ajouter un port USB"
+description: "Dans cet article, nous allons voir comment installer Proxmox, changer les sources d'entreprise par celles sans souscription et effectuer les mises à jour"
 pubDate: 01/07/2024
 heroImage: '/images/Proxmox-destacada.webp'
 categories: 
@@ -36,17 +36,19 @@ Fonctions de clustering qui permet par exemple la migration à chaud des machine
 
 ---
 
-Nous allons voir comment l'installer, créer notre première VM et ajouter une clé USB à celle-ci.
+Nous allons voir comment l'installer, mais aussi, comment hanger les sources d'entreprise par celles sans souscription et effectuer les mises à jour et tout ca via une seul ligne de commande, grace au script de TTeck.
 
 **Prérequis**
-* Avoir récupéré la [dernière version de Proxmox](https://www.proxmox.com/en/downloads),
+* Récupérer la [dernière version de Proxmox](https://www.proxmox.com/en/downloads),
 * Avoir une clé [USB Bootable avec Ventoy](/blog/ventoy_installation_update/) par exemple,
 * Un NUC, Serveur ou autres avec minimum 8Go de RAM (ce n'est pas un impératif mais c'est plus confort)
 * Un processeur acceptant la [Technologie de virtualisation Intel® (VT-x)](https://ark.intel.com/content/www/fr/fr/ark/search/featurefilter.html?productType=873&2_VTX=true)
 
 
 ## Installation
-Démarrer sur votre clé USB puis sélectionner votre distribution Proxmox.
+L'installation se passe comme la plupart des installations d'OS, il suffit de suivre les étapes, mais je vous les détaille quand même.
+
+Démarrer sur votre clé USB puis sélectionner la distribution Proxmox.
 
 Une interface graphique s'ouvre, sélectionner `Install (Graphic mode)`
 
@@ -57,11 +59,11 @@ Une interface graphique s'ouvre, sélectionner `Install (Graphic mode)`
 ![Choix du disque dur Proxmox](./img/proxmox_selection_disque_dur.png)
 * Sélectionnez votre Pays, le fuseau Horaire et la langue utilisée sur votre clavier.
 ![Paramètres régionaux Proxmox](./img/proxmox_selection_region.png)
-* Saisir un mot de passe solide et un email (perso, je n'ai jamais rien reçu),
+* Saisir un mot de passe solide et un email (*Je pense que c'est pour les notifications si vous configurez un serveur mail, mais pas sûr*),
 ![Administration Password Proxmox](./img/proxmox_ecran_mot_de_passe.png)
 * Configurer le Hostname, ainsi que les informations réseaux,
 ![Configuration du réseaux Proxmox](./img/proxmox_network_configuration.png)
-* Vérifier que toutes les informations vous paraissent correctes.
+* Vérifier que toutes les informations sont correctes.
 ![Récapitulatif Proxmox](./img/proxmox_summary.png)
 
 L'installation se lance, il ne vous reste plus qu'à attendre.
@@ -87,14 +89,15 @@ Vous avez aussi accès à l'utilisateur connecté et pouvez modifier certains pa
 Pour mettre à jour votre Proxmox, vous devez aller dans le nœud, puis dans `Updates`.
 Cliquez sur le bouton `Refresh`, puis sur `Upgrade`.
 ![Mise à jour de Proxmox](./img/proxmox_update.png)
+
 *Lors de votre première installation, vous pouvez avoir un popup vous disant que vous n'avez pas de souscription valide.*
 ![Proxmox No Valid Subscription](./img/proxmox_update_no_valid_subscription.png)
 
-Nous allons donc changer cela en remplaçant les sources dites "entreprise" par celles sans souscription.
-*Pourquoi c'est comme ça par défaut, je ne sais pas, mais, il y a des gens qui ont fait des scripts pour modifier tout ça avec une seule ligne de commande.*
+Nous allons donc changer cela en remplaçant les sources dites "entreprise" par celles sans souscription via un le script post install de Tteck.
+*Pourquoi c'est comme ça par défaut, je ne sais pas, sûrement parce que c'est plus destiné aux professionnels.*
 
 ### Script Post Install TTeck
-Nous allons donc lancer notre première ligne de commande dans le Shell du nœud en lançant le `script post Install` de [TTeck](https://tteck.github.io/Proxmox/) grâce à un simple copier-coller.
+Nous allons lancer notre première ligne de commande dans le Shell du nœud en lançant le `script post Install` de [TTeck](https://tteck.github.io/Proxmox/) grâce à un simple copier-coller.
 
 ![Script Post Install TTeck](./img/script_post_install_tteck.png)
 
@@ -108,18 +111,23 @@ bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/post-pve-i
 Je vous laisse suivre les informations à l'écran, mais en gros, vous pouvez cliquer sur `Yes` partout.
 
 Il vous demandera de désactiver la haute disponibilité (si vous avez un seul nœud Proxmox)
-![](./img/script_post_install_tteck_high_availability.png)
+![Script post-install Proxmox désactivation haute disponibilité](./img/script_post_install_tteck_high_availability.png)
 
 À la fin, il vous proposera de mettre à jour Proxmox, sélectionnez `Yes` et ensuite, il vous demandera de redémarrer.
-![](./img/script_post_install_tteck_update.png)
+![Script post-install Proxmox mise à jour](./img/script_post_install_tteck_update.png)
+
 Votre Proxmox est maintenant à jour avec les réglages grand public (sources, etc).
-*Si la mise à jour tourne en rond, vous pouvez quitter puis relancer le script, mais sans autoriser la mise à jour à la fin, ensuite il vous suffit de procéder directement comme indiqué un peu plus haut.*
+*Si la mise à jour tourne en rond, vous pouvez quitter puis relancer le script, mais lancer la mise à jour à la fin, ensuite il vous suffit de procéder directement comme indiqué un peu plus haut.*
 
 ## Conclusion
-Le gros avantage d'un système de virtualisation est que vous pouvez utiliser les ressources complètes de votre machine et non pas la dédier à un seul service ou une seule tâche.
-De plus, les sauvegardes, restaurations sont simplifiées, et vous pouvez mettre plusieurs systèmes d'exploitation en parallèle sans risque de casser quelque chose.
+L'avantage d'un système de virtualisation est la possibilité d'utiliser l'ensemble des ressources de votre machine et non pas de la dédier à un seul service ou une seule tâche.
+De plus, les sauvegardes et la restauration sont simplifiées, et vous pouvez mettre plusieurs systèmes d'exploitation en parallèle sans risque de casser quelque chose.
 
-Sur le site de TTeck, il y a plein de VM ou de LXC installables à partir d'une simple ligne de commande, alors n'hésitez pas à y jeter un œil, tous les scripts sont consultables sur son GitHub.
+Sur le site de TTeck, il y a plein de VM ou de LXC installables à partir d'une simple ligne de commande, alors n'hésitez pas à y jeter un œil, tous les scripts sont consultables sur son GitHub si vous souhaitez vérifier les actions effectuées.
+
+***IMPORTANT :** Ce n'est pas parce qu'il est possible de tout mettre au même endroit qu'il faut forcément le faire, il y a des services plus ou moins importants qui nécessiteront peut-être d'avoir le propre matériel. À vous de juger.*
+
+Nous verrons dans un prochain article comment installer une VM et lui ajouter une clé USB.
 
 ## Sources :
 * https://tteck.github.io/Proxmox/
