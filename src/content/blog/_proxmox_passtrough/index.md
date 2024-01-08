@@ -21,7 +21,7 @@ Nous allons voir comment ajouter un disque dur dans Proxmox autre que celui ou p
 Commencer par brancher votre disque sur votre proxmox.
 
 * Verifier que celui ci apparait bien dans votre noeud (ici `pve_test`) puis `Disk`
-![Gestion des disques dans Proxmox](img/proxmox_disk.png)
+![Gestion des disques dans Proxmox](./img/proxmox_disk.png)
 
 Vous remarquez que j'ai trois disques :
 **sda** qui est mon disque systeme (celui ou est installé Proxmox),
