@@ -22,7 +22,7 @@ Ce qui est genial avec ce MicroServer, c'est que vous n'aurez jamais besoin de b
 
 J'ai actuellement deux MicroServer HP Gen 8, un me servant uniquement de NAS, que je coupe lorsque j'en ai pas besoin (La nuit, lesjours tempo Rouge ou pendant les vacances)
 
-La consomation sans disque dur est de XXXX pour ka version processeur GTXXX et 12Go de RAM et XX pour la version Xeon et 16 Go de RAM.
+La consomation sans disque dur est de 28W pour la version processeur CPU G1610T (2c/2t) avec 12Go de RAM ou Xeon avec 16Go de RAM.
 
 Ce qui en fait un bon outil pour faire de l'autohebergement, ou heberger tous types de services.
 
