@@ -201,3 +201,8 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 ## ☕ Support
 
 If this project helped you learn something new, or if you're feeling particularly generous, you can buy me a coffee. It's greatly appreciated! 😊 [GitHub Sponsors](https://github.com/sponsors/gndx)
+
+
+---
+
+Icone ici https://www.svgrepo.com/svg/503338/facebook
