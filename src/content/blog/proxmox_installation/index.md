@@ -127,7 +127,7 @@ Sur le site de TTeck, il y a plein de VM ou de LXC installables à partir d'une 
 
 ***IMPORTANT :** Ce n'est pas parce qu'il est possible de tout mettre au même endroit qu'il faut forcément le faire, il y a des services plus ou moins importants qui nécessiteront peut-être d'avoir le propre matériel. À vous de juger.*
 
-Nous verrons dans un prochain article comment installer une VM et lui ajouter une clé USB.
+Nous verrons dans un prochain article comment installer une VM et lui ajouter une clé USB, mais vous pouvez dès lors installer Home Assistant sur votre Proxmox via une simple ligne de code. Merci TTeck ;).
 
 ## Sources :
 * https://tteck.github.io/Proxmox/
