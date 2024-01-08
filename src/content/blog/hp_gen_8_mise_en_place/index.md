@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: HP MicroServer Gen8 et OpenMediaVault - Un NAS au top et pas cher
 description: "Comment installer la solution NAS gratuite et Open sources OpenMediaVault sur un serveur semi professionnel a moins de 200 euros le HP MicroServer Gen8"
 pubDate: 01/08/2024
