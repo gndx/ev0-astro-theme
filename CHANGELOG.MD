@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.1.5] 2023-12-15
+### Enhancement ✨
+- Astro 4.0
 
 ## [1.1.4] 2023-11-13
 ### Enhancement ✨
