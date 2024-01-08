@@ -2,7 +2,7 @@
 draft: true
 title: HP MicroServer Gen8 et OpenMediaVault - Un NAS au top et pas cher
 description: "Comment installer la solution NAS gratuite et Open sources OpenMediaVault sur un serveur semi professionnel a moins de 200 euros le HP MicroServer Gen8"
-pubDate: 12/21/2023
+pubDate: 01/08/2024
 heroImage: '/images/openmediavault-b.webp'
 categories:
 - Auto Hebergement
@@ -16,27 +16,64 @@ tags:
 - Proxmox
 ---
 
-J'ai depuis quelques années, un NAS fait maison, qui au début était un PC sous Debian bourré de disque dur et fit a la main, puis j'ai voulu reduire la place que prenait ce PC, j'ai donc acheté un Boitier 
+J'ai depuis quelques années, un NAS fait maison, qui au début était un PC sous Debian bourré de disque dur et fait à la main, puis j'ai voulu réduire la place que prenait ce PC, j'ai donc acheté un boîtier. 
 
-Ce qui est genial avec ce MicroServer, c'est que vous n'aurez jamais besoin de brancher un ecran dessus, même pour installer un OS, grace au systeme ILo4 de HP.
+Ce qui est génial avec ce MicroServer, c'est que vous n'aurez jamais besoin de brancher un écran dessus, même pour installer un OS, grâce au système ILo de HP.
 
-J'ai actuellement deux MicroServer HP Gen 8, un me servant uniquement de NAS, que je coupe lorsque j'en ai pas besoin (La nuit, lesjours tempo Rouge ou pendant les vacances)
+J'ai actuellement deux MicroServer HP Gen 8, un me servant uniquement de NAS (quand même sous Proxmox ;)), que je coupe lorsque je n'en ai pas besoin (La nuit, les jours Tempo Rouge ou pendant les vacances).
 
-La consomation sans disque dur est de 28W pour la version processeur CPU G1610T (2c/2t) avec 12Go de RAM ou Xeon avec 16Go de RAM.
+La consommation, sans disque dur, est d'environ 28W pour la version processeur CPU G1610T (2c/2t) avec 12Go de RAM ou Xeon avec 16Go de RAM.
 
-Ce qui en fait un bon outil pour faire de l'autohebergement, ou heberger tous types de services.
+Ce qui en fait un bon outil pour faire de l'auto-hébergement ou héberger tous types de services ou d'applications.
 
-A l'origine il est destiné au petite entreprise, mais il est facilement trouvabe sur les sites de petite annonce entre 150/200 euros sans disque.
+À l'origine, il était destiné aux petites entreprises, mais il est facilement trouvable sur les sites de petite annonce entre 150/200 euros sans disque.
 
-Il dispose de 4 baie pour disque dur 3.5" et un lecteur CD/DVD qu'iol est possible (conseillé) de remplacer par un disque dur en 2.5".
+Il dispose de :
+* 4 baies pour disque dur 3.5" et un lecteur CD/DVD qu'il est possible (conseillé) de remplacer par un disque dur en 2.5" (SSD de préférence ;)).
+* 2 ports Ethernet Gb et 1 Ilo,
+* 4 Ports USB 2, 2 en Facade, 2 à l'arrière,
+* 2 Ports USB3 à l'arriere,
+* 2 emplacements de DDR3,
+* 1 Port PCIe 2.0 x16,
+* 1 Port VGA.
 
-Trois port eEthernet 1Ilo et 2 ports Gb
-
-AJOUTER LES CARACTERISQTIQUES
-
-Il peut donc etre destiné a plusieurs utilisations, NAS, Proxmox, Routeur, etc ou cumuler le tout.
+Il peut donc etre destiné a plusieurs utilisations, NAS, Virtualisation (Proxmox ou autres), Routeur, etc.
 
 *Pour ceux qui veulent simplment installer OpenMediaVault vous pouvez passer directement a installation.*
+
+## Ilo, Kesako ?
+Ilo veut dire "Integrated Lights Out"
+>La technologie Integrated Lights-Out (iLO) est un outil de gestion propriétaire intégré aux produits HPE qui permet de contrôler à distance l’accès aux serveurs ProLiant, même sans être connecté au réseau principal de l’organisation, d’où l’expression « Lights Out ».
+>
+>**Sources :** [HP](https://www.hpe.com/fr/fr/what-is/ilo.html)
+
+Je pense que je n'ai pas besoin de rajouter plus d'explications ? Je vais quand même en ajouter un peu.
+
+Ce qui est, à mon avis, très intéressant avec cette technologie, c'est que vous n'avez pas besoin de brancher d'écran sur ce serveur, car via l'interface ILo, vous avez accès à une fenêtre comme si vous aviez l'écran branché. Vous pouvez aussi allumer ou éteindre votre serveur (même faire un reset) via cette interface puisqu'elle reste accessible tout le temps, que votre serveur soit ou non en route.
+
+### Se connecter à l'interface ILo
+Pour profiter de cet accès, il vous suffit de brancher un câble Ethernet supplémentaire sur le port Ethernet nommé ILo à l'arrière (5 sur l'image).
+![Port Ethernet ILo MicroServer HP Gen 8](./img/hp_gen_8_port_ilo.png)
+
+Ensuite, récupérer l'adresse IP qui lui a été attribuée (via votre box internet ou routeur), il devrait apparaitre sous la forme `iloczXXXXXXXX`, puis rendez-vous sur celle-ci depuis un navigateur via `https`.
+*Vous avez une alerte de sécurité, mais c'est normal, car les adresses IP ne peuvent pas recevoir de certificat SSL.*
+Une fois arrivé sur l'interface de connexion, vous devez saisir vos identifiants présents sur un autocollant derrière le serveur ou alors sur une étiquette couleur sable attachée avec un bout de ficelle.
+*Si vous n'arrivez pas à vous connecter, il faudra réinitialiser l'ILo*
+![Interface de connexion ILo](./img/interface_connexion_ilo.png)
+
+Vous voila sur l'interface d'administration de votre MicroServer HP Hen 8.
+![Interface d'administration ILo](./img/interface_administration_ilo.png)
+
+**HTML5** vous permet d'ouvrir une fenêtre qui remplacera l'écran.
+**POWER: OFF** vous permet de gérer l'alimentation de votre serveur, qu'il soit ou non allumé.
+
+Pour le reste, je vous laisse fouiller dans les menus.
+
+### Reinitialiser l'ILO
+*(facultatif)*
+A REDIGER
+
+
 
 ## Remplacer le lecteur par un disque dur
 Pour remplacer le lecteur CD/DVD par un disque dur rien de vraiment compliqué.
@@ -52,7 +89,6 @@ Il vous faut :
 Normalement le MicroServer Gen 8, supporte le boot uniquement depuis la carte MicroSD ou via les un des quatre disque. Il serait ommage de se priver de ses 4 baies alors nousllons déclarer notre disque dur dans le HPE Smart Storage Administrator du Micro Server.
 
 Connectez vous sur l'interface Ilo4 de votre MicroServer.
-![Interface ILo 4 de chez HP](./img/interface_ilo.png)
 
 Une fois connectez, dans `Information` -> `Overview` cliquez sur `HTML5` (en face de Integrated Remote Console, accessible aussi via le menu `Remote Console`)
 ![Remote console](./img/remote_console.png)
