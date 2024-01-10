@@ -1,6 +1,6 @@
 ---
 draft: true
-title: Articles Vide
+title: Home Assistant - Installer les add-ons Mosquito et Zigbee2MQTT
 description: "Description vide"
 pubDate: 01/10/2024
 heroImage: '/images/flatpak-linux-box.webp'
@@ -53,6 +53,7 @@ Elles sont principalement pbasé sur le le chipset CC2652, sauf pour la Sonoff Z
 
 *Sachez qu'il y aura surement des cles Zigbee et Matter en meme temps qui devrait arriver mais quand ??, alors pour 20 euros prenez une [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) et amusez-vous*
 
+***IMPORTANT :** La clé [Sonoff Zigbee 3.0 USB Dongle Plus **P** ou E](https://amzn.to/41W8f4W) est par defaut avec un firmware bridant le nombre d'appareils acceptable a 40, pourquoi ? faudrait demander a Sonoff, mais comme d'habitude il est possible de passer outre en flashant le firmware par un autre débriant cette derniere a 200 appareils. Voici l'[article a suivre](/blog/ha_flasher_sonoff_zigbee/)*
 ## Mosquitto Broker
 
 ### Création d'un utilisateur Home Assistant
@@ -73,7 +74,12 @@ Si vous souhaitez créer un utilisateur dédié a Zigbee2mqtt par vous-même :
 Il va falloir installer l'add-on `Mosquitto Broker` via les modules complementaires (si besoin, il y a un [article ici](/blog/ha_addons/))
 ![Add-on Mosquitto Broker dans Home Assistant](./img/add-on_mosquitto_broker.png)
 
-Une fois installé, rendez-vous dans l'onglet `Configuration` de l'add-on `Mosquitto Broker`.
+**Si vous n'avez pas créer d'utilisateur**
+Vous pouvez démarrer directement l'add-on, puis rendez vous dans `Paramètres`, `Appareils et services` vous devriez voir la decouverte automatique de Mosquitto Broker.
+
+
+**Si vous avez créé un utilisateur**
+Une fois l'add-on installé, rendez-vous dans l'onglet `Configuration` de l'add-on `Mosquitto Broker`.
 * Dans logins rentrer les informations de l'utilisateur que vous venez de créer.
 
 ```yaml
@@ -86,7 +92,10 @@ Une fois installé, rendez-vous dans l'onglet `Configuration` de l'add-on `Mosqu
 * Laissez la partie reseau par défaut.
 * Enregistrez puis démarrer l'add-on.
 
-Une fois démarré, rendez vous dans `Paramètres`, `Appareils et services` vous devriez voir la decouverte automatique de Mosquitto Broker, sinon cliquez sur `+ AJOUTER UNE INTEGRATION` rechercher `MQTT`, cliquez dessus puis de nouveau sur `MQTT` 
+Une fois démarré, rendez vous dans `Paramètres`, `Appareils et services` vous devriez voir la decouverte automatique de Mosquitto Broker,
+![Decouverte automatique de l'integration MQTT par Home Assistant](./img/decouverte_mqtt.png)
+
+S'il n'est pas découvert automatiquement, cliquez sur `+ AJOUTER UNE INTEGRATION` rechercher `MQTT`, cliquez dessus puis de nouveau sur `MQTT`.
 
 
 **BLABLABLABLA**
@@ -188,17 +197,6 @@ Il faudra ajouter `adapter: ezsp`
 
 La configuration de Zigbee2MQTT est terminée, il suffit d'enregistrer puis de lancer l'add-on.
 
-
-
-## Zigbee2MQTT.
-
-
-
-
-
-**Passer à l'étape suivante avant de lancer l'add-on Zigbee2MQTT.**
-
-![Installer l'add-on Zigbee2MQTT](img/zigbee2mqtt_installation.gif "Installer l'add-on Zigbee2MQTT")
 
 ## Conclusion.
 
