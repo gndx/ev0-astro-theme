@@ -111,7 +111,8 @@ s6-rc: info: service s6rc-oneshot-runner: stopping
 s6-rc: info: service s6rc-oneshot-runner successfully stopped
 ```
 
-Voila le flash est terminé. Verifier votre version de firmware depuis Zigbee2MQTT.
+Voila le flash est terminé. Verifier votre version de firmware depuis Zigbee2MQTT en ouvrant ce dernier puis dans `Paramètres`, onglet `A propos`, regarder la version apres `Révision du coordinateur` (ici 20230507).
+![Recuperer la version du firmware de sa clé Sonoff](./img/zigbee2mqtt_version_firmware_sonoff.png)
 
 ## Sources :
 * https://github.com/mercenaruss/zigstar_addons

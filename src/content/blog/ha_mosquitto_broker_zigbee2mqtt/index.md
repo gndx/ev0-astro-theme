@@ -22,8 +22,8 @@ C'est applications disponnible sur Home Assistant sont :
 * [Zigbee2MQTT](https://www.zigbee2mqtt.io/),
 * [DeconZ](https://www.phoscon.de/en/conbee2/software#deconz),
 
-La premiere, ZHA, a l'avantage de necessité **aucune** installation car elle est native a Home Assistant, cependant ce n'est pas celle qui supporte le plus de materiel.
-Pour Zigbee2MQTT, c'est un add-on a ajouter a Home Assistant, et vu qu'il transforme les infos Zigbee vers le *protocole de communication* MQTT, il faut lui ajouter un **Broker MQTT** (comprendre une passerelle) sous la forme d'un add-on supplementaire.
+La premiere, ZHA, a l'avantage de necessité **aucune** installation car elle est native a Home Assistant, cependant ce n'est pas celle qui supporte le plus de materiel, elle gere aussi la mise a jour de certains appareils.
+Pour Zigbee2MQTT, c'est un add-on a ajouter a Home Assistant, et vu qu'il transforme les infos Zigbee vers le *protocole de communication* MQTT, il faut lui ajouter un **Broker MQTT** (comprendre une passerelle) sous la forme d'un add-on supplementaire. Il a aussi l'avantage de pouvoir mettre a jour certains appareils.
 Le dernier DeconZ, disponnible en add-on aussi, est celui que je connais le mois mais aussi celui qui beneficie d'une comatibilité moindre de capteurs. Cela ne l'empeche pas d'être un bon produits si j'en crois mes lectures.
 
 Voici un [site repertortiant les capteurs disponnibles](https://zigbee.blakadder.com/index.html) (ils n'y sont pas tous) et leurs compatibilité avec les differentes solutions.
@@ -111,27 +111,20 @@ Le lien à ajouter est le suivant :
 ```
 https://github.com/zigbee2mqtt/hassio-zigbee2mqtt
 ```
+Ou en cliquant sur le lien ci-dessous :
+[![Ajout automatique du depot Zigbee2MQTT](./img/add_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fzigbee2mqtt%2Fhassio-zigbee2mqtt)
 Une fois la source ajoutée, il vous faut l'installer. Facile maintenant, il faudra chercher `zigbee2mqtt` et selectionner `Zigbee2MQTT` (le plus simple).
 ![Add-on Zigbee2MQTT dans Home Assistant](./img/add-on_zigbee2mqtt.png)
 
 ### Configuration de l'add-on
-Il faut configurer l'add'on maintenant, pour cela nous allons ajouter l'adresse de notre broker, l'utilisateur et le mot de passe pour se connecter au brocker et le chemin de notre clé Zigbee.
-
 **Si vous n'avez pas créé d'utilisateur pour votre brocker MQTT**
-Au premier lancement de Zigbee2MQTT, il va automatiquement créer un utilisateur pour MQTT et ajouter l'adresse du broker.
+Il faut seulement rentrer le chemin de votre cle Zigbee (voir plus bas) et au premier lancement de Zigbee2MQTT, il va automatiquement créer un utilisateur pour MQTT et ajouter l'adresse du broker.
 
-Le résultat du fichier `configuration.yaml` après le premier lancement doit ressembler à cela.
-
-```yaml
-mqtt:
-  server: mqtt://core-mosquitto:1883
-  user: addons
-  password: Thee8ahGhahpe4oKoe4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
 **Si vous avez créé un utilisateur pour votre brocker MQTT**
-Il vous faut rentrer les informations vous même.
+Il faut configurer l'add-on.
+Pour cela, nous allons ajouter l'adresse de notre broker, l'utilisateur et le mot de passe pour se connecter au brocker et le chemin de notre clé Zigbee.
 
-c'est aussi a cet endroit que vous pouvez ajouter des parametres comme le canal a utiliser pour votre clé Zigbee (si supporté) qui par defaut est sur le canal 11. Pour ma part j'utilise le canal 25 car c'est une bande de frequence qui n'est pas utilisé dans la plupart des routeurs/Box disponnible sur le marché Europeen, ce qui evite les interference avec le Wi-Fi.
+***Note :** c'est aussi a cet endroit que vous pouvez ajouter des parametres comme le canal a utiliser pour votre clé Zigbee (si supporté) qui par defaut est sur le canal 11. Pour ma part j'utilise le canal 25 car c'est une bande de frequence qui n'est pas utilisé dans la plupart des routeurs/Box disponnible sur le marché Europeen, ce qui evite les interference avec le Wi-Fi.*
 
 ***ATTENTION :** Un changement de canal vous oblige a tout réappairer.*
 Voici quelques informations, si vous voulez garder les parametres par defaut vous n'avez riena toucher ou modifier.
@@ -146,8 +139,8 @@ Dans la partie mqtt :
 ```yaml
 base_topic: zigbee2mqtt
 server: mqtt://core-mosquitto
-user: usermqtt
-password: passwordmqtt
+user: votre_utilisateur_mqtt
+password: mot_de_passe_de_utilisateur_mqtt
 ```
 
 Pour la partie `Sérial`, de la configuration de l'add-on Zigbee2MQTT, saisir le chemin de votre clé Zigbee
@@ -203,7 +196,6 @@ La configuration de Zigbee2MQTT est terminée, il suffit d'enregistrer puis de l
 Nous venons de faire un grand pas pour notre installation domotique.
 Maintenant, tous les capteurs Zigbee de n'importe quelle marque pourront communiquer entre eux et communiquer avec Home Assistant.
 
-
 Vous pouvez connecter une multitude d'appareils Zigbee avec **une seule** passerelle, envoyer les informations d'autres appareils (aspirateur sous Valetudo ou shelly) via MQTT et connecter d'autres solutions (exemple Node-Red) a votre broker MQTT pour accéder aux différents appareils de votre installation.
 
-Je vous conseille l'[article sur la gestion des indisponibilités](/zigbee2mqtt-availability) de vos appareils sous Zigbee2MQTT.
+Bonne découverte !
