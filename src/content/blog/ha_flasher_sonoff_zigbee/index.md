@@ -1,46 +1,63 @@
 ---
-draft: true
-title: Home Assistant_ Flasher la clé Sonoff Zigbee avec l'add-on Zigstar
-description: "Description vide"
-pubDate: 01/10/2024
-heroImage: '/images/flatpak-linux-box.webp'
+draft: false
+title: Home Assistant - Flasher la clé Sonoff Zigbee avec l'add-on Zigstar
+description: "Flasher la clé Sonoff Zigbee très simplement avec l'add-on Zigstar et Home Assistant et débloquer tout son potentiel en faisant sauter la limite du nombre d'appareils imposée par Sonoff"
+pubDate: 01/11/2024
+heroImage: '/images/sonoff_flash.png'
 categories: 
-- Linux
+- Domotique
+- Home Assistant
 authors: 
 - mcfly
 tags:
-- tag
+- Zigstar
+- Add-on
+- Sonoff
+- Z-stack
 ---
 
-Version
-HA Core 11.6
-HAOS
-Add-on : Zigstar 0.40
-BLABLABLABLA
+**Tuto réalisé avec :**
+* HAOS 11.4, Core 204.1.2
+* Add-on : Zigstar 0.40
+* Matériels : [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) 
 
 
-Rendez vous sur le [Github de Koenkk](https://github.com/Koenkk) pour recuperer le [firmware coordinateur Z-Stack](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) correspondant a votre clé. pour ma [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W), le dernier firmware a date est le `CC1352P2_CC2652P_launchpad_coordinator_20230507` récuperable directement [ici](https://github.com/Koenkk/Z-Stack-firmware/blob/master/coordinator/Z-Stack_3.x.0/bin/CC1352P2_CC2652P_launchpad_coordinator_20230507.zip)
+Je voudrais vous partager une découverte de @tiiiit74, qui découvre Home Assistant et me sert de cobaye pour mes articles. Il a acheté une clé [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) et je lui ai donc proposé de la flasher directement pour enlever la limitation que nous a imposée Sonoff en nombre d'appareils max que la clé pouvait gérer par rapport à la norme Zigbee 3.
 
-Le tableau des correspondance se trouve sur le GiHub [ici](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator) pour les coordinateurs et [ici](https://github.com/Koenkk/Z-Stack-firmware/tree/master/router) pour les routeurs
-***IMPORTANT :** Vous utiliserz la version coordinteur par defaut. La version routeur permet si vous avez plus clé USB Zigbee d'en passer une en tant que routeur et donc d'etendre votre reseaux comme le ferait une prise Zigbee ou la plupart des appareils branché en permanance au 220v.*
+Je me rappelle quand j'ai flashé la mienne avoir pas mal galéré, car tous les tutos et applications sont sous Windows, mais sous Linux, rien. J'avais quand même réussi à trouver un tuto en anglais qui avait marché. Forcément impossible de remettre la main dessus, mais ce n'est pas très grave, parce que @tiiiit74 a découvert qu'il existait un add-on Home Assistant pour ça.
+
+Ni une, ni deux, je retrousse mes manches et l'installe sur une instance de test Home Assistant. Le résultat est super, ça marche sans aucun problème, c'est simple et en plus ça nous permet de jouer avec les firmwares en cas de soucis.
+
+Voici donc comment flasher votre clé [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) avec la méthode la plus simple possible.
+
+Merci à lui. ;)
+
+Pour en savoir plus sur quel firmware (nom) choisir, 
+
+***IMPORTANT :** Vous utiliserez la version coordinateur par défaut. La version routeur permet, si vous avez plusieurs clés USB Zigbee, d'en passer une en tant que routeur et donc d'étendre votre réseau comme le ferait une prise Zigbee ou la plupart des appareils branchés en permanence au 220v.*
 
 ## Add-on Zigstar
-Nous allons ajouter une source externe, vous savez faire maintenant, sinon l'[article est ici](/blog/ha_addons/), ou plus simple en cliquant sur l'image ci-dessous;
-[![](./img/add_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fmercenaruss%2Fzigstar_addons)
+### Installation
+Nous allons ajouter une source externe, vous savez comment faire maintenant, sinon l'[article est ici](/blog/ha_addons/), ou plus simple en cliquant sur l'image ci-dessous;
+[![Ajouter le dépôt Zigsatr en un clic](./img/add_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fmercenaruss%2Fzigstar_addons)
 
-La version a installer est `ZigStar TI CC2652P/P7 FW Flasher` (v0.40 ici) car la [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) est sous chipset CC2652P
+La version à installer est `ZigStar TI CC2652P/P7 FW Flasher` car la [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) est sous chipset CC2652P
 ![Version de Zigstar](./img/add-ons_zigstar.png)
 
-Une fois intallé, vous allez dans configuration.
-* Selectionner votre clé USB Zigbee,
+
+### Flash de la dernière version disponible
+Une fois installé, vous allez dans `configuration`.
+* Sélectionnez votre clé USB Zigbee,
 * Saisir un nom bidon dans `Network Device`,
 Cochez :
 * Network device/USB device,
 * Sonoff USB
 * Last Koenkk Firmware - CC1352P2_CC2652P_launchpad_*.zip
-![Configuration de l'add-on Zigstar sur Homer Assistant](./img/configuration_add-on_zigstar.gif)
+![Configuration de l'add-on Zigstar sur Home Assistant](./img/configuration_add-on_zigstar.gif)
 
-Enregistrer puis démarrer l'add-on et rendez vous dans le journal pour voir si tout ce passe bien
+Enregistrer puis démarrer l'add-on et rendez-vous dans `journal` pour voir si tout se passe bien.
+
+***ATTENTION :** Il faut que les add-ons Mosquitto Broker et Zigbee2MQTT soient arrêtés, sinon ça ne marchera pas.*
 
 Voici mes logs:
 ```
@@ -111,8 +128,26 @@ s6-rc: info: service s6rc-oneshot-runner: stopping
 s6-rc: info: service s6rc-oneshot-runner successfully stopped
 ```
 
-Voila le flash est terminé. Verifier votre version de firmware depuis Zigbee2MQTT en ouvrant ce dernier puis dans `Paramètres`, onglet `A propos`, regarder la version apres `Révision du coordinateur` (ici 20230507).
-![Recuperer la version du firmware de sa clé Sonoff](./img/zigbee2mqtt_version_firmware_sonoff.png)
+Voilà le flash est terminé. Vérifier votre version de firmware depuis Zigbee2MQTT (article [ici](/blog/ha_mosquitto_broker_zigbee2mqtt/)) en ouvrant ce dernier, puis dans `Paramètres`, onglet `A propos`, regarder la version après `Révision du coordinateur` (ici 20230507).
+![Récupérer la version du firmware de sa clé Sonoff](./img/zigbee2mqtt_version_firmware_sonoff.png)
+
+
+### Flash avec une version antérieure ou personnalisée
+Il semblerait que la dernière version à date (20230507) ait des problèmes avec certains utilisateurs. Un fix (20231112 et 20231111) est en test (voir la discussion [ici](https://github.com/Koenkk/Z-Stack-firmware/discussions/483)).
+Je n'ai pour l'instant pas perçu de problème (deux jours), mais si vous ne souhaitez pas être embêté, il est plus sage de rester avec la version 20221226 tant que les retours ne sont pas bons.
+
+Nous allons donc voir comment flasher avec un firmware personnalisé depuis Zigstar.
+
+La procédure est identique, sauf qu'il faut laisser `* Last Koenkk Firmware - CC1352P2_CC2652P_launchpad_*.zip` décoché et coller le lien en version `raw`du firmware que vous souhaitez flasher.
+Voici le lien pour le firmware 20221216 `https://github.com/Koenkk/Z-Stack-firmware/raw/7398d834eb3a790876c280293c4181da96cc7114/coordinator/Z-Stack_3.x.0/bin/CC1352P2_CC2652P_launchpad_coordinator_20221226.zip`
+
+![Configuration de l'add-on Zigstar avec un firmware personnalisé](./img/configuration_zigstar_custom_firmware.png)
+
+## Conclusion
+Voici la méthode la moins prise de tête pour flasher sa clé Sonoff [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) depuis Home Assistant directement.
+Vous pouvez bien sûr désactiver l'add-on et le réutiliser le jour où une nouvelle version du firmware sera disponible.
+
+***Bon a savoir :**Vous n'avez pas besoin de réappairer vos appareils (contrairement au flash par les méthodes traditionnelles dans mes souvenirs) que ce soit d'un firmware 2022 vers 2023 ou l'inverse.*
 
 ## Sources :
 * https://github.com/mercenaruss/zigstar_addons
