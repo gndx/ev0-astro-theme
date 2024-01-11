@@ -48,7 +48,7 @@ Voici quelques passerelles USB Zigbee universelles recommandées pour Zigbee2MQT
 * [**Sonoff Zigbee 3.0 USB Dongle Plus P**](https://sonoff.tech/product/gateway-and-sensors/sonoff-zigbee-3-0-usb-dongle-plus-p/) (TI CC2652P) disponibles sur [Amazon (19€)](https://amzn.to/41W8f4W) [AliExpress (22€)](https://s.click.aliexpress.com/e/_DlhO6qp),
 * [Conbee II](https://www.phoscon.de/en/conbee2), très populaire, [Amazon (32€)](https://amzn.to/41Rryfu),
 * [Zigate (FR)](https://zigate.fr/),  [Amazon (54€)](https://amzn.to/3SdV7VA)
-* Clés à base Texas Instruments CC2531/2530 (Zigbee v1.2 à éviter depuis l'arrivé du Zigbee 3),
+* Clés à base Texas Instruments CC2531/2530 (Zigbee v1.2 à éviter depuis l'arrivée du Zigbee 3),
 
 [Liste des clés compatibles avec Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/#recommended)
 
@@ -64,10 +64,23 @@ Elles sont principalement basées sur le chipset CC2652, sauf pour la Sonoff Zig
 Routes : Ceci indique combien de routes le coordinateur peut garder en mémoire. Par exemple, 100/200 signifie que : 100 routes normales et 200 routes sources peuvent être gardées en mémoire. 0 route source signifie que le routage source est désactivé. Les routes sources améliorent les performances des réseaux de grande taille (plus de 40 nœuds). Pour plus d'informations, lisez [Large ZigBee Networks and Source Routing (EN)](https://www.digi.com/resources/documentation/digidocs/90001537/references/r_large_zigbee_networks-source_routing.htm?TocPath=Working%20with%20Zigbee%7C_____14) (Réseaux ZigBee de grande taille et routage de sources).*
 
 ## Mosquitto Broker
-### Création d'un utilisateur Home Assistant
-*Cette étape est **facultative**, car un utilisateur Zigbee2mqtt est créé automatiquement, mais je vous la **recommande fortement**, si vous voulez connecter facilement d'autres appareils en MQTT plus tard.*
+### Installation et configuration de l'add-on
+Il va falloir installer l'add-on `Mosquitto Broker` via les modules complémentaires (si besoin, il y a un [article ici](/blog/ha_addons/))
+![Add-on Mosquitto Broker dans Home Assistant](./img/add-on_mosquitto_broker.png)
 
-Si vous souhaitez créer un utilisateur dédié à Zigbee2MQTT par vous-même :
+Ensuite, démarrer directement l'add-on, puis rendez-vous dans `Paramètres`, `Appareils et services` vous devriez voir la découverte automatique de Mosquitto Broker.
+![Découverte automatique de l'intégration MQTT par Home Assistant](./img/decouverte_mqtt.png)
+Ajouter-laa, puis il va vous demander s'il peut configurer seul les informations, acceptez.
+
+S'il n'est pas découvert automatiquement, cliquez sur `+ AJOUTER UNE INTEGRATION` rechercher `MQTT`, cliquez dessus puis de nouveau sur `MQTT`.
+
+Vous avez fini l'installation de l'add-on Mosquitto Broker. Si vous souhaitez que des appareils externes a Home Assistant puissent interagir avec des capteurs grand public ou DIY via le protocole MQTT, il vous faudra ajouter un utilisateur MQTT pour plus de simplicité.
+
+Sinon, vous pouvez passer à l'installation de Zigbee2MQTT.
+
+### Création d'un utilisateur Home Assistant
+*Cette étape est **facultative**, car un utilisateur Zigbee2mqtt est créé automatiquement, mais je vous la **recommande**, si vous voulez connecter facilement d'autres appareils externes en MQTT plus tard.*
+
 * Rendez-vous dans `Paramètre`, `Personnes`, `Utilisateurs` puis `AJOUTER UN UTILISATEUR`,
 * Remplir `Nom d'affichage`, `Nom d'utilisateur`, et un `mot de passe`,
 * Basculer le bouton `Ne peut se connecter qu'à partir du réseau local`,
@@ -76,16 +89,9 @@ Si vous souhaitez créer un utilisateur dédié à Zigbee2MQTT par vous-même :
 
 ![Création d'un utilisateur sur Home Assistant](./img/ajouter_utilisateur.gif)
 
-### Installation et configuration de l'add-on
-Il va falloir installer l'add-on `Mosquitto Broker` via les modules complémentaires (si besoin, il y a un [article ici](/blog/ha_addons/))
-![Add-on Mosquitto Broker dans Home Assistant](./img/add-on_mosquitto_broker.png)
-
-**Si vous n'avez pas créé d'utilisateur**
-Vous pouvez démarrer directement l'add-on, puis rendez-vous dans `Paramètres`, `Appareils et services` vous devriez voir la découverte automatique de Mosquitto Broker.
-
-**Si vous avez créé un utilisateur**
-Une fois l'add-on installé, rendez-vous dans l'onglet `Configuration` de l'add-on `Mosquitto Broker`.
-* Dans logins rentrer les informations de l'utilisateur que vous venez de créer.
+**Ajouter votre utilisateur à Mosquitto**
+Rendez-vous dans l'onglet `Configuration` de l'add-on `Mosquitto Broker`.
+* Dans `logins`, rentrez les informations de l'utilisateur que vous venez de créer.
 
 ```yaml
 - username: votre_utilisateur_mqtt
@@ -95,19 +101,12 @@ Une fois l'add-on installé, rendez-vous dans l'onglet `Configuration` de l'add-
 ![Configuration de l'utilisateur MQTT dans Mosquitto Broker](./img/configuration_mosquitto.png)
 
 * Laissez la partie réseau par défaut.
-* Enregistrez puis démarrez l'add-on.
 
-Une fois démarré, rendez-vous dans `Paramètres`, `Appareils et services` vous devriez voir la découverte automatique de Mosquitto Broker,
-![Découverte automatique de l'intégration MQTT par Home Assistant](./img/decouverte_mqtt.png)
+Enregistrer puis redémarrer l'add-on.
 
-S'il n'est pas découvert automatiquement, cliquez sur `+ AJOUTER UNE INTEGRATION` rechercher `MQTT`, cliquez dessus puis de nouveau sur `MQTT`.
+Vous pouvez tester la connexion à votre broker avec le logiciel [MQTT Explorer](https://mqtt-explorer.com/).
 
-
-Soit il vous demande s'il peut paramétrer seul les informations, soit il va vous demander de rentrer les informations de votre brocker comme l'url, le login et mot de passe. Vous avez les informations plus haut.
-
-Vous avez fini l'installation de l'add-on Mosquitto Broker et venez d'ajouter une possibilité supplémentaire d'interagir avec des capteurs grand public ou DIY via le protocole MQTT.
-
-Passons maintenant a l'installation de Zigbee2MQTT
+Passons maintenant à l'installation de Zigbee2MQTT
 
 ## Zigbee2MQTT
 Zigbee2MQTT est un add-on qui n'est pas directement disponible dans les modules complémentaires, il faut ajouter une source externe. Je vous laisse regarder l'[article sur l'installation d'un add-on](/ha_addon).
@@ -122,41 +121,15 @@ Une fois la source ajoutée, il vous faut l'installer. Facile maintenant, il fau
 ![Add-on Zigbee2MQTT dans Home Assistant](./img/add-on_zigbee2mqtt.png)
 
 ### Configuration de l'add-on
-**Si vous n'avez pas créé d'utilisateur pour votre brocker MQTT**
-Il faut seulement rentrer le chemin de votre clé Zigbee (voir plus bas) et au premier lancement de Zigbee2MQTT, il va automatiquement créer un utilisateur pour MQTT et ajouter l'adresse du broker.
-
-**Si vous avez créé un utilisateur pour votre brocker MQTT**
-Il faut configurer l'add-on.
-Pour cela, nous allons ajouter l'adresse de notre broker, l'utilisateur et le mot de passe pour se connecter au brocker et le chemin de notre clé Zigbee.
-
-***Note :** c'est aussi à cet endroit que vous pouvez ajouter des paramètres comme le canal à utiliser pour votre clé Zigbee (si supporté) qui par défaut est sur le canal 11. Pour ma part, j'utilise le canal 25, car c'est une bande de fréquence qui n'est pas utilisée dans la plupart des routeurs/Box disponibles sur le marché Européen, ce qui évite les interférences avec le Wi-Fi.*
-
-***ATTENTION :** Un changement de canal vous oblige à tout réappairer.*
-Voici quelques informations, si vous voulez garder les paramètres par défaut, vous n'avez rien à toucher ou modifier.
-*Les paramètres sont disponibles [ici](https://www.zigbee2mqtt.io/guide/configuration/)*
-
-Dans la partie socat :
-```yaml
-channel: 25
-```
-
-Dans la partie mqtt :
-```yaml
-base_topic: zigbee2mqtt
-server: mqtt://core-mosquitto
-user: votre_utilisateur_mqtt
-password: mot_de_passe_de_utilisateur_mqtt
-```
-
-Pour la partie `Sérial`, de la configuration de l'add-on Zigbee2MQTT, saisir le chemin de votre clé Zigbee
+Il faut seulement rentrer le chemin de votre clé Zigbee et au premier lancement de Zigbee2MQTT, il va automatiquement créer un utilisateur pour MQTT et ajouter l'adresse du broker.
 
 **Comment récupérer le chemin de ma clé USB**
-Pour commencer, il faut qu'elle soit branché (un oubli est si vite arrivé surtout si vous utilisez Proxmox, n'oubliez pas de l'ajouter à votre VM, voir l'[article sur l'installation de HAOS sur VM](/blog/ha_haos_proxmox_installation/))
+Pour commencer, il faut qu'elle soit branchée (un oubli est si vite arrivé surtout si vous utilisez Proxmox, n'oubliez pas de l'ajouter à votre VM, voir l'[article sur l'installation de HAOS sur VM](/blog/ha_haos_proxmox_installation/))
 
 Ensuite, rendez-vous dans `Paramètres`, `Système`, `Matériel` puis cliquez sur `TOUT LE MATERIEL` et recherchez votre clé USB.
 ![Trouver le chemin de sa clé USB dans Home Assistant](./img/trouver_cle_usb_materiel_home_assistant.gif)
 
-Dans la capture d'écran c'est `/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_20fa0f2fc719ec11b20574e5f01c6278-if00-port0`, il se peut que `/dev/ttyUSB0` suffise, mais ça ne marche pas à tous les coups.
+Dans la capture d'écran, c'est `/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_20fa0f2fc719ec11b20574e5f01c6278-if00-port0`, il se peut que `/dev/ttyUSB0` suffise, mais ça ne marche pas à tous les coups (essayez !).
 Donc c'est ce chemin qui faut rentrer dans la partie `Sérial`, de la configuration.
 ***> ***ATTENTION :** La configuration est différente selon la clé utilisée.
 
@@ -190,11 +163,99 @@ Il faudra ajouter `adapter: ezsp`
 
 La configuration de Zigbee2MQTT est terminée, il suffit d'enregistrer puis de lancer l'add-on.
 
-## Utilisation
-Il est conseillé d'ajouter en premier les apareils faisant office de routeur, ce sont souvent ceux qui sont brancher en permanance au 220v (prise de courant, lumiere, etc)
+Comme à votre habitude, regardez l'onglet journal pour voir si tout se passe bien.
 
-Pour appairer vos appareils il faut connaitre la procedure d'apparage lié  votre appareil puis autoriser l'appairgae depuis l'interface de Zigbee2MQTT
-Un point important est la possibilité de mettre tous les routeuirs en mode appairage ou alors de ne selectionner qu'un seul appareil.
+## Utilisation
+
+L'utilisation de Zigbee2MQTT est assez simple, même si l'interface peut faire peur avec tous les menus et options disponibles.
+
+Voyons ensemble ce que vous devez savoir dès le début.
+
+### Appairer ses appareils
+Avant de parler d'appairage, je vais quand même vous faire un petit rappel sur les deux types d'appareils que vous pouvez trouver sous Zigbee qui constitue son réseau "maillé".
+* Vous avez les capteurs que l'on appelle les **End Device** (children, Enfants), souvent des capteurs sur pile, qui ne font que transmettre leur information. Ils ne participeront pas au "maillage" permettant d'étendre votre réseau.
+* Vous avez ceux que l'on appelle **routeur**, qui permettent d'étendre le réseau en faisant transiter les informations des "enfants" vers le **coordinateur** (clé USB Sonoff dans notre cas). Dans la plupart des cas, tous les appareils alimentés en permanence par le réseau électrique font routeur.
+
+Ce réseau permet de connecter bien plus d'appareils que ne pourrait supporter votre **coordinateur** (clé USB Sonoff) à lui seul, car un routeur compte comme un enfant aux yeux du coordinateur, mais chaque routeur peut avoir plusieurs End Device.
+
+Une image vaut bien plus que des mots.
+![Schéma d'un réseau Zigbee](./img/Zigbee-Network.png)
+
+**1 Ier conseil**
+Normalement le réseau est censé se gérer tout seul, mais il est conseillé d'ajouter en premier les appareils faisant office de routeur puis les autres.
+**2ᵉ conseil**
+Appairez vos appareils à leur emplacement définitif, si et seulement si ça ne marche pas, essayez proche du coordinateur.
+
+Chaque appareil a sa procédure pour être appairé, la documentation de Zigbee2MQTT l'indique dans la plupart des cas sur la fiche du produit supporté.
+
+Un point positif pour Zigbee2MQTT est la possibilité de mettre tous les routeurs en mode appairage en un clic ou alors de ne sélectionner qu'un seul routeur, ce qui forcera votre capteur à se connecter a ce dernier.
+
+***Mon avis :** Je ne sais pas si cela à vraiment une incidence, car j'active toujours l'appairage sur tous les routeurs, mais je suis preneur de vos retours*
+
+### Comment ajouter un appareil à Zigbee2MQTT
+Rendez-vous dans l'interface de Zigbee2MQTT.
+* Cliquer sur le bouton en haut à droite `Activer l'appairage (Tout)` ou alors sur la petite flèche pour choisir sur quel routeur. L'apparaige est autorisé pendant 4 minutes et 14 secondes.
+![Lancer l'appairage sur Zigbee2MQTT](./img/zigbee2mqtt_appairage.gif)
+* Allez sur l'appareil à appairer puis lancez la manipulation d'appairage.
+* Retournez sur l'interface de Zigbee2MQTT (le plus simple est de s'y connecter avec votre smartphone, ça évite les aller-retour), plusieurs popups devraient s'afficher en vert.
+* Une fois appairé, il doit s'afficher à la suite des appareils déjà ajoutés.
+![Affichage d'un appareil sous Zigbee2MQTT](./img/z2mqtt_appareil_zigbee.png)
+Sur l'image ci-dessus, 
+* `0x00158d0001e7a01e` correspond à l'adresse IEEE de l'appareil, c'est un numéro unique,
+Ensuite, vous avez des informations classiques, le constructeur, le modèle, l'image et le nom simplifié (pas simple pour le moment). Vous avez aussi l'information sur la source d'alimentation, pile ou secteur.
+* Le `LQI` est la qualité du signal entre votre appareil et votre coordinateur ou routeur (en fonction de là ou il est connecté), plus il est fort, mieux c'est (je crois que ça s'arrête à 255)
+
+Il reste maintenant les trois boutons complètement à droite.
+* Le premier permet de renommer votre appareil,
+![Renommer un appareil sous Zigbee2MQTT](./img/zigbee2mqtt_renommer_appareils.png)
+* * N'oubliez pas de basculer `Modifier l'ID de l'entité sous Home Assistant` pour qu'il soit aussi renommé dans Home Assistant.
+* Le deuxième de forcer la reconfiguration de l'appareil (en gros, il l'interroge)
+* Le troisième, facile, il supprime votre appareil.
+![Suppression d'un appareil sous Zigbee2MQTT](./img/zigbee2mqtt_suppression_appareils.png)
+Lors de la suppression, vous avez deux options :
+* * Forcer la suppression
+* * Bloquer tout nouvel appairage (si vous vendez un appareil par exemple)
+
+### Utilisation avancée
+Zigbee2MQTT permet une utilisation plus poussée, comprendre, que l'on peut configurer plus en profondeur certains paramètres.
+
+Pour accéder au dossier de l'add-on, il vous faut soit l'add-on FIle Editor, soit Studio Code Server, soit faire un partage samba sur votre réseau.
+**Si ça ne vous parle pas, n'allez pas plus loin pour le moment.**
+
+Parmi les paramètres intéressants, il y a :
+**Le canal** qui est la bande de fréquence sur laquelle les appareils vont communiquer. Comme vous le savez (je l'ai dit au tout début) le Zigbee travaille autour du 2.4 GHz qui est aussi la fréquence du Wi-Fi (pas le Wi-Fi 5 GHz) mais aussi du Bluetooth. Par défaut, c'est le canal 11 qui est sélectionné, mais vous pouvez le changer.
+
+***Note :** Pour ma part, j'utilise le canal 25, car c'est une bande de fréquence qui n'est pas utilisée dans la plupart des routeurs/Box disponibles sur le marché Européen, ce qui évite les interférences avec le Wi-Fi.*
+
+***ATTENTION :** Un changement de canal vous oblige à tout réappairer.*
+*Les paramètres sont disponibles [ici](https://www.zigbee2mqtt.io/guide/configuration/)*
+
+Vous pouvez modifier le canal dans l'onglet configuration de Zigbee2MQTT en ajoutant dans la partie socat le code suivant :
+```yaml
+channel: 25
+```
+
+**Connexion avec l'utilisateur MQTT créé**
+Si vous souhaitez que Zigbee2MQTT se connecte au brocker avec l'utilisateur que vous avez créé plus haut, il va falloir lui indiquer dans sa configuration.
+
+Pour cela, nous allons ajouter l'adresse de notre broker, l'utilisateur et le mot de passe pour se connecter au brocker.
+
+Dans la partie mqtt :
+```yaml
+base_topic: zigbee2mqtt
+server: mqtt://core-mosquitto
+user: votre_utilisateur_mqtt
+password: mot_de_passe_de_utilisateur_mqtt
+```
+
+**Déplacer les devices du fichier `configuration.yaml` vers `devices.yaml`**
+Ce fichier contient toutes les adresses IEEE de vos appareils ainsi que leur nom. Si vous n'avez rien paramétré, ces informations se trouvent directement dans le fichier `configuration.yaml` du dossier de `zigbee2MQTT`. 
+Si vous souhaitez séparer les deux fichiers (intéressant quand votre installation grossit), il vous faudra créer un fichier `devices.yaml` dans le dossier de l'add-on Zigbee2MQTT, puis l'indiquer dans le fichier `configuration.yaml` qui se situe au même endroit avec le code suivant.
+```yaml
+devices: devices.yaml
+```
+
+***IMPORTANT :** Si vous devez pour n'importe quelle raison supprimer et réinstaller Zigbee2MQTT, sauvegardez ou copiez/collez ce fichier, ce qui permettra, lors de l'appairage, de conserver les noms de vos appareils et donc reconnu dans vos automatisations, scènes, scripts et interfaces Home Assistant.*
 
 ## Conclusion.
 
