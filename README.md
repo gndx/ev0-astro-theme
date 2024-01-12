@@ -39,6 +39,11 @@ EV0 Astro Theme is a free and open-source serverless blog template, built with A
   <img align="center" alt="Lighthouse Score" src="https://s3.amazonaws.com/gndx.dev/EV0-astro-theme-lighthouse.png"/>
 </p>
 
+
+## 👨🏻‍💻 VIP Support (optional) $25
+Includes personalized assistance via messages/emails, customization of up to 1 feature, assistance for implementation in your hosting and deployment, and advice for future changes.  [Buy VIP Support](https://gndx.gumroad.com/l/zwaeqz). 
+
+
 ## 🚀 Getting Started
 
 Clone this repository to your local machine using Git.
