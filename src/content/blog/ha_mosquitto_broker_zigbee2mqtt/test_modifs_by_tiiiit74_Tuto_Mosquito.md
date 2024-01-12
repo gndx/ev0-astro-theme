@@ -1,4 +1,4 @@
----
+﻿---
 draft: true
 title: Home Assistant - Installer les add-ons Mosquito et Zigbee2MQTT
 description: "Description vide"
@@ -17,15 +17,17 @@ tags:
 - MQTT
 ---
 
-**Le Zigbee, un protocole à la mode**
+
+**  
+Le Zigbee, un protocole à la mode**
 
 Le Zigbee est un protocole de communication sans fil basé sur la fréquence 2,4 GHz, la même que celle utilisée par le Wi-Fi et le Bluetooth. Il est conçu pour les applications de faible débit et de faible consommation d'énergie, telles que la domotique.
 
 Le Zigbee présente plusieurs avantages, notamment :
 
-* Une multitude de capteurs et de périphériques disponibles à des prix très abordables;
-* La possibilité de créer un réseau maillé, ce qui permet d'étendre la portée du réseau;
-* Une faible consommation d'énergie, ce qui permet aux appareils de fonctionner pendant de longues périodes sur des piles ou des batteries.
+-   Une multitude de capteurs et de périphériques disponibles à des prix très abordables ;
+-   La possibilité de créer un réseau maillé, ce qui permet d'étendre la portée du réseau ;
+-   Une faible consommation d'énergie, ce qui permet aux appareils de fonctionner pendant de longues périodes sur des piles ou des batteries.
 
 **L'interopérabilité, un défi**
 
@@ -39,25 +41,33 @@ Face à cette situation, la communauté internationale a développé des passere
 
 Le Zigbee est un protocole de communication sans fil qui présente de nombreux avantages. Cependant, l'interopérabilité entre les produits de différents fabricants peut être un défi. La communauté internationale a développé des solutions pour contourner ce défi, ce qui permet aux utilisateurs de créer des réseaux Zigbee plus complets et plus flexibles.
 
+Ces applications disponibles sur Home Assistant sont :
+* [ZHA](https://www.home-assistant.io/integrations/zha/) (natif a Home Assistant), 
+* [Zigbee2MQTT](https://www.zigbee2mqtt.io/),
+* [DeconZ](https://www.phoscon.de/en/conbee2/software#deconz),
+
 **Les passerelles Zigbee pour Home Assistant**
 
 Il existe trois principales passerelles Zigbee compatibles avec Home Assistant : ZHA, Zigbee2MQTT et DeconZ.
 
 **ZHA**
-* Avantage : native à Home Assistant, ne nécessite aucune installation et met à jour certains appareils
-* Inconvénient : ne supporte pas le plus de matériel,
+
+-   Avantage : native à Home Assistant, ne nécessite aucune installation
+-   Inconvénient : ne supporte pas le plus de matériel, ne met pas à jour tous les appareils
 
 **Zigbee2MQTT**
-* Avantage : supporte le plus de matériel, met à jour certains appareils
-* Inconvénient : nécessite un Broker MQTT (passerelle) supplémentaire sous forme d'add-on,
+
+-   Avantage : supporte le plus de matériel, met à jour certains appareils
+-   Inconvénient : nécessite un Broker MQTT (passerelle) supplémentaire
 
 **Deconz**
-* Avantage : supporte moins de capteurs que ses concurrents
-* Inconvénient : ne supporte pas les mises à jour d'appareils
+
+-   Avantage : supporte un large éventail de capteurs
+-   Inconvénient : ne met pas à jour tous les appareils
 
 **Conclusion**
 
-Le choix de la passerelle Zigbee dépend de vos besoins et de vos priorités. Si vous souhaitez une installation simple et rapide, ZHA est une bonne option. Si vous souhaitez une compatibilité maximale avec les appareils Zigbee, Zigbee2MQTT est la meilleure solution.
+Le choix de la passerelle Zigbee dépend de vos besoins et de vos priorités. Si vous souhaitez une installation simple et rapide, ZHA est une bonne option. Si vous souhaitez une compatibilité maximale avec les appareils Zigbee, Zigbee2MQTT est la meilleure solution. Si vous souhaitez un support pour un large éventail de capteurs, Deconz est un bon choix.
 
 Voici un [site répertoriant les capteurs disponibles](https://zigbee.blakadder.com/index.html) (ils n'y sont pas tous) et leur compatibilité avec les différentes solutions.
 
@@ -293,3 +303,4 @@ Maintenant, tous les capteurs Zigbee de n'importe quelle marque pourront communi
 Vous pouvez connecter une multitude d'appareils Zigbee avec **une seule** passerelle, envoyer les informations d'autres appareils (aspirateur sous Valetudo ou shelly) via MQTT et connecter d'autres solutions (exemple Node-Red) a votre broker MQTT pour accéder aux différents appareils de votre installation.
 
 Bonne découverte !
+
