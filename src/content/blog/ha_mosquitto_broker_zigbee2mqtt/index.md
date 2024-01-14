@@ -63,7 +63,7 @@ Voici un [site répertoriant les capteurs disponibles](https://zigbee.blakadder.
 
 Vous l'aurez compris, mon choix se porte sur Zigbee2MQTT, mais vous pouvez toujours essayer ZHA pour commencer.
 
-*Si vous commencez par ZHA et que vous souhaitez passer sur Zigbee2MQTT, il vous faudra bien renommer vos entités de la même manière sous peine de devoir repasser sur toutes vos automatisations, votre interface ou vos scripts/scènes.*
+*Si vous commencez par ZHA et que vous souhaitez par la suite passer sur Zigbee2MQTT, il vous faudra bien renommer vos entités de la même manière sous peine de devoir repasser sur toutes vos automatisations, votre interface ou vos scripts/scènes.*
 
 ***Personnellement**, si vous comptez faire du Zigbee votre protocole domotique principal, je vous conseille de passer directement sur Zigbee2MQTT*
 
@@ -80,46 +80,47 @@ Voici quelques passerelles USB Zigbee universelles recommandées pour Zigbee2MQT
 
 [Liste des clés compatibles avec Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/#recommended)
 
-Elles sont principalement basées sur le chipset CC2652, sauf pour la Sonoff Zigbee 3.0 USB Dongle Plus **E** à base de chipset EFR32MG21, compatible Matter et Zigbee (**MAIS** pas en même temps) qui est d'ailleurs en expérimentation avec Zigbee2MQTT.
+Elles sont principalement basées sur le chipset CC2652, sauf pour la Sonoff Zigbee 3.0 USB Dongle Plus **E** à base de chipset EFR32MG21, compatible Zigbee et **Matter** (**MAIS pas en même temps**), celle-ci étant encore en expérimentation avec Zigbee2MQTT.
 
-*Home Assistant propose également une clé compatible Zigbee et **Matter** également très intéressante appelée [SkyConnect](https://www.home-assistant.io/skyconnect/). Elle permet de préparer l'arrivée du protocole Matter, qui est censé révolutionner la domotique, mais ça fait deux ans qu'on nous en parle ;).*
+*Home Assistant propose une clé compatible Zigbee et **Matter** très intéressante appelée [SkyConnect](https://www.home-assistant.io/skyconnect/). Elle permet de préparer l'arrivée du protocole Matter, qui est censé révolutionner la domotique, mais ça fait deux ans qu'on nous en parle ;).*
+***Note :** Je n'ai cependant pas trouvé d'information sur sa compatibilité avec Zigbee2MQTT, ce qui vous obligera à utiliser ZHA*
 
-*Sachez qu'il y aura des clés qui feront fonctionner Zigbee et Matter en même temps qui devrait arriver, mais quand ??, alors pour 20 euros, prenez une [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) et amusez-vous*
+*Sachez que des clés faisant fonctionner Zigbee et Matter en même temps devrait arriver, mais quand ???, alors pour 20 euros, prenez une [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) et amusez-vous*
 
-***IMPORTANT :** La clé [Sonoff Zigbee 3.0 USB Dongle Plus **P** ou E](https://amzn.to/41W8f4W) est par défaut avec un firmware bridant le nombre d'appareils acceptable à 40, pourquoi ? il faudrait demander à Sonoff, mais comme d'habitude, il est possible de passer outre en flashant le firmware par un autre débridant cette dernière à 50 appareils (enfants) direct et 100/200 routeurs (routes). Voici l'[article à suivre](/blog/ha_flasher_sonoff_zigbee/)*
+***IMPORTANT :** La clé [Sonoff Zigbee 3.0 USB Dongle Plus **P** ou E](https://amzn.to/41W8f4W) est par défaut livrée avec un firmware bridant le nombre d'appareils intégrables à 40 ! Pourquoi ? Il faudrait demander à Sonoff, mais comme d'habitude, il est possible de passer outre cette limitation en flashant ce firmware d'origine par un autre, débridant ainsi à 50 appareils (enfants) directs et 100/200 routeurs (routes). Voici l'[article à suivre](/blog/ha_flasher_sonoff_zigbee/)*
 
 *Enfants directs : Nombre d'enfants qui peuvent rejoindre directement le coordinateur. Notez qu'il ne s'agit pas de la taille maximale du réseau. Pour plus d'informations, lisez la [FAQ Zigbee2MQTT sur la limite des périphériques (EN)](https://www.zigbee2mqtt.io/guide/faq/#i-read-that-zigbee2mqtt-has-a-limit-of-20-devices-when-using-a-cc2530-cc2531-adapter-is-this-true).
 Routes : Ceci indique combien de routes le coordinateur peut garder en mémoire. Par exemple, 100/200 signifie que : 100 routes normales et 200 routes sources peuvent être gardées en mémoire. 0 route source signifie que le routage source est désactivé. Les routes sources améliorent les performances des réseaux de grande taille (plus de 40 nœuds). Pour plus d'informations, lisez [Large ZigBee Networks and Source Routing (EN)](https://www.digi.com/resources/documentation/digidocs/90001537/references/r_large_zigbee_networks-source_routing.htm?TocPath=Working%20with%20Zigbee%7C_____14) (Réseaux ZigBee de grande taille et routage de sources).*
 
 ## Mosquitto Broker
 ### Installation et configuration de l'add-on
-Il va falloir installer l'add-on `Mosquitto Broker` via les modules complémentaires (si besoin, il y a un [article ici](/blog/ha_addons/))
+Il va falloir installer l'add-on `Mosquitto Broker` via les modules complémentaires (si besoin, se référer à cet [article](/blog/ha_addons/))
 ![Add-on Mosquitto Broker dans Home Assistant](./img/add-on_mosquitto_broker.png)
 
-Ensuite, démarrer directement l'add-on, puis rendez-vous dans `Paramètres`, `Appareils et services` vous devriez voir la découverte automatique de Mosquitto Broker.
+Ensuite, démarrer directement l'add-on, puis se rendre dans `Paramètres`, `Appareils et services` vous devriez voir la découverte automatique de Mosquitto Broker.
 ![Découverte automatique de l'intégration MQTT par Home Assistant](./img/decouverte_mqtt.png)
-Ajouter-laa, puis il va vous demander s'il peut configurer seul les informations, acceptez.
+Ajouter-la, puis il va vous demander s'il peut configurer seul les informations, acceptez.
 
-S'il n'est pas découvert automatiquement, cliquez sur `+ AJOUTER UNE INTEGRATION` rechercher `MQTT`, cliquez dessus puis de nouveau sur `MQTT`.
+S'il n'est pas découvert automatiquement, cliquer sur `+ AJOUTER UNE INTEGRATION`, rechercher `MQTT`, cliquer dessus puis de nouveau sur `MQTT`.
 
-Vous avez fini l'installation de l'add-on Mosquitto Broker. Si vous souhaitez que des appareils externes a Home Assistant puissent interagir avec des capteurs grand public ou DIY via le protocole MQTT, il vous faudra ajouter un utilisateur MQTT pour plus de simplicité.
+Vous avez fini l'installation de l'add-on Mosquitto Broker. Si vous souhaitez que des appareils externes à Home Assistant puissent interagir avec des capteurs grand public ou DIY via le protocole MQTT, il vous faudra ajouter un utilisateur MQTT pour plus de simplicité.
 
 Sinon, vous pouvez passer à l'installation de Zigbee2MQTT.
 
 ### Création d'un utilisateur Home Assistant
-*Cette étape est **facultative**, car un utilisateur Zigbee2mqtt est créé automatiquement, mais je vous la **recommande**, si vous voulez connecter facilement d'autres appareils externes en MQTT plus tard.*
+*Cette étape est **facultative**, car un utilisateur Zigbee2mqtt est créé automatiquement, mais je vous la **recommande** si vous voulez connecter facilement d'autres appareils externes en MQTT plus tard.*
 
 * Rendez-vous dans `Paramètre`, `Personnes`, `Utilisateurs` puis `AJOUTER UN UTILISATEUR`,
 * Remplir `Nom d'affichage`, `Nom d'utilisateur`, et un `mot de passe`,
 * Basculer le bouton `Ne peut se connecter qu'à partir du réseau local`,
-* Laissez `Administrateur` désactivé,
+* Laisser `Administrateur` désactivé,
 * Valider en cliquant sur `Créer`.
 
 ![Création d'un utilisateur sur Home Assistant](./img/ajouter_utilisateur.gif)
 
 **Ajouter votre utilisateur à Mosquitto**
 Rendez-vous dans l'onglet `Configuration` de l'add-on `Mosquitto Broker`.
-* Dans `logins`, rentrez les informations de l'utilisateur que vous venez de créer.
+* Dans `logins`, rentrer les informations de l'utilisateur que vous venez de créer.
 
 ```yaml
 - username: votre_utilisateur_mqtt
@@ -128,13 +129,13 @@ Rendez-vous dans l'onglet `Configuration` de l'add-on `Mosquitto Broker`.
 
 ![Configuration de l'utilisateur MQTT dans Mosquitto Broker](./img/configuration_mosquitto.png)
 
-* Laissez la partie réseau par défaut.
+* Laisser la partie réseau par défaut.
 
 Enregistrer puis redémarrer l'add-on.
 
 Vous pouvez tester la connexion à votre broker avec le logiciel [MQTT Explorer](https://mqtt-explorer.com/).
 
-Passons maintenant à l'installation de Zigbee2MQTT
+_Passons maintenant à l'installation de Zigbee2MQTT_
 
 ## Zigbee2MQTT
 Zigbee2MQTT est un add-on qui n'est pas directement disponible dans les modules complémentaires, il faut ajouter une source externe. Je vous laisse regarder l'[article sur l'installation d'un add-on](/ha_addon).
@@ -158,7 +159,7 @@ Ensuite, rendez-vous dans `Paramètres`, `Système`, `Matériel` puis cliquez su
 ![Trouver le chemin de sa clé USB dans Home Assistant](./img/trouver_cle_usb_materiel_home_assistant.gif)
 
 Dans la capture d'écran, c'est `/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_20fa0f2fc719ec11b20574e5f01c6278-if00-port0`, il se peut que `/dev/ttyUSB0` suffise, mais ça ne marche pas à tous les coups (essayez !).
-Donc c'est ce chemin qui faut rentrer dans la partie `Sérial`, de la configuration.
+C'est ce chemin qu'il faut rentrer dans la partie `Sérial`, de la configuration.
 ***> ***ATTENTION :** La configuration est différente selon la clé utilisée.
 
 Exemple :
@@ -201,31 +202,31 @@ Voyons ensemble ce que vous devez savoir dès le début.
 
 ### Appairer ses appareils
 Avant de parler d'appairage, je vais quand même vous faire un petit rappel sur les deux types d'appareils que vous pouvez trouver sous Zigbee qui constitue son réseau "maillé".
-* Vous avez les capteurs que l'on appelle les **End Device** (children, Enfants), souvent des capteurs sur pile, qui ne font que transmettre leur information. Ils ne participeront pas au "maillage" permettant d'étendre votre réseau.
-* Vous avez ceux que l'on appelle **routeur**, qui permettent d'étendre le réseau en faisant transiter les informations des "enfants" vers le **coordinateur** (clé USB Sonoff dans notre cas). Dans la plupart des cas, tous les appareils alimentés en permanence par le réseau électrique font routeur.
+* Vous avez les capteurs que l'on appelle les **End Device** (children, Enfants), souvent des capteurs sur pile, qui ne font que transmettre leurs informations. Ils ne participeront pas au "maillage" permettant d'étendre votre réseau.
+* Vous avez ceux que l'on appelle **routeur**, qui permettent d'étendre le réseau en faisant transiter les informations des "enfants" vers le **coordinateur** (clé USB Sonoff dans notre cas). Dans la plupart des cas, tous les appareils alimentés en permanence par le réseau électrique font office de  routeur.
 
 Ce réseau permet de connecter bien plus d'appareils que ne pourrait supporter votre **coordinateur** (clé USB Sonoff) à lui seul, car un routeur compte comme un enfant aux yeux du coordinateur, mais chaque routeur peut avoir plusieurs End Device.
 
 Une image vaut bien plus que des mots.
 ![Schéma d'un réseau Zigbee](./img/Zigbee-Network.png)
 
-**1 Ier conseil**
+**1^er^ conseil**
 Normalement le réseau est censé se gérer tout seul, mais il est conseillé d'ajouter en premier les appareils faisant office de routeur puis les autres.
-**2ᵉ conseil**
+**2^e^ conseil**
 Appairez vos appareils à leur emplacement définitif, si et seulement si ça ne marche pas, essayez proche du coordinateur.
 
 Chaque appareil a sa procédure pour être appairé, la documentation de Zigbee2MQTT l'indique dans la plupart des cas sur la fiche du produit supporté.
 
-Un point positif pour Zigbee2MQTT est la possibilité de mettre tous les routeurs en mode appairage en un clic ou alors de ne sélectionner qu'un seul routeur, ce qui forcera votre capteur à se connecter a ce dernier.
+Un point positif pour Zigbee2MQTT est la possibilité de mettre tous les routeurs en mode appairage en un clic ou alors de ne sélectionner qu'un seul routeur, ce qui forcera votre capteur à se connecter à ce dernier.
 
-***Mon avis :** Je ne sais pas si cela à vraiment une incidence, car j'active toujours l'appairage sur tous les routeurs, mais je suis preneur de vos retours*
+***Mon avis :** Je ne sais pas si cela a vraiment une incidence, car j'active toujours l'appairage sur tous les routeurs, mais je suis preneur de vos retours*.
 
 ### Comment ajouter un appareil à Zigbee2MQTT
 Rendez-vous dans l'interface de Zigbee2MQTT.
 * Cliquer sur le bouton en haut à droite `Activer l'appairage (Tout)` ou alors sur la petite flèche pour choisir sur quel routeur. L'apparaige est autorisé pendant 4 minutes et 14 secondes.
 ![Lancer l'appairage sur Zigbee2MQTT](./img/zigbee2mqtt_appairage.gif)
-* Allez sur l'appareil à appairer puis lancez la manipulation d'appairage.
-* Retournez sur l'interface de Zigbee2MQTT (le plus simple est de s'y connecter avec votre smartphone, ça évite les aller-retour), plusieurs popups devraient s'afficher en vert.
+* Aller sur l'appareil à appairer puis lancer la manipulation d'appairage.
+* Retourner sur l'interface de Zigbee2MQTT (le plus simple est de s'y connecter avec votre smartphone, ça évite les aller-retour), plusieurs pop-ups devraient s'afficher en vert.
 * Une fois appairé, il doit s'afficher à la suite des appareils déjà ajoutés.
 ![Affichage d'un appareil sous Zigbee2MQTT](./img/z2mqtt_appareil_zigbee.png)
 Sur l'image ci-dessus, 
@@ -245,15 +246,15 @@ Lors de la suppression, vous avez deux options :
 * * Bloquer tout nouvel appairage (si vous vendez un appareil par exemple)
 
 ### Utilisation avancée
-Zigbee2MQTT permet une utilisation plus poussée, comprendre, que l'on peut configurer plus en profondeur certains paramètres.
+Zigbee2MQTT permet une utilisation plus poussée, comprendre que l'on peut configurer plus en profondeur certains paramètres.
 
-Pour accéder au dossier de l'add-on, il vous faut soit l'add-on FIle Editor, soit Studio Code Server, soit faire un partage samba sur votre réseau.
+Pour accéder au dossier de l'add-on, il vous faut soit l'add-on File Editor, soit Studio Code Server, soit faire un partage Samba sur votre réseau.
 **Si ça ne vous parle pas, n'allez pas plus loin pour le moment.**
 
 Parmi les paramètres intéressants, il y a :
-**Le canal** qui est la bande de fréquence sur laquelle les appareils vont communiquer. Comme vous le savez (je l'ai dit au tout début) le Zigbee travaille autour du 2.4 GHz qui est aussi la fréquence du Wi-Fi (pas le Wi-Fi 5 GHz) mais aussi du Bluetooth. Par défaut, c'est le canal 11 qui est sélectionné, mais vous pouvez le changer.
+**Le canal** qui est la bande de fréquence sur laquelle les appareils vont communiquer. Comme vous le savez (je l'ai écrit au tout début), le Zigbee travaille autour du 2.4 GHz qui est aussi la fréquence du Wi-Fi (pas le Wi-Fi 5 GHz) mais aussi du Bluetooth. Par défaut, c'est le canal 11 qui est sélectionné, mais vous pouvez le changer.
 
-***Note :** Pour ma part, j'utilise le canal 25, car c'est une bande de fréquence qui n'est pas utilisée dans la plupart des routeurs/Box disponibles sur le marché Européen, ce qui évite les interférences avec le Wi-Fi.*
+***Note :** Pour ma part, j'utilise le canal 25, car c'est une bande de fréquence qui n'est pas utilisée par la plupart des routeurs/Box disponibles sur le marché Européen, ce qui évite les interférences avec le Wi-Fi.*
 
 ***ATTENTION :** Un changement de canal vous oblige à tout réappairer.*
 *Les paramètres sont disponibles [ici](https://www.zigbee2mqtt.io/guide/configuration/)*
@@ -283,13 +284,13 @@ Si vous souhaitez séparer les deux fichiers (intéressant quand votre installat
 devices: devices.yaml
 ```
 
-***IMPORTANT :** Si vous devez pour n'importe quelle raison supprimer et réinstaller Zigbee2MQTT, sauvegardez ou copiez/collez ce fichier, ce qui permettra, lors de l'appairage, de conserver les noms de vos appareils et donc reconnu dans vos automatisations, scènes, scripts et interfaces Home Assistant.*
+***IMPORTANT :** Si vous devez quelle qu'en soit la raison supprimer et réinstaller Zigbee2MQTT, sauvegardez ou copiez/collez ce fichier, ce qui permettra, lors de l'appairage, de conserver les noms de vos appareils qui seront donc reconnus dans vos automatisations, scènes, scripts et interfaces Home Assistant.*
 
 ## Conclusion.
 
 Nous venons de faire un grand pas pour notre installation domotique.
 Maintenant, tous les capteurs Zigbee de n'importe quelle marque pourront communiquer entre eux et communiquer avec Home Assistant.
 
-Vous pouvez connecter une multitude d'appareils Zigbee avec **une seule** passerelle, envoyer les informations d'autres appareils (aspirateur sous Valetudo ou shelly) via MQTT et connecter d'autres solutions (exemple Node-Red) a votre broker MQTT pour accéder aux différents appareils de votre installation.
+Vous pouvez connecter une multitude d'appareils Zigbee avec **une seule** passerelle, envoyer les informations d'autres appareils (aspirateur sous Valetudo ou shelly) via MQTT et connecter d'autres solutions (exemple Node-Red) à votre broker MQTT pour accéder aux différents appareils de votre installation.
 
 Bonne découverte !
