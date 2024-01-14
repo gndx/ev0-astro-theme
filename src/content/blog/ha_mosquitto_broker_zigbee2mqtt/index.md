@@ -1,8 +1,8 @@
 ---
-draft: true
+draft: false
 title: Home Assistant - Installer les add-ons Mosquito et Zigbee2MQTT
-description: "Description vide"
-pubDate: 01/11/2024
+description: "Installer Mosquitto Broker et Zigbee2MQTT simplement pour interagir avec tous les appareils Zigbee quelle que soit leur marque. Ajouter le support du protocole MQTT pour vous ouvrir le monde du DIY et du NO-CLOUD."
+pubDate: 01/14/2024
 heroImage: '/images/homeassistant-zigbee.webp'
 categories: 
 - Domotique

@@ -2,7 +2,7 @@
 draft: false
 title: Home Assistant - Flasher la clé Sonoff Zigbee avec l'add-on Zigstar
 description: "Flasher la clé Sonoff Zigbee très simplement avec l'add-on Zigstar et Home Assistant et débloquer tout son potentiel en faisant sauter la limite du nombre d'appareils imposée par Sonoff"
-pubDate: 01/11/2024
+pubDate: 01/14/2024
 heroImage: '/images/sonoff_flash.png'
 categories: 
 - Domotique
