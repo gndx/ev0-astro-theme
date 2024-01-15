@@ -52,6 +52,28 @@ Normalement, le dépôt devrait être ajouté à la suite de ceux existants.
 
 Il vous suffit de reprendre la procédure pour l'installation d'un [module complémentaire officiel du dessus](#Officiel) et c'est partie.
 
+## Présentation
+Les modules complémentaires (add-ons) se présentent toujours de la même façon. En voici un aperçu.
+![Présentation d'un add-on dans Home Assistant](./img/presentation_add-on.png)
+
+En haut, vous avez quatre onglets :
+* **Info :** Page de lancement, d'installation et de présentation de l'add-on.
+* **Documentation :** Vous donne la procédure pour la configuration de l'add-on.
+* **Configuration :** C'est ici que vous allez configurer votre add-on, s'il nécessite une configuration.
+* **Journal :** Permet de voir les logs sur le lancement ou le fonctionnement de l'add-on.
+
+Dans l'onglet **info**, vous avez des options sur l'exécution du module, son utilisation des ressources, la possibilité d'installer/désinstaller, d'éteindre/démarrer/redémarrer le module.
+* Lancer au démarrage : je pense que c'est clair pour tout le monde. *Pour la plupart des modules, il doit être activé, mais pour certains modules comme Terminal SSH ou [Zigstar](/blog/ha_flasher_sonoff_zigbee) pas besoin.*
+* Chien de garde : Permet de relancer automatiquement le module s'il s'arrête pour une raison quelconque. *Vous pouvez l'activer.*
+* Mise à jour automatique : Permet de mettre à jour le module automatiquement. *Je vous le déconseille, ça vous permet d'éviter une mise à jour bugué d'un add-on*
+* Afficher dans la barre latérale : vous comprenez le principe aussi.
+
+Dans l'onglet **Documentation**, vous avez la procédure pour bien configurer l'add-on avec ce qui est obligatoire ou optionnel et des exemples. Il est **important** de la lire.
+
+L'onglet **Configuration** vous propose l'accès rapide aux éléments importants à configurer, mais vous pouvez aussi passer en YAML, si vous y êtes plus à l'aise.
+
+Le dernier onglet, **Journal**, vous permet d'avoir les logs sur votre module. Ne pas hésiter à le consulter au démarrage du module, mais aussi lorsque vous avez des soucis.
+
 ## Conclusion
 Nous arrivons au bout de ce petit article spécial débutant sur Home Assistant. J'espère qu'il vous sera utile et vous aidera à acquérir les bases.
 
