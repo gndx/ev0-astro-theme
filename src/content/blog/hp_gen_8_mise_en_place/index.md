@@ -91,9 +91,9 @@ En bas à droite, vous avez une icône (jaune) avec marqué `POWER : OFF`, cliqu
 *Vous pouvez éteindre ou reset votre serveur depuis ce même bouton.*
 ![Écran type terminal ILo](./img/ilo_terminal_power_button.png)
 
-Quand vous avez l'écran ci-dessous, appuyez sur la touche <span><kbd>F10</kbd></span> puis sur <span><kbd>ENTRER</kbd></span>.
+Quand vous avez l'écran ci-dessous, appuyez sur la touche <kbd>F10</kbd> puis sur <kbd>ENTRER</kbd>.
 
-Attendre le moment où il vous propose d'appuyer sur <span><kbd>F5</kbd></span> (HPE Smart Storage Administrator) puis faites-le.
+Attendre le moment où il vous propose d'appuyer sur <kbd>F5</kbd> (HPE Smart Storage Administrator) puis faites-le.
 
 *Si vous n'arrivez pas à accéder au HPE Smart Storage Administrator il est peut-être désactivé. Le seul moyen est de réinitialiser l`ILO avec la procédure vue plus bas.*
 
@@ -129,8 +129,8 @@ Avoir la dernière version de [OpenMediaVault](https://www.openmediavault.org/do
 Maintenant, vous pouvez retourner sur n'importe quel PC et lancer votre page de connexion ILo4.
 
 Démarrez votre serveur, puis sur l'écran d'accueil (sur les HP Gen 8) 
-* Appuyer sur <span><kbd>F11</kbd><span>,
-* Sélectionner le numéro de votre clé (Attention le pavé numérique ne fonctionne pas, il faut utiliser la <span><kbd>MAJ</kbd></span>+<span><kbd>1,2,3,4,...</kbd></span>,
+* Appuyer sur <kbd>F11</kbd>,
+* Sélectionner le numéro de votre clé (Attention le pavé numérique ne fonctionne pas, il faut utiliser la <kbd>MAJ</kbd>+<kbd>1,2,3,4,...</kbd>,
 * Sélectionnez votre distribution (ici OpenMediaVault),
 * Suivez les étapes **ATTENTION** de bien sélectionner le bon disque dur et de mettre un mot de passe `root` solide (*il sert pour la connexion SSH en root*).
 
