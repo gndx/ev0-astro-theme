@@ -19,7 +19,7 @@
   strong,
   blockquote,
   table * {
-    @apply text-zinc-700 dark:text-zinc-300;
+    @apply text-zinc-700 dark:text-zinc-200 !important;
   }
   kbd {
     @apply bg-white text-zinc-700;
