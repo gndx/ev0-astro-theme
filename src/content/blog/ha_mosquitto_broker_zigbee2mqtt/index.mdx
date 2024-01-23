@@ -260,11 +260,12 @@ Parmi les paramètres intéressants, il y a :
 ***ATTENTION :** Un changement de canal vous oblige à tout réappairer.*
 *Les paramètres sont disponibles [ici](https://www.zigbee2mqtt.io/guide/configuration/)*
 
-Vous pouvez modifier le canal dans le fichier `configuration.yaml` du dossier `Zigbee2MQTT` se trouvant dans le dossier `config` en ajoutant le code suivant :
+Vous pouvez modifier le canal dans l'onglet `Configuration` en passant en `YAML` via les trois petit points en haut a droite (ou dans le fichier `configuration.yaml` du dossier `Zigbee2MQTT` se trouvant dans le dossier `config` via FileEditor ou VScode par exemple) en ajoutant le code suivant :
 ```yaml
-advanced: #Il y est déjà normalement
+advanced:
   channel: 25
 ```
+![Configurer le cannal dans Zigbee2MQTT](./img/z2mqtt_configuration_channel.png)
 
 **Connexion avec l'utilisateur MQTT créé**
 Si vous souhaitez que Zigbee2MQTT se connecte au brocker avec l'utilisateur que vous avez créé plus haut, il va falloir lui indiquer dans sa configuration.
