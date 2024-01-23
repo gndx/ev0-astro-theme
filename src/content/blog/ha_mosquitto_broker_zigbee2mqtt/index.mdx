@@ -260,9 +260,10 @@ Parmi les paramètres intéressants, il y a :
 ***ATTENTION :** Un changement de canal vous oblige à tout réappairer.*
 *Les paramètres sont disponibles [ici](https://www.zigbee2mqtt.io/guide/configuration/)*
 
-Vous pouvez modifier le canal dans l'onglet configuration de Zigbee2MQTT en ajoutant dans la partie socat le code suivant :
+Vous pouvez modifier le canal dans le fichier `configuration.yaml` du dossier `Zigbee2MQTT` se trouvant dans le dossier `config` en ajoutant le code suivant :
 ```yaml
-channel: 25
+advanced: #Il y est déjà normalement
+  channel: 25
 ```
 
 **Connexion avec l'utilisateur MQTT créé**
