@@ -260,12 +260,23 @@ Parmi les paramètres intéressants, il y a :
 ***ATTENTION :** Un changement de canal vous oblige à tout réappairer.*
 *Les paramètres sont disponibles [ici](https://www.zigbee2mqtt.io/guide/configuration/)*
 
+Via l'interface de Zigbee2MQTT.
+Rendez-vous dans Zigbee2MQTT puis dans `Paramètres -> Paramètres -> Avancés` et modifiez le champ `Zigbee channel`.
+![Changement du canal Zigbee depuis l'interface de Zigbee2MQTT](./img/z2mqtt_interface_configuration_channel.png)
+Allez supprimer le fichier `coordinator_backup.json` situé dans le dossier `config/zigbee2mqtt/` (avec FileEditor par exemple.)
+Puis, vous pouvez démarrer Zigbee2MQTT.
+
+Via le fichier `configuration.yaml`
 Vous pouvez modifier le canal dans l'onglet `Configuration` en passant en `YAML` via les trois petits points en haut à droite (ou dans le fichier `configuration.yaml` du dossier `Zigbee2MQTT` se trouvant dans le dossier `config` via FileEditor ou VScode par exemple) en ajoutant le code suivant :
 ```yaml
 advanced:
   channel: 25
 ```
-![Configurer le cannal dans Zigbee2MQTT](./img/z2mqtt_configuration_channel.png)
+![Configurer le canal dans Zigbee2MQTT](./img/z2mqtt_configuration_channel.png)
+
+Ensuite, il faut supprimer le fichier `coordinator_backup.json` situé dans le dossier `config/zigbee2mqtt/` (avec FileEditor par exemple.)
+
+Puis, vous pouvez démarrer Zigbee2MQTT.
 
 **Connexion avec l'utilisateur MQTT créé**
 Si vous souhaitez que Zigbee2MQTT se connecte au brocker avec l'utilisateur que vous avez créé plus haut, il va falloir lui indiquer dans sa configuration.
