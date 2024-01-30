@@ -399,7 +399,15 @@ Votre routeur redémarre avec OpenWRT complètement opérationnel.
 ## Premiere connexion
 
 Rendez vous sur l'adresse `http:/192.168.1.1` puis connectez vous sans mot de passe.
-Enuite allez mettre un mot de passe solide, cette fois, car lui il va rester.
+Ensuite allez mettre un mot de passe solide, cette fois, car lui il va rester soit en passant par le bandeau en haut de l'ecran, soit depuis les menus `System -> Administration` onglet `ROuter Password`.
+![Ajouter un mot de passe fort](./img/openwrt_popup_password.png)
+
+***pas d'internet** 
+
+Vue que j'ai une configuration particuliere pour ce tuto, je ne rencontre pas de probleme particulié mais je me souvien avoir cherché longtemps un probleme de connexion a internet dés l'installation de OpenWRT. Si vous etes dans ce cas, c'est un probleme de DNS qui n'est pas configuré.
+
+Pour ajouter un DNS, il suffit d'aller dans `Network -> Interfaces` puis dans l'onglet interfaces, editer l'interface LAN.
+![Configurer un DNS depuis l'interface de OpenWRT](./img/openwrt_configurer_dns.gif)
 
 
 ## Conclusion
