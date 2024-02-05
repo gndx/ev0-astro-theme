@@ -394,20 +394,35 @@ anthony@McFly-Bureau:~$
 ```
  
 Votre routeur redémarre avec OpenWRT complètement opérationnel.
- 
- 
+
 ## Premiere connexion
+### Interface d'administration
 
 Rendez vous sur l'adresse `http:/192.168.1.1` puis connectez vous sans mot de passe.
 Ensuite allez mettre un mot de passe solide, cette fois, car lui il va rester soit en passant par le bandeau en haut de l'ecran, soit depuis les menus `System -> Administration` onglet `ROuter Password`.
 ![Ajouter un mot de passe fort](./img/openwrt_popup_password.png)
 
-***pas d'internet** 
+***ATTENTION :** Par défaut l'adresse P de OpenWRT est 192.168.1.1, il se peut que votre Box internet soit sur le meme réseau et cela va créer des problemes. Il faut donc changer votre adresse sur OpenWRT pour ecviter les incompatibilité.
 
-Vue que j'ai une configuration particuliere pour ce tuto, je ne rencontre pas de probleme particulié mais je me souvien avoir cherché longtemps un probleme de connexion a internet dés l'installation de OpenWRT. Si vous etes dans ce cas, c'est un probleme de DNS qui n'est pas configuré.
+#### Changer son IP
+Allez dans `Network -> Interfaces` puis dans l'onglet interfaces, éditer l'interface `lan`. Ensuite, dans l'onglet `General Settings` changer l'adresse dans `IPv4 adress` (Ex 192.168.20.1 ici).
 
-Pour ajouter un DNS, il suffit d'aller dans `Network -> Interfaces` puis dans l'onglet interfaces, editer l'interface LAN.
+![Réglages dénéraux de l'interface lan dans OpenWRT](./img/openwrt_interface_lan_general_setting.png)
+
+### Conexion par Ethernet
+
+Normalement, a ce stade vous devriez voir internet sur les ports Ethernet de votre routeur.
+
+***Pas d'Internet :** Vue que j'ai une configuration particuliere pour ce tuto, je ne rencontre pas de probleme particulié mais je me souvien avoir cherché longtemps un probleme de connexion a internet dés l'installation de OpenWRT. Si vous etes dans ce cas, c'est un probleme de DNS qui n'est pas configuré.*
+
+*Pour ajouter un DNS, il suffit d'aller dans `Network -> Interfaces` puis dans l'onglet interfaces, editer l'interface LAN.*
+
+
 ![Configurer un DNS depuis l'interface de OpenWRT](./img/openwrt_configurer_dns.gif)
+
+Vous devez avoir acces a internet depuis un port Ethernet de votre routeur.
+
+## Ajouter un point d'acces Wi-Fi
 
 
 ## Conclusion
