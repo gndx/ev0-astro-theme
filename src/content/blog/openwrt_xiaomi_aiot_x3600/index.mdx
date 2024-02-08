@@ -1,15 +1,20 @@
 ---
-draft: true
-title: OpenWRT - Liberer votre Xiaomi AIoT Router AX3600
-description: "Description vide"
-pubDate: 01/10/2024
-heroImage: '/images/flatpak-linux-box.webp'
-categories: 
+draft: false
+title: OpenWRT - Libérer votre Xiaomi AIoT Router AX3600
+description: "OpenWRT est un système d'exploitation open-source prévu pour remplacer l'OS par défaut de certains routeurs grand public. Nous allons l'installer sur le routeur AIoT X3600 de Xiaomi pour se libérer des communications vers le cloud et apporter plus de personnalisation."
+pubDate: 02/08/2024
+heroImage: '/images/openwrt_xiaomi_aiot_x3600.svg'
+categories:
+- OpenWRT
 - Linux
 authors: 
 - mcfly
 tags:
-- tag
+- Xiaomi
+- Routeur
+- Pare-feu
+- AIot X3600
+- Open-source
 ---
 
 **Tuto réalisé avec :**
@@ -19,7 +24,7 @@ tags:
 
 ---
 
-Aujourd'hui, je vais vous parler d'OpenWRT, qui est un système open-source prévu pour remplacer l'OS par défaut de certains routeurs grand public, et je vais l'installer sur le remplaçant de mon Xiaomi Mi Router 3G qui est, lui aussi, sous OpenWRT et qui va terminer en répétiteur Wi-Fi.
+Aujourd'hui, je vais vous parler d'OpenWRT, un système open-source prévu pour remplacer l'OS par défaut de certains routeurs grand public. Je vais l'installer sur le remplaçant de mon Xiaomi Mi Router 3G qui est, lui aussi, sous OpenWRT et qui va terminer en répétiteur Wi-Fi.
 
 **OpenWRT**
 OpenWrt est une distribution GNU/Linux hautement extensible. Contrairement à beaucoup d'autres distributions pour ces routeurs, OpenWrt est conçu dès le départ pour être un système d'exploitation complet et facilement modifiable pour votre routeur. En pratique, cela signifie que vous pouvez disposer de toutes les fonctionnalités dont vous avez besoin, sans rien de superflu, grâce à un noyau Linux plus récent que la plupart des autres distributions. 
@@ -32,9 +37,11 @@ Il est équipé :
 * De 3 ports LAN 1Gb et d'un port WAN 1Gb,
 * De 7 antennes externes non détachables.
 
-Il existe en deux variantes. Une avec le micrologiciel OEM chinois, une autre avec l'OEM international.
+Il existe en deux variantes :
+* Une avec le micrologiciel OEM chinois, 
+* Une autre avec l'OEM international.
 
-Les deux peuvent fonctionner avec n'importe quels micrologiciels, Chinois ou International et **les deux supportent OpenWrt**
+Les deux peuvent fonctionner avec n'importe quel micrologiciel, Chinois ou International, et **les deux supportent OpenWrt**
 
 Les grandes étapes de ce tutoriel sont :
 * Première mise en route du routeur et vérification de sa version de firmware,
@@ -56,9 +63,9 @@ Pour le configurer, vous avez deux méthodes :
 
 #### Avec l'application Mi Wi-Fi
 
-1. Téléchargez et installez l'application Mi Wifi (Xiaomi Inc),
+1. Téléchargez et installez l'application Mi Wi fi (Xiaomi Inc),
 ![Application Mi Wi-Fi](./img/mi_wifi_app.png)
-1. Branchez votre routeur électriquement, mais aussi en Ethernet, via le port WAN, sur votre box opérateur. (1er à gauche, mais c'est indiqué en dessous du port),
+1. Branchez votre routeur électriquement, mais aussi en Ethernet, via le port WAN (1er à gauche, mais c'est indiqué en dessous du port), sur votre box opérateur. 
 1. Connectez-vous au Wi-Fi du routeur "Xiaomi_XXXX_XXXX", il n'y a pas de mot de passe (s'il vous en demande, réinitialisez le routeur),
 1. Lancez l'application puis choisissez `Définir un nouveau routeur`. Il devrait se connecter à internet. Cliquez sur suivant,
 ![Interface de l'application Mi Wi-Fi](./img/mi_wifi_interface.png)
@@ -72,14 +79,13 @@ Une fois terminé, connectez-vous au Wi-Fi puis à l'interface du routeur `http:
 ![Vérification de la version du firmware du Mi router AIoT AX3600](./img/xiaomi_x3600_status.png)
 
 #### En Ethernet
-
-1. Branchez votre routeur électriquement, mais aussi en Ethernet, via le port WAN, sur votre box opérateur. (1er à gauche, mais c'est indiqué en dessous du port),
+1. Branchez votre routeur électriquement, mais aussi en Ethernet, via le port WAN (1er à gauche, mais c'est indiqué en dessous du port), sur votre box opérateur. 
 1. Branchez un câble Ethernet entre votre PC et un port LAN du routeur,
 1. Connectez-vous sur l'interface du routeur `http://192.168.31.1` ou `miwifi.com` depuis votre navigateur,
 ![Interface Web du Mi Router - première connexion](./img/premiere_interface_web_mi_router.png)
 1. Saisir un mot de passe pour votre Wi-Fi et la connexion admin,
 ![Configuration du routeur](./img/configuration_web_mi_router.png)
-Un rappel des éléments vous est affiché.
+Un rappel des éléments est affiché.
 ![Rappel des éléments de configuration du Mi Router](./img/elements_configurations_mi_router.png)
 Reconnectez-vous à l'interface puis
 1. Allez dans `Settings -> Status` et vérifiez la version actuellement installée. (ici 3.0.22)
@@ -91,10 +97,10 @@ Pour pouvoir accéder à l'exploit permettant l'accès SSH, il faut retourner su
 1. Dans `Settings -> Status` cliquez sur `Update manually`,
 1. Cliquez sur `Select file` et sélectionnez le fichier `miwifi_r3600_firmware_5da25_1.0.17.bin`,
 ![Sélectionner le firmware à downgrader depuis l'interface de Mi Wi-Fi](./img/xiaomi_x3600_select_file.png)
-1. Cliquer sur `Update now`,
+1. Cliquez sur `Update now`,
 Une fenêtre s'affiche, vous prévenant que vous allez installer une ancienne version et que vous devez nettoyer toutes les configurations personnalisées avant de continuer.
 ![Interface du Mii Router AIoT AX3600](./img/xiaomi_x3600_avertissement_downgrade.png)
-1. Cocher la case `clear all custom configuration` puis cliquer sur `OK`,
+1. Cochez la case `clear all custom configuration` puis cliquer sur `OK`,
 Le flash vers la version 1.0.17 est en cours.
 ![Downgrade du routeur en cours](./img/xiaomi_x3600_downgrade.png)    
 
@@ -105,9 +111,9 @@ Il existe quatre méthodes différentes pour rooter ce modèle. Vous pouvez choi
 
 Vu que votre routeur a été réinitialisé lors du downgrade, il va falloir suivre de nouveau les étapes pour la mise en route, que ce soit via l'application ou via l'Ethernet.
 
-Ensuite, connectez-vous à l'interface.
+Ensuite, connectez-vous à l'interface de votre routeur via votre navigateur.
 Une fois connectés, nous allons injecter un code JavaScript depuis le navigateur.
-1. Appuyez sur <kbd>F12</kbd> pour ouvrir la console d'inspection, puis cliquez sur l'onglet `Console`
+1. Appuyez sur <kbd>F12</kbd> pour ouvrir la console d'inspection du navigateur, puis cliquez sur l'onglet `Console`
 1. Collez le code suivant et cliquez sur <kbd>entrée</kbd> :
 ![Lancement de l'exploit via JavaScript depuis l'interface Web du Mi Routeur](./img/lancement_exploit.png)
 
@@ -199,11 +205,11 @@ root@XiaoQiang:~#
 
 ```
 
-Vous avez maintenant accès SSH à votre routeur (toujours sous le firmware Xiaomi pour le moment).
+Vous avez maintenant un accès SSH à votre routeur (toujours sous le firmware Xiaomi pour le moment).
 
 ## Installation de OpenWRT
 ### Activer le port série
-Ce n'est pas obligatoire, mais cela vous permet d'avoir une solution de repli en cas de Breakage de votre routeur (en plus, ça ne mange pas de pain).
+Ce n'est pas obligatoire, mais cela vous permet d'avoir une solution de repli en cas de problème avec votre routeur (en plus, ça ne mange pas de pain).
 
 ```bash
 nvram set uart_en=1
@@ -212,7 +218,7 @@ nvram commit
 reboot
 ```
 
-Voici le retur :
+Voici le retour :
 ```bash
 root@XiaoQiang:~# nvram set uart_en=1
 root@XiaoQiang:~# nvram set boot_wait=on
@@ -253,7 +259,7 @@ root@XiaoQiang:/tmp# nvram get flag_boot_rootfs
 0
 ```
 
-Mon routeur est démarré sur rootfs.
+*Mon routeur est démarré sur rootfs.*
 
 Vérifiez que les index mtd de `rootfs` et `rootfs_1` soient bien mtd12 et mtd13  avec la commande suivante :
 
@@ -290,7 +296,7 @@ root@XiaoQiang:/tmp#
 Nous sommes prêts à lancer le flash. **ATTENTION** à bien choisir la procédure associée à votre `rootfs`.
 
 #### Si rootfs = 0 
-Lancer cette commande (attention au nom du fichier, il doit correspondre au vôtre).
+Lancez cette commande (attention au nom du fichier, il doit correspondre au vôtre).
 ```bash
 ubiformat /dev/mtd13 -y -f /tmp/openwrt-23.05.2-ipq807x-gen
 eric-xiaomi_ax3600-initramfs-factory.ubi -s 2048 -O 2048 && nvram set flag_boot_
@@ -312,20 +318,20 @@ ubiformat: formatting eraseblock 285 -- 100 % complete
 root@XiaoQiang:/tmp# 
 ```
 
-Puis redémarrez avec `reboot`.*:
+Puis redémarrez avec `reboot`.
 
 #### Si rootfs = 1
-Lancer cette commande (attention au nom du fichier, il doit correspondre au vôtre).
+Lancez cette commande (attention au nom du fichier, il doit correspondre au vôtre).
 ```bash
 ubiformat /dev/mtd12 -y -f /tmp/openwrt-23.05.2-ipq807x-generic-xiaomi_ax3600-initramfs-factory.ubi -s 2048 -O 2048 && nvram set flag_boot_rootfs=0 && nvram set flag_last_success=0 && nvram commit
 ```
 
-Puis redemarrez avec `reboot`.
+Puis redémarrez avec `reboot`.
 
 Nous venons de flasher un initramfs OpenWrt ubinisé qui servira d'étape intermédiaire puisque OpenWrt utilise des rootfs unifiés afin d'utiliser pleinement la NAND et de fournir suffisamment d'espace pour les paquets.
 
 #### Installation permanente d'OpenWRT
-Nous allons quasiment suivre les mêmes étapes pour récupérer le fichier `sysupgrade.bin` que la récupération du fichier `openwrt-23.05.2-ipq807x-generic-xiaomi_ax3600-initramfs-factory.ubi`.
+Nous allons quasiment suivre les mêmes étapes pour récupérer le fichier `sysupgrade.bin` que pour la récupération du fichier `openwrt-23.05.2-ipq807x-generic-xiaomi_ax3600-initramfs-factory.ubi`.
 
 1. Connexion en SSH,
 ***ATTENTION :** L'adresse IP a changé, elle est maintenant `192.168.1.1` donc `ssh root@192.168.1.1`
@@ -338,7 +344,6 @@ wget https://downloads.openwrt.org/releases/23.05.2/targets/ipq807x/generic/open
 *Le lien vers la dernière  version [ici](https://openwrt.org/toh/xiaomi/ax3600#firmware_download) (prenez la stable).*
 
 Retour de la commande :
-
 ```bash
 
 anthony@McFly-Bureau:~$ ssh root@192.168.1.1
@@ -382,7 +387,6 @@ bin
 ```
 
 Retour de la commande :
-
 ```bash
 root@OpenWrt:/tmp# sysupgrade -n openwrt-23.05.2-ipq807x-generic-xiaomi_ax3600-squashfs-sysupgrade.
 bin
@@ -395,45 +399,75 @@ anthony@McFly-Bureau:~$
  
 Votre routeur redémarre avec OpenWRT complètement opérationnel.
 
-## Premiere connexion
+## Première connexion
 ### Interface d'administration
 
-Rendez vous sur l'adresse `http:/192.168.1.1` puis connectez vous sans mot de passe.
-Ensuite allez mettre un mot de passe solide, cette fois, car lui il va rester soit en passant par le bandeau en haut de l'ecran, soit depuis les menus `System -> Administration` onglet `ROuter Password`.
+Rendez-vous sur l'adresse `http:/192.168.1.1` puis connectez-vous sans mots de passe.
+Ensuite, allez mettre un mot de passe solide, cette fois, car lui il va rester soit en passant par le bandeau en haut de l'écran, soit depuis les menus `System -> Administration` onglet `Router Password`.
 ![Ajouter un mot de passe fort](./img/openwrt_popup_password.png)
 
-***ATTENTION :** Par défaut l'adresse P de OpenWRT est 192.168.1.1, il se peut que votre Box internet soit sur le meme réseau et cela va créer des problemes. Il faut donc changer votre adresse sur OpenWRT pour ecviter les incompatibilité.
+***ATTENTION :** Par défaut, l'adresse IP d'OpenWRT est 192.168.1.1, il se peut que votre Box internet soit aussi sur la même réseau et cela va créer des problèmes. Il faut donc changer votre adresse sur OpenWRT pour éviter les incompatibilités. Le mieux est de débrancher le routeur OpenWRT de votre box Internet le temps de faire la manipulation.*
 
 #### Changer son IP
-Allez dans `Network -> Interfaces` puis dans l'onglet interfaces, éditer l'interface `lan`. Ensuite, dans l'onglet `General Settings` changer l'adresse dans `IPv4 adress` (Ex 192.168.20.1 ici).
+Allez dans `Network -> Interfaces` puis dans l'onglet interfaces, éditez l'interface `lan`. Ensuite, dans l'onglet `General Settings` changer l'adresse dans `IPv4 adress` (Ex 192.168.20.1 ici).
 
-![Réglages dénéraux de l'interface lan dans OpenWRT](./img/openwrt_interface_lan_general_setting.png)
+![Réglages généraux de l'interface LAN dans OpenWRT](./img/openwrt_interface_lan_general_setting.png)
 
-### Conexion par Ethernet
+### Connexion par Ethernet
+Normalement, à ce stade, vous devriez avoir Internet sur les ports Ethernet de votre routeur, mais toujours pas de Wi-Fi configuré.
 
-Normalement, a ce stade vous devriez voir internet sur les ports Ethernet de votre routeur.
-
-***Pas d'Internet :** Vue que j'ai une configuration particuliere pour ce tuto, je ne rencontre pas de probleme particulié mais je me souvien avoir cherché longtemps un probleme de connexion a internet dés l'installation de OpenWRT. Si vous etes dans ce cas, c'est un probleme de DNS qui n'est pas configuré.*
-
-*Pour ajouter un DNS, il suffit d'aller dans `Network -> Interfaces` puis dans l'onglet interfaces, editer l'interface LAN.*
-
+***Note :** Je n'ai jamais réussi à avoir internet en désactivant le DHCP de ma box opérateur (Sosh). J'ai donc dû laisser le DHCP sur le réseau 192.168.1.1 géré par la box internet, mais par contre, j'ai réduit la plage d'attribution à deux IP seulement*
 
 ![Configurer un DNS depuis l'interface de OpenWRT](./img/openwrt_configurer_dns.gif)
 
-Vous devez avoir acces a internet depuis un port Ethernet de votre routeur.
+## Ajouter un point d'accès Wi-Fi
+Nous allons ajouter deux interfaces Wi-Fi dans cet article, une 2.4GHz et une 5GHz, libre à vous d'en ajouter d'autres.
 
-## Ajouter un point d'acces Wi-Fi
+Tout se passe dans `Network -> Wireless`
+![Configuration du Wi-Fi dans OpenWRT](./img/openwrt_configuration_wi-fi.png)
 
+Vous avez trois bandes radio sur le X3600 :
+* ac/b/g/n : Wi-Fi 5 (5GHz 5300Mbps), 2 (2.4GHz 11Mbps), 3 (2.4GHz 54Mbps), 4 (2.4GHz et 5GHz 288Mbps et 600Mbps)
+* ac/ax/n : Wi-Fi 5 (5GHz 5300Mbps), 6 (2.4GHz et 5GHz 10 530Mbps), 4 (2.4GHz et 5GHz 288Mbps et 600Mbps)
+* ax/b/g/n : Wi-Fi 6 (2.4GHz et 5GHz 10 530Mbps), 2 (2.4GHz 11Mbps), 3 (2.4GHz 54Mbps), 4 (2.4GHz et 5GHz 288Mbps et 600Mbps)
+
+Il suffit donc soit d'ajouter un nouveau réseau sur chaque antenne, soit d'éditer celui présent par défaut nommé `OpenWrt`.
+
+Nous allons éditer celui présent.
+![Configuration du Wi-Fi dans OpenWRT](./img/openwrt_wi-fi_configuration.png)
+Il n'y a pas grand-chose à configurer pour que ça marche simplement.
+Dans l'onglet `General Setup` :
+1. Laissez `Access Point` pour le mode,
+1. Donnez-luii un nom dans `ESSID`,
+1. Laisser l'interface `lan` dans Network.
+
+Dans l'onglet `Wireless Security` :
+![Configuration de la clé Wi-Fi dans OpenWRT](./img/openwrt_configuration_cle_wi-fi.png)
+1. Choisissez le format de clé qui vous convient le mieux (préférez une des trois affichées en `strongly`),
+1. Dans `Key` saisir votre clé (mot de passe de connexion a votre nouveau Wi-Fi)
+
+Répétez ces opérations avec les trois bandes présentes, puis sauvegardez et appliquez les modifications.
+
+***Note :** Pour un usage domotique, j'aime bien dissocier le nom des bandes 2.4 et 5GHz, ça évite les problèmes de connexion des appareils ne pouvant fonctionner que sur le 2.4GHz (la plupart des appareils domotique)*
+
+Maintenant, vos interfaces étant toujours désactivées, il faut les activer en cliquant sur le bouton `Enable` en face de chaque interface radio. Une fois activée, la LED bleue sur l'antenne centrale de votre routeur devrait s'allumer.
+
+Mes nouvelles interfaces Wi-Fi sont présentes. (Pour le tuto, j'ai différencié les deux bandes 5GHz pour que vous puissiez voir qu'elles sont bien présentes).
+
+![Détection des interfaces Wi-Fi nouvellement créés](./img/reseaux_wi-fi.png)
 
 ## Conclusion
  
-Vous voila aves un routeur grd public mais commandé par une solution totalement OpenSource. Fini les envois vers des serveur Cchinois ou autres de vos données.
+Vous voila avec un routeur grand public, mais équipé d'une solution totalement OpenSource. Fini les envois vers des serveurs chinois ou autres de vos données.
  
-OpenWRT permet de faire beacoup plus de chose comme de l'agregation de ligne (deux lignes internet en une exemple ADSL et 4G), la création de plusieurs reseaux Wi-Fi, de faire des Vlans, des DMZ mais aussi d'etendre les réglages et options par rapport a un routeur classique.
-Il permet aussi d'exporter vos reglages pour ensuite les réimporter en cas de probleme.
+OpenWRT permet de faire beaucoup plus de choses comme de l'agrégation de lignes (deux lignes internet en une, exemple ADSL et 4G), la création de plusieurs réseaux Wi-Fi (Domotique, Invité, etc), de faire des Vlans, des DMZ mais aussi d'étendre les réglages et options par rapport à un routeur classique.
+Il permet aussi d'exporter vos réglages pour ensuite les réimporter en cas de problème.
 
-Alors amusez vous bien avec votre nouveau joué.
+Alors, bonne découverte et amusez-vous bien avec votre nouveau jouet.
+
+PS : Je vous laisse un lien vers du contenu en français sur OpenWRT.
 
 ## Sources
 * https://openwrt.org/toh/xiaomi/ax3600
 * https://forum.openwrt.org/t/solved-ssh-no-matching-host-key-type-found-their-offer-ssh-rsa/124149
+* Allez plus loin avec OpenWRT en francais https://objnux.fr/index.php?tag/OpenWrt
