@@ -57,15 +57,21 @@ Ce guide suppose que vous disposiez d'un PC générique x86-64 **dédié à l'ut
 
 La plupart des systèmes produits au cours des 10 dernières années prennent en charge le mode de démarrage UEFI.
 
-###Activer le mode UEFI
-Vérifier que le mode de démarrage UEFI est activé. Pour cela, il va falloir aller dans le BIOS.
-**Sur HP Elite Desk**, démarrez et appuyez plusieurs fois sur la touche F2.
+###Désactiver le mode Secure Boot
+**Sur HP Elite Desk G3 800 USSF :**
+* Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans ADVANCED puis selectioneez `Legacy secure enable and secure boot disable`.
+* Retournez dans `Main` puis sauvegardez en cliquant sur `Save Changes and Exit`.
+
+Au redemarrage il vous demandera de saisir un code a 5 chifffres pour valider la desactivation du `Secure Boot`, saisissez le puis vaidez avec <kbd>Entrée</kbd>
 
 **Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
 
+###Activer le mode UEFI
+Vérifier que le mode de démarrage UEFI est activé. Pour cela, il va falloir aller dans le BIOS.
+**Sur HP Elite Desk G3 800 USSF :**
+* D*émarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis vérifiez que `UEFI Boot Order` soit bien coché.
 
-###Désactiver le mode Secure Boot
-**Sur HP Elite Desk G3 800 USSF**, démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans ADVANCED puis selectioneez `Legacy secure enable and secure boot disable`.
+**Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
 
 La configuration du BIOS est maintenant terminée.
 
