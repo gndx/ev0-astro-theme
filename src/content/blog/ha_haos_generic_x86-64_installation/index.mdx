@@ -1,6 +1,6 @@
 ---
 draft: true
-title: Home Assistant - Installation sur un mini PC générique type NUC, Lenovo, HP EliteDesk USFF
+title: Home Assistant - Installation sur un mini PC générique type NUC, Lenovo, HP EliteDesk, Dell OptiPlex
 description: "Le coût d'une installation sur Raspberry Pi et de ses accessoires commence à être élevé pour des performances moindres et non évolutives. C'est pour cela que je vous recommande l'installation de Home Assistant sur un mini PC type NUC, HP Elite Desk G3 800 USFF ou Lenovo qui peut aussi être reconditionnée."
 pubDate: 02/11/2024
 heroImage: '/images/flatpak-linux-box.webp'
@@ -18,7 +18,7 @@ tags:
 
 **Tuto réalisé avec :**
 * HAOS 11.5,
-* Matériels : HP EliteDesk G3 800 ([Amazon](LIEN AFFICLIE))
+* Matériels : HP EliteDesk G3 800 ([Amazon (128€)](https://amzn.to/3UDJWa0))
 
 # Home Assistant - installation sur ordinateur X86-64.
 
@@ -33,7 +33,7 @@ C'est pour cette raison qu'après avoir tourné plus de deux ans sur Raspberry P
 
 Je fais tourner Proxmox dessus, depuis lequel j'ai installé Home Assistant en virtualisé ([article ici](/blog/ha_haos_proxmox_installation/)) et sur lequel je fais tourner d'autres services externes à la domotique pure.
 
-Je  suis conscient que l'installation via Proxmox ajoute de la complexité, surtout pour ceux et celle souhaitant seulement utiliser Home Assistant, c'est la raison de ce tutoriel, sur la façon d'installer Home Assistant OS sur un mini PC (NUC, HP, Lenovo, voire "no name") en "Barre Métal", comprendre en dur donc votre PC servira uniquement à Home Assistant.
+Je  suis conscient que l'installation via Proxmox ajoute de la complexité, surtout pour ceux et celle souhaitant seulement utiliser Home Assistant, c'est la raison de ce tutoriel, sur la façon d'installer Home Assistant OS sur un mini PC (NUC, HP, Lenovo, Dell, voire "no name") en "Barre Métal", comprendre en dur donc votre PC servira uniquement à Home Assistant.
 
 Les avantages de cette configuration :
 * Faire facilement évoluer votre installation (ajout de RAM, changer de capacité SSD ou M2, etc)
@@ -45,9 +45,9 @@ Démarrer simplement avec Home Assistant si vous n'avez que peu ou pas d'expéri
 
 **Matériels nécessaires :**
 En fonction de votre matériel de destination, il vous faudra soit :
-* Un lecteur de disque SSD externe (SATA vers USB),
-* Soit un lecteur de disque M.2 externe (M.2 vers USB),
-* Soit une clé USB.
+* Un lecteur de disque SSD externe (SATA vers USB) ([Amazon (9€)](https://amzn.to/49a9Yq7)),
+* Un lecteur de disque M.2 externe (M.2 vers USB) ([Amazon (14€)](https://amzn.to/3UDrL4w)).
+* Soit une clé USB ([Amazon (12€)](https://amzn.to/4bEGDp9)).
 
 ## Prérequis
 Ce guide suppose que vous disposiez d'un PC générique x86-64 **dédié à l'utilisation exclusive du système d'exploitation Home Assistant**.
@@ -57,7 +57,7 @@ Ce guide suppose que vous disposiez d'un PC générique x86-64 **dédié à l'ut
 
 La plupart des systèmes produits au cours des 10 dernières années prennent en charge le mode de démarrage UEFI.
 
-###Désactiver le mode Secure Boot
+### Désactiver le mode Secure Boot
 **Sur HP Elite Desk G3 800 USSF :**
 * Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans ADVANCED puis selectioneez `Legacy secure enable and secure boot disable`.
 * Retournez dans `Main` puis sauvegardez en cliquant sur `Save Changes and Exit`.
@@ -66,10 +66,10 @@ Au redemarrage il vous demandera de saisir un code a 5 chifffres pour valider la
 
 **Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
 
-###Activer le mode UEFI
+### Activer le mode UEFI
 Vérifier que le mode de démarrage UEFI est activé. Pour cela, il va falloir aller dans le BIOS.
 **Sur HP Elite Desk G3 800 USSF :**
-* D*émarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis vérifiez que `UEFI Boot Order` soit bien coché.
+* Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis vérifiez que `UEFI Boot Order` soit bien coché.
 
 **Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
 
@@ -89,22 +89,25 @@ Méthode 2 : Pour les systèmes avec le support de stockage soudé.
 **ATTENTION :** Cela signifie que vous perdrez toutes les données ainsi que le système d'exploitation précédemment installé.*
 
 **Matériels nécessaires :**
-* Un lecteur de disque SSD externe (SATA vers USB),
-* Un lecteur de disque M.2 externe (M.2 vers USB).
+* Un lecteur de disque SSD externe (SATA vers USB) ([Amazon (9€)](https://amzn.to/49a9Yq7)),
+* Un lecteur de disque M.2 externe (M.2 vers USB) ([Amazon (14€)](https://amzn.to/3UDrL4w)).
+
+![Installation de Home Assistant sur votre support de stockage via Balena Etcher](./img/balena_etcher_installation_ha_generic_x86_64.png)
 
 1. Récupérez Balena Etcher ([j'ai rédigé un article ici](/blog/balena_etcher_installation_utilisation/)),
 1. Connectez le périphérique de stockage à votre ordinateur,
 1. Récupérez l'image de Home Assistant OS [ici](https://github.com/home-assistant/operating-system/releases) (idéale pour les connexions ADSL) en prenant celle nommée `haos_generic-x86-64-11.5.img.xz` à la date de l'écriture de l'article,
 1. Dans Balena Etcher, sélectionnez l'image téléchargée précédemment, le disque de stockage et cliquez sur `Flash`
-*Je vous rappelle le [tuto sur Balena si besoin](/blog/balena_etcher_installation_utilisation/).*
 
-**NOTE :** Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher*
+**NOTE :** Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher, privilegiez donc la recuperation de l'OS avant la copie sur votre support*
 
 Une fois la copie réussie, réinstallez le support de stockage dans votre ordinateur, branchez un câble Ethernet connecté au réseau, puis démarrez.
 
 Dans le navigateur de votre système de bureau, dans quelques minutes, vous pourrez accéder à votre nouveau Home Assistant à l'adresse `homeassistant.local:8123`, `homeassistant:8123` ou `http://X.X.X.X:8123` (remplacez X.X.X.X par l'adresse IP de votre Generic x86-64).
 
-**NOTE :** vérifiez que vous avez sélectionné le demarrage sur le bon support de stockage si il y en a plusieurs.*
+![Démarrage de Home Assistant](./img/ecran_demarrage_home_assistant.png)
+
+**NOTE :** vérifiez que vous avez sélectionné le demarrage sur le bon support de stockage si il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
 
 
 ### Méthode 2 : Installation de HAOS depuis un live d'Ubuntu
@@ -122,49 +125,28 @@ Dans le navigateur de votre système de bureau, dans quelques minutes, vous pour
 
 Une fois le live lancé :
 1. Récupérez l'image de Home Assistant OS [ici](https://github.com/home-assistant/operating-system/releases) en prenant celle nommée `haos_generic-x86-64-11.5.img.xz` à la date de l'écriture de l'article,
-1. Ouvrir l'application `Disks` de Ubuntu,
+1. Ouvrir l'application `Disques` (Disks) de Ubuntu,
+1. Sélectionnez le support de stockage de votre PC dans la bare de gauche (attention, pas la clé USB)
+1. Cliquez sur les trois points en haut a droite et selectionnez Restaurer le Disque
+![Selection du disque et restauration depuis Ubuntu Live](./img/ubuntu_disques_selection_disque_restauration_image.png)
 1. Sélectionnez l'image de Home Assistant OS,
-1. Sélectionnez le support de stockage de votre mini PC (attention, pas la clé USB)
+![Selection de l'image Home Assistant Generique x86 64 a restaurer depuis Ubuntu Live](./img/ubuntu_disques_selection_image_a_restaurer.png)
+![Valider la restauration](./img/ubuntu_disques_lancer_restauration.png)
 1. Lancez la copie.
+![Restauration en cours](./img/ubuntu_disques_restauration_en_cours.png)
+![Restauration terminée](./img/ubuntu_disques_restauration_terminee.png)
 
-Une fois la copie terminée, redémarrer votre mini PC en débranchant la clé USB.
+
+Une fois la copie terminée, éteignez votre PC, débranchez la clé USB puis redemarrez.
+
+**NOTE :** vérifiez que vous avez sélectionné le demarrage sur le bon support de stockage si il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
 
 Dans le navigateur de votre système de bureau, dans quelques minutes, vous pourrez accéder à votre nouveau Home Assistant à l'adresse `homeassistant.local:8123`, `homeassistant:8123` ou `http://X.X.X.X:8123` (remplacez X.X.X.X par l'adresse IP de votre Generic x86-64).
 
+![Démarrage de Home Assistant](./img/ecran_demarrage_home_assistant.png)
 
+## Conlusions
 
-
-
-
-
-
-
-Une fois sur le live, il va falloir récupérer l'emplacement de votre support de stockage.
-1. Ouvrir un terminal (METTRE LA COMMANDE SOUS UBUNTU)
-1. Lancez la commande `fdisk -l`,
-Une fois l'emplacement récupéré (devrait ressembler à `/dev/sda1` par exemple.
-
-
-Si probleme avec l'EUFI
-1. Lancer la commande ci-dessous,
-```bash
-efibootmgr --create --disk /dev/<drivename> --part 1 --label "HAOS" ?
-   --loader '\EFI\BOOT\bootx64.efi' (chargeur)
-```
-Si la machine se plaint de ne pas pouvoir trouver de support de démarrage, vous devrez peut-être spécifier l'entrée EFI dans votre BIOS. Pour ce faire, vous pouvez utiliser un système d'exploitation live (par exemple Ubuntu) et exécuter la commande suivante (remplacez <drivename> par le nom de lecteur approprié attribué par Linux, généralement sda ou nvme0n1 sur les disques SSD NVMe) :
-```
-efibootmgr --create --disk /dev/<drivename> --part 1 --label "HAOS" ?
-   --loader '\EFI\BOOT\bootx64.efi' (chargeur)
-```
-Texte
-La commande efibootmgr ne fonctionnera que si vous avez démarré le système d'exploitation live en mode UEFI, assurez-vous donc de démarrer à partir de votre clé USB dans ce mode. En fonction de vos privilèges à l'invite, vous devrez peut-être exécuter efibootmgr en utilisant sudo.
-
-Sinon, le BIOS peut vous fournir un outil pour ajouter des options de démarrage, où vous pouvez spécifier le chemin d'accès au fichier EFI :
-
-\EFI\BOOT\bootx64.efi
-Texte
-
-
-
+????????
 ## Sources :
 * https://www.home-assistant.io/installation/#install-home-assistant-on-x86-64-machines
