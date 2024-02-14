@@ -1,8 +1,8 @@
 ---
-draft: true
+draft: false
 title: Home Assistant - Installation sur un mini PC type NUC, Lenovo, HP, Dell.
 description: "Le coût d'une installation sur Raspberry Pi et de ses accessoires commence à être élevé pour des performances moindres et non évolutives. C'est pour cela que je vous recommande l'installation de Home Assistant sur un mini PC type NUC, HP Elite Desk G3 800 USFF ou Lenovo qui peut aussi être reconditionnée."
-pubDate: 02/11/2024
+pubDate: 02/14/2024
 heroImage: '/images/ha_installation_Generic.svg'
 categories: 
 - Home Assistant
@@ -19,7 +19,7 @@ tags:
 
 **Tuto réalisé avec :**
 * HAOS 11.5,
-* Matériels : HP EliteDesk G3 800 ([Amazon (128€)](https://amzn.to/3UDJWa0)) et un Dell OptiPlex 3050 ([Amazon OptiPlmex 7040 (139€)](https://amzn.to/3HZNjRa))
+* Matériels : HP EliteDesk G3 800 ([Amazon (124€)](https://amzn.to/3UDJWa0)) et un Dell OptiPlex 3050 ([Amazon OptiPlmex 7040 (139€)](https://amzn.to/3HZNjRa))
 
 ***Note :** Cet article est en partie une traduction issue de la procédure officielle que vous pouvez trouver [ici](https://www.home-assistant.io/installation/#install-home-assistant-on-x86-64-machines), réalisée avec un HP EliteDesk 800 G3 qui est l'appareil faisant tourner mon Home Assistant dans une VM avec Proxmox comme détaillé dans [cet article](https://mcflypartages.fr/blog/ha_haos_proxmox_installation/).*
 
@@ -60,7 +60,7 @@ Ce guide suppose que vous disposiez d'un PC générique x86-64 **dédié à l'ut
 * Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis sélectionnez `Legacy secure enable and secure boot disable`.
 * Retournez dans `Main` puis sauvegardez en cliquant sur `Save Changes and Exit`.
 
-** Sur Dell OptiPlex 3050 :**
+**Sur Dell OptiPlex 3050 :**
 * Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `Secure Boot -> Secure Boot Enable` puis vérifiez que `Secure Boot` soit `Disabled`.
 * Ensuite, cliquez sur `Apply` puis `Exit`.
 
@@ -68,10 +68,11 @@ Ce guide suppose que vous disposiez d'un PC générique x86-64 **dédié à l'ut
 
 ### Activer le mode UEFI
 Vérifier que le mode de démarrage UEFI est activé. Pour cela, il va falloir aller dans le BIOS.
+
 **Sur HP Elite Desk G3 800 USSF :**
 * Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis vérifiez que `UEFI Boot Order` soit bien coché.
 
-** Sur Dell OptiPlex 3050 :**
+**Sur Dell OptiPlex 3050 :**
 * Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `General -> Boot Sequence` puis sélectionnez `UEFI` dans l'encadré `Boot List Option`. C'est aussi d'ici que vous pouvez changer l'ordre de démarrage.
 * Ensuite, cliquez sur `Apply` puis `Exit`.
 
@@ -84,13 +85,13 @@ Il va falloir écrire l'image officielle de Home Assistant OS sur l'espace de st
 
 Pour écrire l'image HAOS sur le support de stockage de votre matériel, il existe deux méthodes :
 
-Méthode 1 : La plus facile si vous avez un support de stockage amovible (SSD, M.2 et bien sûr un boitier externe pouvant l'accueillir).
-Méthode 2 : Pour les systèmes avec le support de stockage soudé.
+* **Méthode 1 :** La plus facile si vous avez un support de stockage amovible (SSD, M.2 et bien sûr un boitier externe pouvant l'accueillir),
+* **Méthode 2 :** Pour les systèmes avec le support de stockage soudé.
 
-**NOTE :** Home Assistant annonce la méthode **2** (attention, j'ai inversé les numéros par rapport à l'article officiel), comme étant la plus simple, personnellement, je préfère la **1**, car elle enlève une étape, mais je vous expose les deux méthodes pour couvrir le plus possible de cas.
+***NOTE :** Home Assistant annonce la méthode **2** (attention, j'ai inversé les numéros par rapport à l'article officiel), comme étant la plus simple, personnellement, je préfère la **1**, car elle enlève une étape, mais je vous expose les deux méthodes pour couvrir le plus possible de cas.*
 
 ### Méthode 1 : Installation de HAOS directement sur le support de stockage
-**ATTENTION :** Cela signifie que vous perdrez toutes les données ainsi que le système d'exploitation précédemment installé.*
+***ATTENTION :** Cela signifie que vous perdrez toutes les données ainsi que le système d'exploitation précédemment installé.*
 
 **Matériels nécessaires :**
 * Un lecteur de disque SSD externe (SATA vers USB) ([Amazon (9€)](https://amzn.to/49a9Yq7)),
@@ -101,9 +102,9 @@ Méthode 2 : Pour les systèmes avec le support de stockage soudé.
 1. Récupérez Balena Etcher ([j'ai rédigé un article ici](/blog/balena_etcher_installation_utilisation/)),
 1. Connectez le périphérique de stockage à votre ordinateur,
 1. Récupérez l'image de Home Assistant OS [ici](https://github.com/home-assistant/operating-system/releases) (idéale pour les connexions ADSL) en prenant celle nommée `haos_generic-x86-64-11.5.img.xz` à la date de l'écriture de l'article,
-1. Dans Balena Etcher, sélectionnez l'image téléchargée précédemment, le disque de stockage et cliquez sur `Flash`
+1. Dans Balena Etcher, sélectionnez l'image téléchargée précédemment, le disque de stockage et cliquez sur `Flash`.
 
-**NOTE :** Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher, privilégiez donc la récupération de l'OS avant la copie sur votre support*
+***NOTE :** Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher, privilégiez donc la récupération de l'OS avant la copie sur votre support*
 
 Une fois la copie réussie, réinstallez le support de stockage dans votre ordinateur, branchez un câble Ethernet connecté au réseau, puis démarrez.
 
@@ -111,7 +112,7 @@ Dans le navigateur de votre système de bureau, dans quelques minutes, vous pour
 
 ![Démarrage de Home Assistant](./img/ecran_demarrage_home_assistant.png)
 
-**NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
+***NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
 
 
 ### Méthode 2 : Installation de HAOS depuis un live d'Ubuntu
@@ -122,6 +123,7 @@ Dans le navigateur de votre système de bureau, dans quelques minutes, vous pour
 * Récupérer un [live d'Ubuntu](https://www.ubuntu-fr.org/download/),
 * [Ventoy](/blog/ventoy_installation_update/) ou [Balena Etcher](/blog/balena_etcher_installation_utilisation/)
 
+**Installation**
 1. Mettez sur la clé USB le live d'Ubuntu.
 1. Insérez la clé,
 1. Démarrez le mini PC en bootant sur la clé USB,
@@ -143,14 +145,30 @@ Une fois le live lancé :
 
 Une fois la copie terminée, éteignez votre PC, débranchez la clé USB puis redémarrez.
 
-**NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
+***NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
 
 Dans le navigateur de votre système de bureau, dans quelques minutes, vous pourrez accéder à votre nouveau Home Assistant à l'adresse `homeassistant.local:8123`, `homeassistant:8123` ou `http://X.X.X.X:8123` (remplacez X.X.X.X par l'adresse IP de votre Generic x86-64).
 
 ![Démarrage de Home Assistant](./img/ecran_demarrage_home_assistant.png)
 
-## Conlusions
+## Astuces
+**Configurer le redémarrage de son mini PC automatiquement en cas de coupure d'électricité.**
 
-????????
+Il est possible de paramétrer un redémarrage automatique sur certains BIOS d'ordinateur. Voici comment faire pour les deux types de mini-ordinateurs utilisés dans cet article.*
+
+**Sur HP Elite Desk G3 800 USSF :**
+* Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis vérifiez que `UEFI Boot Order` soit bien coché.
+
+**Sur Dell OptiPlex 3050 :**
+* Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `Power Management -> AC Recovery` puis sélectionnez `Power On` ou `Last Power State`.
+* Ensuite, cliquez sur `Apply` puis `Exit`.
+
+## Conclusions
+
+Cet article touche à sa fin. Vous n'avez plus aucune excuse pour essayer Home Assistant et qui sait, peut-être l'adopterez-vous.
+
+L'achat d'un mini PC en place d'une Raspberry a quand même plus d'avantages en termes de prix et de performance, mais il a surtout l'avantage de la pérennisation de votre installation.
+N'hésitez pas à vous tourner vers du matériel reconditionné, surtout dans les grandes marques comme Dell, HP ou Lenovo, vous y gagnerez en termes de prix.
+
 ## Sources :
 * https://www.home-assistant.io/installation/#install-home-assistant-on-x86-64-machines
