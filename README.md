@@ -71,7 +71,7 @@ To configure your blog, edit the `src/config/config.json` file. This file contai
 {
   "site": {
     "title": "EV0 Astro Theme",
-    "base_url": "https://ev0.gndx.io",
+    "base_url": "https://ev0.gndx.dev/",
     "base_path": "/",
     "favicon": "/favicon.png",
     "logo": "https://s3.amazonaws.com/gndx.dev/ev0-astro-logo.png",
