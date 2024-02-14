@@ -59,10 +59,12 @@ La plupart des systèmes produits au cours des 10 dernières années prennent en
 
 ### Désactiver le mode Secure Boot
 **Sur HP Elite Desk G3 800 USSF :**
-* Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans ADVANCED puis selectioneez `Legacy secure enable and secure boot disable`.
+* Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis selectioneez `Legacy secure enable and secure boot disable`.
 * Retournez dans `Main` puis sauvegardez en cliquant sur `Save Changes and Exit`.
 
-Au redemarrage il vous demandera de saisir un code a 5 chifffres pour valider la desactivation du `Secure Boot`, saisissez le puis vaidez avec <kbd>Entrée</kbd>
+** Sur Dell OptiPlex 3050 :**
+* Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `Secure Boot -> Secure Boot Enable` puis vérifiez que `Secure Boot` soit `Disabled`.
+* Ensuite, cliquez sur `Apply` puis `Exit`.
 
 **Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
 
@@ -70,6 +72,10 @@ Au redemarrage il vous demandera de saisir un code a 5 chifffres pour valider la
 Vérifier que le mode de démarrage UEFI est activé. Pour cela, il va falloir aller dans le BIOS.
 **Sur HP Elite Desk G3 800 USSF :**
 * Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis vérifiez que `UEFI Boot Order` soit bien coché.
+
+** Sur Dell OptiPlex 3050 :**
+* Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `General -> Boot Sequence` puis selectionez `UEFI` dans l'encadré `Boot List Option`. C'est aussi d'ici que vous pouvez changer l'odre de demarrage.
+* Ensuite, cliquez sur `Apply` puis `Exit`.
 
 **Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
 
