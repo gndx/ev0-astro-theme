@@ -3,7 +3,7 @@ draft: true
 title: OpenMediaVault - Premier lancement et réglages de base.
 description: "Description vide"
 pubDate: 12/11/2023
-heroImage: '/images/flatpak-linux-box.webp'
+heroImage: '/src/content/blog/covers/flatpak-linux-box.webp'
 categories: 
 - Linux
 authors: 

@@ -3,7 +3,7 @@ draft: true
 title: Proxmox - Quelques tips
 description: "Comment passer un disque dur en Passtrough, ajouter une clé USB a votre VM, ajouter un disque reseaux, et plein d'autres astuces qui seront ajoutées au fur et a mesure."
 pubDate: 01/09/2024
-heroImage: '/images/flatpak-linux-box.webp'
+heroImage: '/src/content/blog/covers/flatpak-linux-box.webp'
 categories:
 - Linux
 authors: 
