@@ -1,9 +1,9 @@
 ---
 draft: true
-title: Home Assistant - Installation sur un mini PC générique type NUC, Lenovo, HP EliteDesk, Dell OptiPlex
+title: Home Assistant - Installation sur un mini PC type NUC, Lenovo, HP, Dell.
 description: "Le coût d'une installation sur Raspberry Pi et de ses accessoires commence à être élevé pour des performances moindres et non évolutives. C'est pour cela que je vous recommande l'installation de Home Assistant sur un mini PC type NUC, HP Elite Desk G3 800 USFF ou Lenovo qui peut aussi être reconditionnée."
 pubDate: 02/11/2024
-heroImage: '/images/flatpak-linux-box.webp'
+heroImage: '/images/ha_installation_Generic.svg'
 categories: 
 - Home Assistant
 - Domotique
@@ -12,36 +12,35 @@ authors:
 tags:
 - Installation
 - NUC
-- HP Elite Desk
-- Lenovo
+- HP EliteDesk
+- Lenovo ThinkCentre
+- Dell OptiPlex
 ---
 
 **Tuto réalisé avec :**
 * HAOS 11.5,
-* Matériels : HP EliteDesk G3 800 ([Amazon (128€)](https://amzn.to/3UDJWa0))
+* Matériels : HP EliteDesk G3 800 ([Amazon (128€)](https://amzn.to/3UDJWa0)) et un Dell OptiPlex 3050 ([Amazon OptiPlmex 7040 (139€)](https://amzn.to/3HZNjRa))
 
-# Home Assistant - installation sur ordinateur X86-64.
-
-***Note :** Cet article est en partie une traduction issue de la procédure officielle que vous pouvez trouver [ici](https://www.home-assistant.io/installation/#install-home-assistant-on-x86-64-machines), réalisée avec un HP Elite Desk 800 G3 qui est l'appareil faisant tourner mon Home Assistant dans une VM avec Proxmox comme détaillé dans [cet article](https://mcflypartages.fr/blog/ha_haos_proxmox_installation/).*
+***Note :** Cet article est en partie une traduction issue de la procédure officielle que vous pouvez trouver [ici](https://www.home-assistant.io/installation/#install-home-assistant-on-x86-64-machines), réalisée avec un HP EliteDesk 800 G3 qui est l'appareil faisant tourner mon Home Assistant dans une VM avec Proxmox comme détaillé dans [cet article](https://mcflypartages.fr/blog/ha_haos_proxmox_installation/).*
 
 **Pourquoi cet article si je n'utilise pas ce type d'installation ?**
-Comme expliqué dans l'[article sur le choix du matériel pour installer Home Assistant](METTRE LE LIEN), je trouve que le Raspberry revient, en 2024, relativement cher s'il faut ajouter l'achat d'une carte SD, d'une Alimentation, d'un boitier, mais aussi disgracieux s'il faut ajouter un disque dur SSD ou M2 avec son boitier, et surement un Hub USB pour alimenter tous ses périphériques. De plus, l'évolution de ce dernier est impossible, il faudra acheter du nouveau matériel et ses accessoires (si changement).
+Comme expliqué dans l'article sur le choix du matériel pour installer Home Assistant (en cours), je trouve que le Raspberry revient, en 2024, relativement cher s'il faut ajouter l'achat d'une carte SD, d'une Alimentation, d'un boitier, mais aussi disgracieux en lui ajoutant un disque dur SSD ou M2 avec son boitier, et surement un Hub USB pour alimenter tous ses périphériques. De plus, l'évolution de ce dernier est impossible, il faudra acheter du nouveau matériel et ses accessoires (si changement).
 
-*L'arrivée des Raspberry Pi 5 changera un peu la donne (lorsqu'ils seront officiellement supportés), mais les kits tournent quand même autour de 150/200 euros sur Amazon sans disque M2 qu'il faudra alors rajouter (+20 euros). Un autre point négatif sera toujours son côté non évolutif.*
+*L'arrivée des Raspberry Pi 5 changera un peu la donne (lorsqu'ils seront officiellement supportés), mais [les kits](https://amzn.to/3OFo8Hm) tournent quand même autour de 150/200 euros sur Amazon sans disque M2 qu'il faudra alors rajouter (+20 euros). Un autre point négatif sera toujours son côté non évolutif.*
 
-C'est pour cette raison qu'après avoir tourné plus de deux ans sur Raspberry Pi 4 avec 4Go de RAM et le boitier Argon M2, j'ai décidé de passer sur un mini PC reconditionné comme le HP Elite Desk G3 800 en version USFF, ce qui permet de combiner la puissante, la faible consommation (14w) en pensant un peu à la planète ;).
+C'est pour cette raison qu'après avoir tourné plus de deux ans sur Raspberry Pi 4 avec 4Go de RAM et le boitier Argon M2, j'ai décidé de passer sur un mini PC reconditionné comme le [HP Elite Desk G3 800](https://amzn.to/3UDJWa0) en version USFF, ce qui permet de combiner la puissance, la faible consommation (14w)  et contribuer, un peu, à notre planète ;).
 
-Je fais tourner Proxmox dessus, depuis lequel j'ai installé Home Assistant en virtualisé ([article ici](/blog/ha_haos_proxmox_installation/)) et sur lequel je fais tourner d'autres services externes à la domotique pure.
+Je fais tourner Proxmox dessus, avec l'installation Home Assistant en virtualisé ([article ici](/blog/ha_haos_proxmox_installation/)) et sur lequel je fais tourner d'autres services externes à la domotique.
 
-Je  suis conscient que l'installation via Proxmox ajoute de la complexité, surtout pour ceux et celle souhaitant seulement utiliser Home Assistant, c'est la raison de ce tutoriel, sur la façon d'installer Home Assistant OS sur un mini PC (NUC, HP, Lenovo, Dell, voire "no name") en "Barre Métal", comprendre en dur donc votre PC servira uniquement à Home Assistant.
+Je  suis conscient que l'installation via Proxmox ajoute de la complexité, surtout pour ceux et celle souhaitant seulement utiliser Home Assistant, c'est la raison pour laquelle j'ai fais ce tutoriel sur la façon d'installer Home Assistant OS sur un mini PC (NUC, HP, Lenovo, Dell, voire "no name") en "Barre Métal" (comprendre en dur) pour une utilisation unique de votre PC avec  Home Assistant.
 
 Les avantages de cette configuration :
-* Faire facilement évoluer votre installation (ajout de RAM, changer de capacité SSD ou M2, etc)
-* Passer un maximum de choses via Home Assistant (add-ons, par exemple),
-* Simplifier la gestion des sauvegardes (tous vos services hébergés sur Home Assistant seront sauvegardés dans cette sauvegarde),
-* Faire de la vidéosurveillance avec Frigate par exemple (peut nécessiter un accélérateur Coral, si vous souhaitez gérer plus de 3/4 caméras).
-
-Démarrer simplement avec Home Assistant si vous n'avez que peu ou pas d'expérience de Linux ou essayer Home Assistant sur une machine qui prend la poussière.
+* Faire facilement évoluer votre installation (ajout de RAM, changer de capacité SSD ou M2, etc),
+* Passer un maximum de choses via Home Assistant (grâce aux add-ons),
+* Simplifier la gestion des sauvegardes (tous vos services hébergés sur Home Assistant seront sauvegardés via la sauvegarde de Home Assistant),
+* Faire de la vidéosurveillance avec Frigate (peut nécessiter un accélérateur Coral, si vous souhaitez gérer plus de 3/4 caméras).
+* Démarrer simplement avec Home Assistant avec peu ou pas d'expérience de Linux,
+* Essayer Home Assistant sur une machine qui prend la poussière.
 
 **Matériels nécessaires :**
 En fonction de votre matériel de destination, il vous faudra soit :
@@ -51,22 +50,21 @@ En fonction de votre matériel de destination, il vous faudra soit :
 
 ## Prérequis
 Ce guide suppose que vous disposiez d'un PC générique x86-64 **dédié à l'utilisation exclusive du système d'exploitation Home Assistant**.
-
 * Il s'agit généralement d'un système basé sur Intel ou AMD.
 * Le système doit être capable de fonctionner en 64 bits et de démarrer à l'aide de l'UEFI.
 
-La plupart des systèmes produits au cours des 10 dernières années prennent en charge le mode de démarrage UEFI.
+*La plupart des systèmes produits au cours des 10 dernières années prennent en charge le mode de démarrage UEFI.*
 
 ### Désactiver le mode Secure Boot
 **Sur HP Elite Desk G3 800 USSF :**
-* Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis selectioneez `Legacy secure enable and secure boot disable`.
+* Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis sélectionnez `Legacy secure enable and secure boot disable`.
 * Retournez dans `Main` puis sauvegardez en cliquant sur `Save Changes and Exit`.
 
 ** Sur Dell OptiPlex 3050 :**
 * Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `Secure Boot -> Secure Boot Enable` puis vérifiez que `Secure Boot` soit `Disabled`.
 * Ensuite, cliquez sur `Apply` puis `Exit`.
 
-**Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
+**Pour les autres,** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2, Del, F1 ou F10.
 
 ### Activer le mode UEFI
 Vérifier que le mode de démarrage UEFI est activé. Pour cela, il va falloir aller dans le BIOS.
@@ -74,10 +72,10 @@ Vérifier que le mode de démarrage UEFI est activé. Pour cela, il va falloir a
 * Démarrez et appuyez plusieurs fois sur <kbd>F10</kbd> puis dans la page qui s'affiche rendez-vous dans `Advanced` puis vérifiez que `UEFI Boot Order` soit bien coché.
 
 ** Sur Dell OptiPlex 3050 :**
-* Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `General -> Boot Sequence` puis selectionez `UEFI` dans l'encadré `Boot List Option`. C'est aussi d'ici que vous pouvez changer l'odre de demarrage.
+* Démarrez et appuyez plusieurs fois sur <kbd>F2</kbd> puis dans la page qui s'affiche rendez-vous dans `General -> Boot Sequence` puis sélectionnez `UEFI` dans l'encadré `Boot List Option`. C'est aussi d'ici que vous pouvez changer l'ordre de démarrage.
 * Ensuite, cliquez sur `Apply` puis `Exit`.
 
-**Pour les autres** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2 (sur certains systèmes, il peut s'agir de Del, F1 ou F10).
+**Pour les autres,** démarrez votre matériel x86-64 et appuyez plusieurs fois sur la touche F2, Del, F1 ou F10.
 
 La configuration du BIOS est maintenant terminée.
 
@@ -105,7 +103,7 @@ Méthode 2 : Pour les systèmes avec le support de stockage soudé.
 1. Récupérez l'image de Home Assistant OS [ici](https://github.com/home-assistant/operating-system/releases) (idéale pour les connexions ADSL) en prenant celle nommée `haos_generic-x86-64-11.5.img.xz` à la date de l'écriture de l'article,
 1. Dans Balena Etcher, sélectionnez l'image téléchargée précédemment, le disque de stockage et cliquez sur `Flash`
 
-**NOTE :** Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher, privilegiez donc la recuperation de l'OS avant la copie sur votre support*
+**NOTE :** Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher, privilégiez donc la récupération de l'OS avant la copie sur votre support*
 
 Une fois la copie réussie, réinstallez le support de stockage dans votre ordinateur, branchez un câble Ethernet connecté au réseau, puis démarrez.
 
@@ -113,13 +111,13 @@ Dans le navigateur de votre système de bureau, dans quelques minutes, vous pour
 
 ![Démarrage de Home Assistant](./img/ecran_demarrage_home_assistant.png)
 
-**NOTE :** vérifiez que vous avez sélectionné le demarrage sur le bon support de stockage si il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
+**NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
 
 
 ### Méthode 2 : Installation de HAOS depuis un live d'Ubuntu
 **Matériels nécessaires :**
 * Un écran + clavier souris,
-* Reliez votre mini PC à internet (ou l'utilisation de la carte Wi-Fi seulement pour l'installation depuis le live d'Ubuntu),
+* Reliez votre mini PC à Internet (ou l'utilisation de la carte Wi-Fi seulement pour l'installation depuis le live d'Ubuntu),
 * Une clé USB,
 * Récupérer un [live d'Ubuntu](https://www.ubuntu-fr.org/download/),
 * [Ventoy](/blog/ventoy_installation_update/) ou [Balena Etcher](/blog/balena_etcher_installation_utilisation/)
@@ -131,21 +129,21 @@ Dans le navigateur de votre système de bureau, dans quelques minutes, vous pour
 
 Une fois le live lancé :
 1. Récupérez l'image de Home Assistant OS [ici](https://github.com/home-assistant/operating-system/releases) en prenant celle nommée `haos_generic-x86-64-11.5.img.xz` à la date de l'écriture de l'article,
-1. Ouvrir l'application `Disques` (Disks) de Ubuntu,
-1. Sélectionnez le support de stockage de votre PC dans la bare de gauche (attention, pas la clé USB)
-1. Cliquez sur les trois points en haut a droite et selectionnez Restaurer le Disque
-![Selection du disque et restauration depuis Ubuntu Live](./img/ubuntu_disques_selection_disque_restauration_image.png)
+1. Ouvrir l'application `Disques` (Disks) d'Ubuntu,
+1. Sélectionnez le support de stockage de votre PC dans la barre de gauche (attention, pas la clé USB),
+1. Cliquez sur les trois points en haut à droite et sélectionnez Restaurer le Disque,
+![Sélection du disque et restauration depuis Ubuntu Live](./img/ubuntu_disques_selection_disque_restauration_image.png)
 1. Sélectionnez l'image de Home Assistant OS,
-![Selection de l'image Home Assistant Generique x86 64 a restaurer depuis Ubuntu Live](./img/ubuntu_disques_selection_image_a_restaurer.png)
+![Sélection de l'image Home Assistant Generique x86 64 a restaurer depuis Ubuntu Live](./img/ubuntu_disques_selection_image_a_restaurer.png)
 ![Valider la restauration](./img/ubuntu_disques_lancer_restauration.png)
 1. Lancez la copie.
 ![Restauration en cours](./img/ubuntu_disques_restauration_en_cours.png)
 ![Restauration terminée](./img/ubuntu_disques_restauration_terminee.png)
 
 
-Une fois la copie terminée, éteignez votre PC, débranchez la clé USB puis redemarrez.
+Une fois la copie terminée, éteignez votre PC, débranchez la clé USB puis redémarrez.
 
-**NOTE :** vérifiez que vous avez sélectionné le demarrage sur le bon support de stockage si il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
+**NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
 
 Dans le navigateur de votre système de bureau, dans quelques minutes, vous pourrez accéder à votre nouveau Home Assistant à l'adresse `homeassistant.local:8123`, `homeassistant:8123` ou `http://X.X.X.X:8123` (remplacez X.X.X.X par l'adresse IP de votre Generic x86-64).
 
