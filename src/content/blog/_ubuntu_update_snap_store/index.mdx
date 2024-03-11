@@ -1,0 +1,22 @@
+---
+draft: true
+title: Ubuntu - Echec lors de la mise ajour du Snap Store
+description: "Description vide"
+pubDate: 01/10/2024
+heroImage: '/src/content/blog/covers/flatpak-linux-box.webp'
+categories: 
+- Linux
+authors: 
+- mcfly
+tags:
+- tag
+---
+
+**Tuto réalisé avec :**
+* Ubuntu XXX
+
+Erreur : Impossible de mettre à jour "Snap Store": (null): cannot refresh "snp-store": snap "snap-store" hasrunning apps (ubuntu-software), pids: 3745
+
+```bash
+sudo killall snap-store && sudo snap refresh snap-store
+```
