@@ -1,0 +1,30 @@
+---
+draft: true
+title: Articles Vide
+description: "Description vide"
+pubDate: 01/10/2024
+heroImage: '/src/content/blog/covers/flatpak-linux-box.webp'
+categories: 
+- Linux
+authors: 
+- mcfly
+tags:
+- tag
+---
+
+**Tuto réalisé avec :**
+* HAOS 11.4, Core 204.1.2
+* Add-on : Zigstar 0.40
+* Matériels : [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) 
+
+
+https://netbird.io/
+
+
+En résumé les étapes indispensables :
+
+    créer un compte et un réseau zerotier (https://my.zerotier.com 1). On récupère alors un network-id
+    installer l’addon zerotier sur HA et le configurer avec le network-id puis le démarrer
+    autoriser ce nouveau membre dans l’interface zerotier : https://my.zerotier.com/network/mynetworkid
+    installer zerotier sur le téléphone ou le PC depuis lequel tu veux accéder à HA . Configurer le network-id, démarrer, auroriser sous zerotier comme pour HA
+    après HA est accessible http://adr-ip:8123 où adr_ip est l’adresse de HA que tu peux trouver dans l’interface zerotier
