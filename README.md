@@ -1,19 +1,4 @@
-# 🚀 EV0 Astro Theme - Blog Template
-
-EV0 Astro Theme is a free and open-source serverless blog template, built with Astro, Tailwind CSS, and TypeScript. It serves as a starting point for creating your personal portfolio website or showcasing your projects online. The template is open-source and released under the MIT license, meaning you are free to use, modify, and distribute it for personal or commercial purposes.
-
-<p align="center">
-  <img align="center" alt="EV0 Astro Theme" src="https://s3.amazonaws.com/gndx.dev/ev0-astro-theme.png"/>
-</p>
-
-<a href="https://astro.build"><img src="https://astro.badg.es/v2/built-with-astro/tiny.svg" alt="Built with Astro" width="120" height="20"></a>
-
-## 🔥 DEMOS
-
-- [EV0 Astro Theme - DEMO](https://ev0.gndx.dev/)
-- [GNDX - My Personal Blog (ES)](https://gndx.dev)
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gndx/ev0-astro-theme#NODE_VERSION=18)
+Simplement pour update
 
 ## 🔥 Features
 
