@@ -1,0 +1,69 @@
+---
+draft: true
+title: Home Assistant - Accès sécurisé avec Netbird (VPN zero Trust)
+description: "Description vide"
+pubDate: 03/13/2024
+heroImage: './ha_addon_store.png'
+categories: 
+- Linux
+authors: 
+- mcfly
+tags:
+- tag
+---
+
+**Tuto réalisé avec :**
+* HAOS 12.0, Core 2024.3.0, Supervisor 2024.03.0
+* Add-on : DuckDNS 1.15.0
+
+Comme je vous l'avais promis dans mon premier article sur l'[acces exterieur a Home Assistant aec DuckDNS](/blog/ha_acces_depuis_exterieur_duckdns/), je vais vous parler d'une methode bien plus securisé car elle ne necessite pas d'ouvrir de port sur votre Box/Routeur et donnera l'acces a votre Home Assistant tout en empachant l'acces au autres materiels sur votre reseau locale cas de piratage de votre Home Assistant.
+
+Ce type de configuration se nomme VPN Zero Trust, et c'est ce qui est recommandé par Home Assistant. Le fonctionnement grossier et qu'il vous permet de vous connecter a une machine sur votre reseau local comme ci vous etiez chez vous.
+
+Dans l'etat actuel, cette solution ne vous permettra pas d'utiliser les assistant vocaux comme Goolge ou Alexa car ils necessistent un nom de domaine associé a un certificat SSL. Personnellement je limite au strict necessaire (androidTV) Google dans ma maison, donc ca ne me pause aucun probleme.
+
+Vous avez dû deja entendre parlé du service [ZeroTiers](https://www.zerotier.com/), mais je trouve dommage d'utiliser un service non open source quand il en existe un que l'on peut même l'autohebergé pour les plus bidouilleurs.
+
+Dans cet article nous allons donc voir comment utiliser le service [Netbird](https://netbird.io/) avec Home Assistant en passant par leur serveur (non auto hebergé) pour que ce soi accessible a tous.
+Son utilisation est gratuite pour 5 utilisateur et 100 machines de quoi largement sastisfaire notre utilisation.
+
+Voici la grille tarifaire :
+![Tarif de NetBird pour l'utilisation depuis leur serveur](./img/netbird_pricing.png)
+
+**Ce que permet NetBird :**
+* Combine un réseau privé peer-to-peer sans configuration et un système de contrôle d'accès centralisé en une seule plateforme, ce qui facilite la création de réseaux privés sécurisés pour votre organisation ou votre domicile.
+* Crée un réseau superposé basé sur WireGuard qui connecte automatiquement vos machines via un tunnel crypté, sans avoir à ouvrir de ports, à appliquer des règles de pare-feu complexes ou à créer des passerelles VPN, etc.
+* Permet un accès à distance sécurisé en appliquant des politiques d'accès granulaires, tout en vous permettant de les gérer intuitivement à partir d'un seul endroit. Fonctionne universellement sur n'importe quelle infrastructure.
+
+## Creation du compte NetBird
+
+Rendez vous sur la page de [NetBird](https://netbird.io/) puis cliquer sur `Try for free`.
+![Inscription sur NetBird](./img/netbird_try_for_free.png)
+Dans la nouvelle fenetre cliquez sur `Sign up` puis saisissez un email et un mot de passe, puis il vous demandera de validez votre inscription via un lien d'activation envoyé par mail.
+![Inscription sur NetBird](./img/netbird_inscription.png)
+Une fois votre email validé, il raffraichit la page et vous affiche differentes commandes ou informatio permettant de lancer votre premiere connexion. Fermons le popup.
+
+Nousa allons maintenant suivre la [documentation de l'add-on (EN)](https://github.com/netbirdio/addon-netbird/blob/main/netbird/DOCS.md) pour l'installation et la configuration.
+
+## Installation de l'add-on
+J'ai déja [écris un article la dessus](/blog/ha_addons/), il faudra simplement ajouter la sources `https://github.com/netbirdio/addon-netbird` puis installer l'add-on nommé `NetBird`.
+
+Je suis sympa avec vous :
+Ajouter la source en cliquant ci-dessous :
+[![Ajouter le dépôt d'un simple clique](./img/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fnetbirdio%2Faddon-netbird)
+Ajouter l'add-on en cliquant ci-dessous (peut necessister un raffraichissement du navigateur)
+[![Ajouter l'add-on NetBird d'un simple clique](./img/supervisor_addon.svg)](https://my.home-assistant.io/redirect/supervisor_addon/?addon=7edd9457_netbird&repository_url=https%3A%2F%2Fgithub.com%2Fnetbirdio%2Faddon-netbird)
+
+En résumé les étapes indispensables :
+
+    créer un compte et un réseau zerotier (https://my.zerotier.com 1). On récupère alors un network-id
+    installer l’addon zerotier sur HA et le configurer avec le network-id puis le démarrer
+    autoriser ce nouveau membre dans l’interface zerotier : https://my.zerotier.com/network/mynetworkid
+    installer zerotier sur le téléphone ou le PC depuis lequel tu veux accéder à HA . Configurer le network-id, démarrer, auroriser sous zerotier comme pour HA
+    après HA est accessible http://adr-ip:8123 où adr_ip est l’adresse de HA que tu peux trouver dans l’interface zerotier
+
+### Sources
+* [Netbird (EN)](https://netbird.io/)
+* [Page de l'add-on sur le forum officiel Home Assistant (EN)](https://community.home-assistant.io/t/home-assistant-add-on-netbird-client/648232)
+* [GitHub de l'add-on](https://github.com/netbirdio/addon-netbird)
+* [Documentation de l'add-on](https://github.com/netbirdio/addon-netbird/blob/main/netbird/DOCS.md)
