@@ -1,9 +1,9 @@
 ---
-draft: true
+draft: false
 title: Home Assistant - Acces depuis l'exterieur avec DuckDNS
-description: "Description vide"
-pubDate: 03/11/2024
-heroImage: './ha_addon_store.png'
+description: "Voici une méthode simple pour se connecter à Home Assistant depuis l'extérieur et bénéficier d'un nom de domaine gratuit. Attention, ce n'est pas la méthode la plus sécurisée"
+pubDate: 03/12/2024
+heroImage: './HA_acces_externe_duckdns.png'
 categories: 
 - Home Assistant
 - Domotique
@@ -15,58 +15,67 @@ tags:
 ---
 
 **Tuto réalisé avec :**
-* HAOS 11.4, Core 204.1.2
-* Add-on : Zigstar 0.40
+* HAOS 12.0, Core 2024.3.0, Supervisor 2024.02.1
+* Add-on : DuckDNS 1.15.0
+* Freebox Ultra avec Freebox OS V4.8
 
-Vous venez d'installer Home Assistant et **vous souhaitez y avoir accès depuis l'extérieur**. Comme expliqué dans [Home Assistant : commencer avec des bases solides](/blog/ha_commencer_base_solide/), il existe plusieurs possibilités, et voici l'une d'entre elles.
-
-Nous allons voir comment accéder à votre système domotique gratuitement depuis l'extérieur avec [DuckDNS ](https://www.duckdns.org/)via un add-on dédié.
-
-*Article réalisé avec Home Assistant OS 2023.3.3 et add-on DuckDNS 1.15.0*
+Vous souhaitez accéder à votre Home Assistant depuis l'extérieur ou bénéficier d'un nom de domaine gratuit pour ajouter un des assistants vocaux grand public.
+DuckDNS est une des solutions, même si ce n'est pas la plus sécurisée, car elle ouvre une porte sur votre box/routeur pouvant être utilisé par des pirates s'ils la trouvent.
+Nous allons voir ensemble comment donner rapidement un accès depuis l'extérieur à votre Home Assistant.
 
 ## Principe de DuckDNS
+DuckDNS va vous permettre d’obtenir simplement et gratuitement un **sous domaine** DuckDNS (exemple : mcflydomo.duckdns.org) qui sera relié via l'add-on DuckDNS installé sur votre Home Assistant et permettra d’associer votre adresse IP publique au domaine DuckDNS (même si elle change).
+Par contre, il faudra ouvrir un port sur votre Box/Routeur pour rediriger les demandes de l'extérieur vers votre instance Home Assistant.
 
-DuckDNS va vous permettre d’obtenir simplement et gratuitement un **domaine** (en fait un sous domaine de DuckDNS, par exemple mamaison.duckdns.org). Un add-on DuckDNS installé sur Home Assistant demandera à ce dernier d’**associer l’adresse externe de votre box a ce sous domaine**, même si elle n’est pas fixe et peut changer. \
-Enfin, vous devrez **ouvrir un port sur votre box ou routeur**, pour que l’accès de l’extérieur via votre nouveau domaine soit redirigé vers votre serveur Home Assistant, dont l’IP devra être fixe.
+***ATTENTION :** Cette solution n'est pas la plus sécurisée, car elle nécessite d'ouvrir un port sur votre Box/Routeur ce qui est une porte d’entrée pour des attaques potentielles. **Je vous la suggère uniquement parce qu'elle est assez simple à mettre en œuvre et elle vous permet d'avoir un nom de domaine gratuit. Je vais vous proposer prochainement un autre article sur une méthode bien plus sécurisée, mis ne permettant pas l'utilisation des assistants vocaux grand public.***
 
-> Ce n'est potentiellement pas la méthode le plus sécurisée, car elle nécessite l'ouverture du port 8123 de votre routeur/box, ce qui est une porte d’entrée pour des attaques potentielles.
->
-> **Vous devez donc bien comprendre cela et en accepter ces risques.**
-
-## Configuration prérequise
-
+## Prérequis
 Avant de configurer Home Assistant, vous devez :
-
-* Avoir créé un compte [DuckDNS](https://www.duckdns.org/),
-* Avoir créé un sous-domaine : par exemple le sous-domaine ***hacf-fr*** permettra un accès à sa machine via hacf-fr.duckdns.org, 
+* Créer un compte [DuckDNS](https://www.duckdns.org/),
+* Créer un sous-domaine : par exemple `mcflydomo` qui permettra d'accéder à votre machine via `mcflydomo.duckdns.org`, 
 * Récupérer son token,
-* Avoir ouvert et redirigé le port 8123 de votre box vers le 8123 de votre Home Assistant.
+* Ouvrir le port 8123 et le rediriger vers l'IP de votre machine Home Assistant.
 
-> Normalement seul le 8123 doit être ouvert.
+### Création de compte et de domaine DuckDNS
+Pour créer votre compte DuckDNS, rendez-vous sur [DuckDNS](https://duckdns.org) puis choisissez la méthode de connexion que vous préférez parmi les cinq proposés.
+![Connexion a DuckDNS](./img/duckdns_compte.png)
+Ensuite il vous suffit de choisir votre sous domaine et de cliquer sur `add domain`.
+![Ajout d'un domaine depuis DuckDNS](./img/duckdns_ajout_domaine.png)
+Maintenant, vérifiez que l'adresse IP est bien la vôtre et récupérez votre token.
+![Création du compte et du NDD avec DuckDNS](./img/ha_acces_ext_duckdns_account.png "Compte DuckDNS et Création NDD")
 
-![ha_acces_ext_duckdns_account](./img/ha_acces_ext_duckdns_account.png "Compte DuchDNS et Création NDD")
+### Ouvrir le port 8123 et le rediriger
+Mon FAI étant Free en ce moment, je vais le faire pour une Freebox, mais la procédure reste sensiblement la même pour les autres.
+1. Connectez-vous à votre Freebox via l'adresse 192.168.1.254 (ou chez les concurrents 192.168.1.1, 192.168.0.1, 192.168.1.254, 192.168.0.254),
+1. Allez dans les `Paramètres de la Freebox`,
+1. Puis, dans `Gestion des ports`,
+1. Cliquez sur Ajouter une redirection
+1. Remplissez les champs disponibles,
+1. Appliquez si besoin.
+![Ouverture de port depuis une Freebox](./img/freebox_ouverture_port.png)
+
+Passons à présent à l'installation de l'add-on DuckDNS.
 
 ## L'add-on DuckDNS
+### Installation et configuration de l'add-on
+Assurez-vous de bien avoir vérifié tous les prérequis.
 
-Maintenant que vous avez les prérequis :
+Installons l'add-on DuckDNS comme n'importe quel add-on (si besoin le [tuto est là](/blog/ha_addons/)). Une fois installé, n'oubliez pas de regarder la documentation.
+![Add-on DuckDNS dans les modules complémentaires](./img/add-on_duckdns.png)
 
-* Installer l'add-on DuckDNS (je passe sur l'étape d'installation d'un add-on disponible [ici](/blog/ha_addon_installation/)),
-* Une fois installé un petit tour par la documentation,
-* Rendez-vous ensuite dans l'onglet `Configuration`,
-* * Ajouter votre domaine,
-* * Ajouter votre token,
-* * Remplacer `false` par `true` dans la ligne `terms`
-* * Enregistrer.
+Rendez-vous ensuite dans l'onglet `Configuration`,
+* Ajouter votre domaine,
+* Ajouter votre token,
+* Remplacer `false` par `true` dans la ligne `accept_terms`
+* Enregistrer.
+![Configuration de l'add-on DuckDNS](./img/duckdns_configuration.png)
 
-> S'il vous met un messag d'erreur, verifier que vous n'avez pas de domaine vide en haut ou alors basculer en version yaml en cliquant sur les ... en hut a droite.
->
-> ![ha_acces_ext_duckdns_config](./img/ha_acces_ext_duckdns_config.png "Configuration de l'add-on DuckDNS")
+Retournez dans l'onglet `info` de l'add-on puis activez les deux boutons `Lancer au démarrage` et `Chien de garde`.
 
-* Lancer l'add-on.
+Démarrez l'add-on, puis rendez-vous dans l'onglet `Journal`.
 
-Voici le résultat du Journal.
-
-```
+Vous devriez avoir, au nom de domaine prêt, la même chose que moi :
+```bash
 s6-rc: info: service s6rc-oneshot-runner: starting
 s6-rc: info: service s6rc-oneshot-runner successfully started
 s6-rc: info: service fix-attrs: starting
@@ -80,57 +89,75 @@ s6-rc: info: service legacy-services successfully started
 + Registering account key with ACME server...
 + Fetching account URL...
 + Done!
-[17:56:37] INFO: OK
+[14:32:32] INFO: OK
 XXX.XXX.XXX.XXX
+
 NOCHANGE
-[17:56:37] INFO: Renew certificate for domains: hacf-fr.duckdns.org and aliases:
+[14:32:32] INFO: Renew certificate for domains: mcflydomo.duckdns.org and aliases: 
 # INFO: Using main config file /data/workdir/config
-+ Creating chain cache directory /data/workdir/chains
-Processing hacf-fr.duckdns.org
-+ Creating new directory /data/letsencrypt/hacf-fr.duckdns.org ...
-+ Signing domains...
-+ Generating private key...
-+ Generating signing request...
-+ Requesting new certificate order from CA...
-+ Received 1 authorizations URLs from the CA
-+ Handling authorization for hacf-fr.duckdns.org
-+ 1 pending challenge(s)
-+ Deploying challenge tokens...OK 
-+ Responding to challenge for hacf-fr.duckdns.org authorization...
-+ Challenge is valid!
-+ Cleaning challenge tokens...OK 
-+ Requesting certificate...
-+ Checking certificate...
-+ Done!
-+ Creating fullchain.pem...
-+ Done!
+ + Creating chain cache directory /data/workdir/chains
+Processing mcflydomo.duckdns.org
+ + Creating new directory /data/letsencrypt/mcflydomo.duckdns.org ...
+ + Signing domains...
+ + Generating private key...
+ + Generating signing request...
+ + Requesting new certificate order from CA...
+ + Received 1 authorizations URLs from the CA
+ + Handling authorization for mcflydomo.duckdns.org
+ + 1 pending challenge(s)
+ + Deploying challenge tokens...
+OK + Responding to challenge for mcflydomo.duckdns.org authorization...
+ + Challenge is valid!
+ + Cleaning challenge tokens...
+OK + Requesting certificate...
+ + Checking certificate...
+ + Done!
+ + Creating fullchain.pem...
+ + Done!
 ```
 
-Ajouter cette configuration dans le fichier `configuration.yaml`
-
+***Note :** En cas d'erreur, vérifier que le domaine n'est pas vide ou basculer en mode `yaml` en cliquant sur les `...` en haut à droite.*
+*Voici ma configuration en mode `YAML`*
+```yaml
+domains:
+  - mcflydomo.duckdns.org
+token: 5c06a367-XXXX-XXXX-XXXX-XXXXXXXXXXXXX
+aliases: []
+lets_encrypt:
+  accept_terms: true
+  algo: secp384r1
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+seconds: 300
 ```
+
+### Configuration de Home Assistant
+Une fois l'add-on installé et configuré, c'est au tour de Home Assistant de recevoir sa configuration et ça se passe dans le fichier `configuration.yaml`
+
+Depuis un éditeur (File Editor ou VSCode) vous devez ajouter ces quelques lignes dans le fichier `configuration.yaml`
+
+```yaml
 http:
-ssl_certificate: /ssl/fullchain.pem
-ssl_key: /ssl/privkey.pem
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
 ```
+![Ajout de DuckDNS dans le fichier configuration.yaml de Home Assistant](./img/duckdns_configuration_yaml.png)
 
-Puis redémarrer.
+Sauvegardez puis redémarrez Home Assistant.
 
-Il vous suffit maintenant d'essayer de vous connecter avec votre adresse `https://hacf-fr.duckdns.org:8123` et vous devriez accéder à votre système domotique préfère.
+Essayez de vous connecter avec votre domaine nouvellement créé `https://mcflydomo.duckdns.org:8123` (**ATTENTION** à bien ajouter **:8123**( et vous devriez atterrir sur votre Home Assistant.
 
-![ha_acces_ext_duckdns_final](./img/ha_acces_ext_duckdns_final.png "Accès en HTTPS depuis l'extérieur avec DuckDNS")
+![Vérification du bon fonctionnement de l'accès extérieur depuis l'adresse DuckDNS](./img/duckdns_acces_exterieur.png)
 
-> si vous n'avez pas acces votre instance Home Assistant, essayer en local avec `votre_ip:8123` ou `https://votre_ip:8123`.
+**Note :** Si vous n'arrivez pas à accéder à votre instance depuis l'extérieur, essayez depuis votre mobile en 4G, sinon reconnectez-vous en local via l'adresse `http**S**://votre_ip:8123`.
 
-Une dernière étape consiste à ajouter votre nouvelle URL dans la configuration de Home Assistant, pour ca direction `Paramètres` -> `Système` -> `Réseaux`.
-
-![ha-acces-ext-duckdns_config_url_ha](./img/ha-acces-ext-duckdns_config_url_ha.png "Configuration de l'URL dans Home Assistant")
+Il vous faut modifier l'adresse externe de votre Home Assistant sur votre application mobile pour profiter de votre nouvel accès extérieur.
 
 ### Conclusion.
+C'est tout bon, vous avez accès à votre instance domotique depuis l'extérieur. Comme déjà dit en début d'article, ce n'est pas la solution la plus sécurisée pour accéder depuis l'extérieur à Home Assistant, car il ouvre une porte sur votre Box/Routeur, mais pour ceux ne voulant pas acheter un nom de domaine et voulant utiliser les assistants vocaux, il peut vous être utile.
 
-Vous avez désormais accès à votre système domotique depuis l'extérieur.
-Comme dit plus haut ce n'est pas la méthode le plus sécurisé, car elle nécessite entre autre l'ouverture du port 8123 de votre routeur.
+Cet article était déjà écrit et je l'ai juste testé et remis en forme.
 
-Il faut aussi signaler, qu'actuellement, il y a quelques petits problèmes de connexion des serveurs de DuckDNS, il faut donc prendre tout cela en considération.
+Nous verrons dans un article comment se connecter à Home Assistant depuis un VPN Zéro Trust (méthode recommandée par Home Assistant), vous donnant accès à votre Home Assistant (et seulement à ce dernier) via un tunnel chiffré. Bien sûr, depuis un service open source pouvant même être auto hébergé pour les plus aguerris.
 
-C'est une bonne méthode pour essayer ou donner l'accès à une machine test, mais peut-être pas pour une utilisation orientée sécurité de votre système domotique.
+DuckDNS est un service gratuit et il peut y avoir quelques problèmes de connexion de temps à autre, sachez-le.
