@@ -1,4 +1,13 @@
 Simplement pour update
+Exemple de fonction SI il ya une image
+
+```html
+    {
+    image && (
+        <meta property="og:image" content={image.src} />
+      )
+    }
+```
 
 ## 🔥 Features
 

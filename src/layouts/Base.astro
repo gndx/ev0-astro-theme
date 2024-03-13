@@ -4,6 +4,9 @@ import Hero from "@components/Hero.astro";
 import FeaturedVideos from "@components/FeaturedVideos.astro";
 import Footer from "@components/Footer.astro";
 import config from "@config/config.json";
+import { Image } from "astro:assets";
+
+import { getCollection } from "astro:content";
 
 import "@styles/global.css";
 
@@ -19,8 +22,7 @@ export interface Props {
   blogpost?: boolean;
 }
 
-const { title, meta_title, heroImage, description, noindex, blogpost } = Astro.props;
-
+const { title, meta_title, image, description, noindex, blogpost } = Astro.props;
 ---
 
 <!doctype html>
@@ -88,11 +90,13 @@ const { title, meta_title, heroImage, description, noindex, blogpost } = Astro.p
       content={description ? description : config.metadata.meta_description}
     />
     <!-- og-image -->
-    <meta property="og:image" content={Astro.props.image} />
+    <meta property="og:image" content={image ? image.src : Astro.url.origin + config.site.backgroundDefault} />
     <!-- twitter-image -->
-    <meta name="twitter:image" content={Astro.props.HeroImage} />
+    <meta name="twitter:image" content={image ? image.src : Astro.url.origin + config.site.backgroundDefault} />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <meta property="og:image" content={image ? image.src : Astro.url.origin + config.site.backgroundDefault} />
+   
     <script is:inline src="/registerSW.js"></script>
     <link rel="manifest" href="/manifest.webmanifest" />
     <ViewTransitions />
