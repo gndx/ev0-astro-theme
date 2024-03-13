@@ -65,6 +65,8 @@
     "astro-compress/sharp": "0.33.1"
   },
   "dependencies": {
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "@rollup/plugin-terser": "^0.4.4",
     "astro-compressor": "^0.4.1"
   }
 }

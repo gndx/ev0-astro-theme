@@ -5,7 +5,6 @@ import FeaturedVideos from "@components/FeaturedVideos.astro";
 import Footer from "@components/Footer.astro";
 import config from "@config/config.json";
 
-
 import "@styles/global.css";
 
 import { ViewTransitions } from "astro:transitions";
@@ -20,9 +19,8 @@ export interface Props {
   blogpost?: boolean;
 }
 
-const { title, meta_title, description, noindex, blogpost } = Astro.props;
+const { title, meta_title, heroImage, description, noindex, blogpost } = Astro.props;
 
-const ogImage = new URL(Astro.props.image, Astro.site);
 ---
 
 <!doctype html>
@@ -90,9 +88,9 @@ const ogImage = new URL(Astro.props.image, Astro.site);
       content={description ? description : config.metadata.meta_description}
     />
     <!-- og-image -->
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={Astro.props.image} />
     <!-- twitter-image -->
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={Astro.props.HeroImage} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script is:inline src="/registerSW.js"></script>
