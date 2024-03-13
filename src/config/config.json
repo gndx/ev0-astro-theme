@@ -6,6 +6,7 @@
     "favicon": "/favicon.png",
     "logoLight": "/logoLight.webp",
     "logoDark": "/logoDark.webp",
+    "backgroundDefault": "/images/background.jpg",
     "lang": "fr",
     "description": "Mémos & Bloc-notes pour débutants autour de la Domotique, Vie Privée, Auto-hébergement, Linux, Serveur.",
     "keywords": "Domotique, Home Assistant, Linux, Docker, NAS, OpenMediaVault, Vie Privée, HP MicroServer Gen 8",

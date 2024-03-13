@@ -19,7 +19,7 @@ export interface Props {
   blogpost?: boolean;
 }
 
-const { title, meta_title, heroImage, description, noindex, blogpost } = Astro.props;
+const { title, meta_title, image, description, noindex, blogpost } = Astro.props;
 
 ---
 
@@ -88,9 +88,9 @@ const { title, meta_title, heroImage, description, noindex, blogpost } = Astro.p
       content={description ? description : config.metadata.meta_description}
     />
     <!-- og-image -->
-    <meta property="og:image" content={Astro.props.image} />
+    <meta property="og:image" content={image ? image.src : Astro.url.origin + config.site.backgroundDefault} />
     <!-- twitter-image -->
-    <meta name="twitter:image" content={Astro.props.HeroImage} />
+    <meta name="twitter:image" content={image ? image.src : Astro.url.origin + config.site.backgroundDefault} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script is:inline src="/registerSW.js"></script>
