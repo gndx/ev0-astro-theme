@@ -16,13 +16,25 @@ tags:
 ---
 
 **Tuto réalisé avec :**
-* Debian 12.5 sur VM Proxmox
-* Docker Version 25.0.4
-* Docker Compose V
+* Debian 12.50 sur VM Proxmox
+* Docker Version v25.0.4
+* Docker Compose v2.24.7
 
-Blablabla
+Je ne vais pas m'étendre sur le sujet, mais pour faire simple, il permet d'installer et de tester des applications sans devoir chambouler ou jouer sur la configuration brute du système.
 
-Je pars d'une Debian 11 fraichement installé sur un serveur avec un utilisateur n'ayant pas les droits `sudo` pour plus de securité.
+Voici deux citations de Wikipédia.
+***Note :** Docker est une plateforme permettant de lancer certaines applications dans des conteneurs logiciels. **Source :** [Wikipédia](https://fr.wikipedia.org/wiki/Docker_(logiciel))*
+
+***Note :** Docker est un outil qui peut empaqueter une application et ses dépendances dans un conteneur isolé, qui pourra être exécuté sur n'importe quel serveur. **Source :** [Wikipédia](https://fr.wikipedia.org/wiki/Docker_(logiciel))*" >}}*
+
+
+Il existe deux versions de Docker :
+* Docker CE pour Community Edition (celle qui nous intéresse),
+* Docker EE pour Entreprise Edition.
+
+Je pars d'une Debian 12 fraichement installé sur un serveur avec un utilisateur n'ayant pas les droits `sudo` pour plus de securité.
+Je pars du principe que vous avez déjà Debian 12 d'installé sur votre machine et que vous savez vous [connectez en SSH](../ssh_connexion/) à serveur.
+
 
 >Si vous avez déja essayé ou installé Docker il faudra supprimer cette installation avec la commande ci-dessous.
 ```
@@ -43,7 +55,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/doc
 chmod a+r /etc/apt/keyrings/docker.asc
 ```
 
-Ajouter l'adresse du repertoir dans les sources.
+Ajouter l'adresse du repertoire dans les sources.
 ```
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
@@ -84,10 +96,13 @@ C'est dans ce dernier que nous installerons nos applications Docker.
 Cette partie est en construction et evoluera au fil du temps. Elle a pour but de reunir des commandes Docker et Docker Compose.
 
 ### Docker.
+#### Les Containeur
 * Lancer ou stopper un conteneur.
 `docker start nom_du_conteneur` ou `docker stop nom_du_conteneur`
 * Lister les conteneurs.
 `docker ps`
+
+#### Les images
 * Lister les images et leurs versions.
 `docker image ls`
 * Supprimer une image.
@@ -96,13 +111,17 @@ Cette partie est en construction et evoluera au fil du temps. Elle a pour but de
 `docker system prune`
 * Supprimer tous ce qui est arrété et/ou inutilisé
 `docker system prune -a`
+
+#### Les volumes
 * Lister les volumes
 `docker volume ls`
 * Supprimer les volumes
 `docker volume rm nom_du_volume`
 
+#### Les Networks
+
 ### Docker Compose.
-* Lancer un `docker-compose.yaml`
+* Lancer/Executer un `docker-compose.yaml`
 Dans le dossier contenant le fichier `docker-compose.yaml` lancer la commande `docker compose up -d`
 
 * Difference entre `ports:` et `expose:`.
@@ -110,7 +129,7 @@ Dans le dossier contenant le fichier `docker-compose.yaml` lancer la commande `d
 `expose:` permet d’exposer les ports de votre conteneur aux autres conteneurs, sans les publier ni les lier aux ports hôtes, par exemple vous pouvez communiquer avec un autre conteneur via `adresse_ip_interne:port` s'il ne sont pas sur le meme reseau.
 
 ## Conclusion.
-Vous voila avec Docker et Docker compose installés sur votre serveur, vous avez maintenant la possibilité de lancer des conytaineurs soit en ligne de commande soit via un fichier `docker-compose`.
+Vous voila avec Docker et Docker compose installés sur votre serveur, vous avez maintenant la possibilité de lancer des containeurs soit en ligne de commande soit via un fichier `docker-compose`.
 
 Nous allons voir dans un autre article comment installer des conteneurs via une interface, meme si la facon `docker-compose` vous offrira plus de flexibilité et de rapidité.
 
