@@ -75,7 +75,32 @@ Pour créer une paire de clés, sur votre ordinateur (Linux dans ce cas), il fau
 *Par défaut, vos clés sont dans `~/.ssh/votre_cle` pour la clé privée et `~/.ssh/votre_cle.pub` pour la clé publique.*
 *Vous pouvez générer autant de clé que vous voulez avec la même passphrase par exemple.*
 
-![Création de la clé SSH](./img/creation_cle_ssh.png)
+__Retour commande :__
+
+```bash
+anthony@McFly-Bureau:~$ ssh-keygen -t ed25519
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/anthony/.ssh/id_ed25519): /home/anthony/.ssh/mcflytuto
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/anthony/.ssh/mcflytuto
+Your public key has been saved in /home/anthony/.ssh/mcflytuto.pub
+The key fingerprint is:
+SHA256:MBp2Aj00/6t9aaJigwajqSGPLy5IbvAMNOiMNrH782g anthony@McFly-Bureau
+The key's randomart image is:
++--[ED25519 256]--+
+|  .oo            |
+|   .oo           |
+|.   +.=          |
+|.+ . = +         |
+|= + .   S        |
+|*B       .       |
+|XBo.    .  .     |
+|BB=E=  o. +      |
+|B==+o+o..+       |
++----[SHA256]-----+
+anthony@McFly-Bureau:~$
+```
 
 Après avoir affiché les dossiers cachés, regardez dans le dossier `.ssh`.
 ![Contenu du dossier SSH](./img/dossier_ssh.png)
@@ -84,14 +109,30 @@ Après avoir affiché les dossiers cachés, regardez dans le dossier `.ssh`.
 **Depuis votre ordinateur**, lancer la commande suivante.
 `ssh-copy-id -i ~/.ssh/votre_cle.pub -p num_port votre_utilisateur@ndd_ou_ip_du_serveur_devant_recevoir_la_cle_publique`
 
-![Envoi de la clé SSH sur le serveur](./img/envoi_cle-ssh_vers_serveur.png)
+```bash
+anthony@McFly-Bureau:~$ ssh-copy-id -i ~/.ssh/mcflytuto.pub -p 22 anthony@192.168.10.11
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/anthony/.ssh/mcflytuto.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+anthony@192.168.10.11's password: 
 
-*Si vous essayez d'envoyer la clé via un utilisateur qui ne peut pas se connecter en SSH (ne fait pas partie du groupe), il faut passer par un compte autorisé puis :
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh -p '22' 'anthony@192.168.10.11'"
+and check to make sure that only the key(s) you wanted were added.
+
+anthony@McFly-Bureau:~$ 
+```
+
+***Note :**Si vous essayez d'envoyer la clé via un utilisateur qui ne peut pas se connecter en SSH (ne fait pas partie du groupe), il faut passer par un compte autorisé puis :*
 * Se connecter à son utilisateur (`su votre_utilisateur`), 
 * Aller dans son dossier (`cd ~/`),
 * Créer un dossier `.ssh` (`mkdir .ssh`),
 * Ajouter le fichier `authorized_keys` (`nano authorized_keys`),
 * Copier le contenu de la clé **publique** `votre_clé.pub` manuellement.
+
+
+Connectez-vous avec cette ligne de code `ssh votre_user@ip_ou_ndd_de_votre_serveur`, si vous avez indiqué une passphrase, il devrait vous la demander et ensuite vous connectez au serveur.
 
 ## Sécuriser, configurer le fichier SSH
 Il est possible de sécuriser un peu plus votre serveur par quelques réglages supplémentaires.
