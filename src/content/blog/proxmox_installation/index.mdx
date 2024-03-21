@@ -126,6 +126,32 @@ Il vous demandera de désactiver la haute disponibilité (si vous avez un seul n
 Votre Proxmox est maintenant à jour avec les réglages grand public (sources, etc).
 *Si la mise à jour tourne en rond, vous pouvez quitter puis relancer le script, mais lancer la mise à jour à la fin, ensuite il vous suffit de procéder directement comme indiqué un peu plus haut.*
 
+## Ajout de votre première VM
+Nous allons créer notre première machine virtuelle pour y installer un serveur sous Debian 12
+
+La première étape consiste à rapatrier l'image ISO d'installation sur notre Proxmox. Pour ça, nous allons :
+1. Récupérez l'image ISO [ici](https://www.debian.org/) en cliquant sur `Téléchargement` pour télécharger la dernière image pour AMD64.
+1. Ajoutez l'image à Proxmox,
+* * Dans Proxmox, allez sur `local (XXX)` 
+* * Sélectionnez `ISO Images` 
+* * Cliquez sur `Upload` et sélectionner votre image.
+Vous remarquerez qu'il est aussi possible de récupérer une image directement via son URL.
+![Ajouter une image ISO a Proxmox 8](proxmox_ajouter_image_iso.gif)
+
+Maintenant que l'image est sur notre Proxmox, nous allons pouvoir créer une Machine Virtuelle.
+1. Cliquez sur le bouton `Create VM`,
+1. Onglet `General` : Donner un numéro a votre VM dans `VM ID` (facultatif) puis donnez un nom dans `Name`, (*Astuces : Dans mon VM ID, je mets les derniers chiffres de l'IP de la machine pour la retrouver d'un coup d'œil*)
+1. Onglet `OS` : Dans `storage` sélectionnez `local` puis dans `ISO image` recherchez votre image Debian,
+1. Onglet `System` : Activez le Qemu Agent (facultatif) qui permet d'avoir la remonter de l'adresse IP si la Qemu Agent est installé dans la distribution (Sinon il peut être installé). `Add TPM` est utile pour une installation de Windows 10/11,
+1. Onglet `Disks` : Laissez par défaut, ajuster l'espace `Disk size (GiB)` à la baisse si vous le souhaiter, car vous ne pourrez pas le baisser plus tard sans avoir de problème, par contre, il est possible de l'augmenter,
+1. Onglet `CPU` : Adapter le nombre de `Cores` à votre CPU, mais aussi a vos besoins (Peut être modifié ultérieurement à la hausse comme à la baisse),
+1. Onglet `Memory` : Idem que le CPU mis pour la mémoire RAM (vous pouvez booster pour l'installation puis diminuer la valeur ensuite),
+1. Onglet `Network` : Vous pouvez laisser par défaut sauf si vous disposez de plusieurs interfaces et que vous savez ce que vous faites,
+1. Onglet `Confirm` : Vous donne un récapitulatif de votre VM,
+1. Cliquez sur `Finish` pour lancer la création.
+![Création de machine virtuelle avec Proxmox 8](./img/proxmox_creation_vm.gif)
+
+Votre première VM est créée, il vous faut la lancer et ouvrir la console pour suivre les étapes de l'[installation de l'OS Debian 12](/blog/linux_debian_12_installation) cette fois.
 ## Conclusion
 L'avantage d'un système de virtualisation est la possibilité d'utiliser l'ensemble des ressources de votre machine et non pas de la dédier à un seul service ou une seule tâche.
 De plus, les sauvegardes et la restauration sont simplifiées, et vous pouvez mettre plusieurs systèmes d'exploitation en parallèle sans risque de casser quelque chose.

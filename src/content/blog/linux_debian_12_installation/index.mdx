@@ -1,0 +1,41 @@
+---
+draft: true
+title: Debian 12 - Installation de son premier serveur avec ou sans Proxmox
+description: "Description vide"
+pubDate: 03/21/2024
+#heroImage: './ha_addon_store.png'
+categories: 
+- Linux
+- Proxmox
+authors: 
+- mcfly
+tags:
+- Debian 12
+- serveur
+---
+
+**Tuto réalisé avec :**
+* Proxmox 8.1.4 (facultatif),
+* Debian 12.5.0,
+
+Comme le titre l'indique nous allons voir comment installer un serveur sous Debian 12 sur Proxmox ou directement sur la machine de votre choix, car la procedure sera la meme une fois passé la création de VM sur Proxmox.
+
+Pourquoi choisir Debian et pas Ubuntu server ?
+
+Debian est une distribution acces sur la stabilité et la securité. Je ne connais pas la part du marcher de Debian sur les plus de 95% de serveurs sous systeme Unix, mais c'est une solution, completement gratuite et open-source, compatible avec de nombreuses architectures materielles.
+
+Fin du bavardage !!!
+
+## Pré-requis
+Pour une installation sur un PC, ou autre materiel vai une cles USB, un ecran et un clavier, il faut :
+1. Récuperez l'image ISO [ici](https://www.debian.org/) en cliquant sur Téléchargement ppour recuperer la derniere image pour amd64.
+1. Suivre [mon tutoriel sur la création d'une clés USB Ventoy](/blog/ventoy_installation_update/)
+
+Pour une installation sur Raspberry Pi, il faut suivre mon tutoriel sur l'[installtion de Home Assistant sur Raspberry](/blog/ha_haos_installation/) en selectionnant `Raspberry Pi OS (Other)` puis `Raspberry Pi OS Lite (64-bit)`.
+
+![Raspberry Pi OS Lite depuis Imager](./img/raspberrypios_via_imager.gif)
+
+Pour installation en VM Proxmox, il vous faut :
+1. Récuperez l'image ISO [ici](https://www.debian.org/) en cliquant sur Téléchargement ppour recuperer la derniere image pour amd64.
+1. Suivre les étapes sur l'[article Proxmox](/blog/proxmox_installation/).
+
