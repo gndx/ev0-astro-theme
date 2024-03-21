@@ -1,9 +1,9 @@
 ---
-draft: true
+draft: false
 title: Debian 12 - Installation de son premier serveur avec ou sans Proxmox
 description: "Installer Debian 12 en mode serveur, étapes par étapes, pour y déployer des services et des applications web ou autres"
 pubDate: 03/21/2024
-#heroImage: './ha_addon_store.png'
+heroImage: './ai-generated-8211245_1920.jpg'
 categories: 
 - Linux
 - Proxmox
@@ -52,14 +52,14 @@ Lors du lancement, une interface graphique vous demande ce que vous souhaitez fa
 1. Les fenêtres suivantes nous donnent le choix de la langue, de la position géographique et du clavier.
 ![Choix de la langue](./img/debian_intallation_general_langue.png)
 ![Choix de la position géographique](./img/debian_intallation_general_geographie.png)
-![Choix de la langue du clavier](./img/debian_intallation_general_clavier_.png)
+![Choix de la langue du clavier](./img/debian_intallation_general_clavier.png)
 1. Passons aux paramètres réseau avec le nom de votre machine sur le réseau ainsi que le domaine (laissez ce dernier vide par défaut)
 ![Choix du nom de la machine sur le réseau](./img/debian_intallation_reseau_nom_machine.png)
 ![Choix du domaine](./img/debian_intallation_reseau_domaine.png)
 C'est au tour des comptes et des mots de passe de l'utilisateur root et du vôtre.
 ![Choix du mot de passe de l'utilisateur root](./img/debian_intallation_utilisateur_root.png)
 ![Choix du nom de votre utilisateur](./img/debian_intallation_utilisateur_nom.png)
-![Choix du login de votre utilisateur](./img/debian_intallation_utilisateur_loin.png)
+![Choix du login de votre utilisateur](./img/debian_intallation_utilisateur_login.png)
 1. Prochaine étape, le partitionnement des disques en choisissant `Assisté - utiliser un disque entier`, ensuite, on sélectionne le disque ou le système sera installé puis on choisit le schéma de partitionnement, dans mon cas `Tout dans une seule partition`. On finira par une double confirmation
 
 ***Note :** avec ou sans LVM, chiffre ou pas, à vous de voir (plus d'[info sur LVM](https://doc.ubuntu-fr.org/lvm)) *(Personnellement, je n'utilise pas le LVM, car je ne retouche pas les partitions système derrière, mais peut-être que pour le chiffrement ça peut être intéressant, je ne me suis jamais penché sur la question)*.
