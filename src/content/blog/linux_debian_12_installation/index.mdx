@@ -24,6 +24,12 @@ Pourquoi choisir Debian et pas Ubuntu server ?
 
 Debian est une distribution acces sur la stabilité et la securité. Je ne connais pas la part du marcher de Debian sur les plus de 95% de serveurs sous systeme Unix, mais c'est une solution, completement gratuite et open-source, compatible avec de nombreuses architectures materielles.
 
+**Installation sur Raspberry Pi :**
+Pour une installation sur Raspberry Pi, il faut suivre mon tutoriel sur l'[installation de Home Assistant sur Raspberry](/blog/ha_haos_installation/) en selectionnant `Raspberry Pi OS (Other)` puis `Raspberry Pi OS Lite (64-bit)`, ensuite adapter les réglages a votre utilisation en activant aussi le SSH et c'est fini, vous aurez acces a votre nouveau serveur via SSH en tapant `ssh votre_utilisateur@adresse_du_pi`, n'oubliez pas quand même de suivre [les bonnes pratique en matiere de connexion SSH](/blog/linux_connexion_ssh/).
+
+![Raspberry Pi OS Lite depuis Imager](./img/raspberrypios_via_imager.gif)
+
+
 Fin du bavardage !!!
 
 ## Pré-requis
@@ -31,11 +37,14 @@ Pour une installation sur un PC, ou autre materiel vai une cles USB, un ecran et
 1. Récuperez l'image ISO [ici](https://www.debian.org/) en cliquant sur Téléchargement ppour recuperer la derniere image pour amd64.
 1. Suivre [mon tutoriel sur la création d'une clés USB Ventoy](/blog/ventoy_installation_update/)
 
-Pour une installation sur Raspberry Pi, il faut suivre mon tutoriel sur l'[installtion de Home Assistant sur Raspberry](/blog/ha_haos_installation/) en selectionnant `Raspberry Pi OS (Other)` puis `Raspberry Pi OS Lite (64-bit)`.
-
-![Raspberry Pi OS Lite depuis Imager](./img/raspberrypios_via_imager.gif)
-
 Pour installation en VM Proxmox, il vous faut :
 1. Récuperez l'image ISO [ici](https://www.debian.org/) en cliquant sur Téléchargement ppour recuperer la derniere image pour amd64.
-1. Suivre les étapes sur l'[article Proxmox](/blog/proxmox_installation/).
+1. Suivre les étapes sur l'[article Proxmox](/blog/proxmox_installation/) "Ajout de votre première VM"
+
+Passons a l'installation ;)
+
+## Installation
+Les etapes sont identique que vous souyez sur Proxmox ou directement sur votre materiel avec un ecran et un clavier.
+
+
 

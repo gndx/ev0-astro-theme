@@ -136,23 +136,45 @@ La première étape consiste à rapatrier l'image ISO d'installation sur notre P
 * * Sélectionnez `ISO Images` 
 * * Cliquez sur `Upload` et sélectionner votre image.
 Vous remarquerez qu'il est aussi possible de récupérer une image directement via son URL.
-![Ajouter une image ISO a Proxmox 8](proxmox_ajouter_image_iso.gif)
+![Ajouter une image ISO a Proxmox 8](./img/proxmox_ajouter_image_iso.gif)
 
 Maintenant que l'image est sur notre Proxmox, nous allons pouvoir créer une Machine Virtuelle.
 1. Cliquez sur le bouton `Create VM`,
 1. Onglet `General` : Donner un numéro a votre VM dans `VM ID` (facultatif) puis donnez un nom dans `Name`, (*Astuces : Dans mon VM ID, je mets les derniers chiffres de l'IP de la machine pour la retrouver d'un coup d'œil*)
+![Onglet général lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_general.png)
 1. Onglet `OS` : Dans `storage` sélectionnez `local` puis dans `ISO image` recherchez votre image Debian,
+![Onglet OS lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_os.png)
 1. Onglet `System` : Activez le Qemu Agent (facultatif) qui permet d'avoir la remonter de l'adresse IP si la Qemu Agent est installé dans la distribution (Sinon il peut être installé). `Add TPM` est utile pour une installation de Windows 10/11,
+![Onglet système lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_system.png)
 1. Onglet `Disks` : Laissez par défaut, ajuster l'espace `Disk size (GiB)` à la baisse si vous le souhaiter, car vous ne pourrez pas le baisser plus tard sans avoir de problème, par contre, il est possible de l'augmenter,
+![Onglet disques lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_disks.png)
 1. Onglet `CPU` : Adapter le nombre de `Cores` à votre CPU, mais aussi a vos besoins (Peut être modifié ultérieurement à la hausse comme à la baisse),
+![Onglet CPU lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_cpu.png)
 1. Onglet `Memory` : Idem que le CPU mis pour la mémoire RAM (vous pouvez booster pour l'installation puis diminuer la valeur ensuite),
+![Onglet mémoire lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_memory.png)
 1. Onglet `Network` : Vous pouvez laisser par défaut sauf si vous disposez de plusieurs interfaces et que vous savez ce que vous faites,
+![Onglet réseau lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_network.png)
 1. Onglet `Confirm` : Vous donne un récapitulatif de votre VM,
+![Onglet récapitulatif lors de la création d'une VM sous Proxmox](./img/proxmox_creation_vm_onglet_confirm.png)
 1. Cliquez sur `Finish` pour lancer la création.
-![Création de machine virtuelle avec Proxmox 8](./img/proxmox_creation_vm.gif)
 
 Votre première VM est créée, il vous faut la lancer et ouvrir la console pour suivre les étapes de l'[installation de l'OS Debian 12](/blog/linux_debian_12_installation) cette fois.
 ![Lancement d'une VM Proxmox](./img/proxmox_lancement_vm.gif)
+
+### Ajouter du hardware a votre VM
+Nous avons maintenant notre VM, mais nous aimerions lui connecter une clé Zigbee USB (marche avec d'autres choses). Nous allons donc lier la clé USB à notre VM et **seulement** à celle-ci.
+
+***NOTE :** Vous ne pouvez **attribuer** un matériel (USB, carte PCiE Coral ou autres) qu'à **une seule VM**, cela veut dire que votre clé Zigbee ne pourra être vu **QUE** sur la VM à laquelle vous l'avez associé.
+
+Donc, pour associer une clé USB à une VM, il faut que votre VM soit éteinte et :
+1. Cliquer sur la VM,
+1. Puis sur `Hardware`,
+1. Cliquez sur `Add` puis sélectionnez le périphérique que vous souhaitez ajouter,
+1. Pour une USB, sélectionnez `Use USB Vendor/Device ID` et sélectionnez votre clé USB (s'il y en a plusieurs).
+
+**NOTE :** `Vendor/Device ID` permet de sélectionner un USB par son ID qui est unique, ce qui permet de le changer de port USB sans conséquence. `USB Port` permet de sélectionner un USB par son emplacement sur votre matériel.
+
+![Associer un matériel a votre VM](./img/proxmox_ajouter_hardware.gif)
 
 ## Conclusion
 L'avantage d'un système de virtualisation est la possibilité d'utiliser l'ensemble des ressources de votre machine et non pas de la dédier à un seul service ou une seule tâche.
@@ -162,7 +184,7 @@ Sur le site de TTeck, il y a plein de VM ou de LXC installables à partir d'une 
 
 ***IMPORTANT :** Ce n'est pas parce qu'il est possible de tout mettre au même endroit qu'il faut forcément le faire, il y a des services plus ou moins importants qui nécessiteront peut-être d'avoir le propre matériel. À vous de juger.*
 
-Nous verrons dans un prochain article comment installer une VM et lui ajouter une clé USB, mais vous pouvez dès lors [installer Home Assistant](/blog/ha_haos_proxmox_installation/) sur votre Proxmox via une simple ligne de code. Merci TTeck ;).
+Vous pouvez dès maintenant [installer Home Assistant](/blog/ha_haos_proxmox_installation/) sur votre Proxmox via une simple ligne de code. Merci TTeck ;).
 
 ## Sources :
 * https://tteck.github.io/Proxmox/
