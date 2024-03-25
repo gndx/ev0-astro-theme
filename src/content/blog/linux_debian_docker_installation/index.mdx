@@ -1,0 +1,148 @@
+---
+draft: false
+title: Docker - Installation sur Debian 12
+description: "Comment installer Docker sur Debian 12 (mais marche avec Ubuntu) et découvrir la conteneurisation"
+pubDate: 03/24/2024
+heroImage: './Docker01.png'
+categories: 
+- Docker
+- Linux
+authors: 
+- mcfly
+tags:
+- Docker
+- Docker Compose
+- Debian
+- Ubuntu
+---
+
+**Tuto réalisé avec :**
+* Debian 12.50 sur VM Proxmox
+* Docker Version v25.0.4
+* Docker Compose v2.24.7
+
+Je ne vais pas m'étendre sur le sujet de ce qu'est Docker, mais pour faire simple, cela permet d'installer et de tester des applications sans devoir chambouler ou jouer sur la configuration brute du système tout en cloisonnant les applications les unes des autres.
+
+Voici deux citations de Wikipédia.
+***Note :** Docker est une plateforme permettant de lancer certaines applications dans des conteneurs logiciels. **Source :** [Wikipédia](https://fr.wikipedia.org/wiki/Docker_(logiciel))*
+
+***Note :** Docker est un outil qui peut empaqueter une application et ses dépendances dans un conteneur isolé, qui pourra être exécuté sur n'importe quel serveur. **Source :** [Wikipédia](https://fr.wikipedia.org/wiki/Docker_(logiciel))*
+
+
+Il existe deux versions de Docker :
+* Docker CE pour Community Edition (celle qui nous intéresse),
+* Docker EE pour Entreprise Edition.
+
+Je pars du principe que vous avez déjà [Debian 12 d'installé](./../linux_debian_12_installation/) sur votre machine et que vous savez vous [connectez en SSH](../ssh_connexion/) à serveur.
+
+
+>Si vous avez déja essayé ou installé Docker il faudra supprimer cette installation avec la commande ci-dessous.
+```
+apt-get remove docker docker-engine docker.io containerd runc
+```
+
+***Note :** Docker fournit un script de commodité à l'adresse https://get.docker.com/ pour installer Docker dans des environnements de développement de manière non interactive. Le script de commodité n'est pas recommandé pour les environnements de production. **Sources :** Docker*
+
+Vous l'avez compris, nous allons suivre la procédure officielle, car elle a l'avantage d'installer Docker Compose en même temps.
+
+Let's go !
+
+## Préparation du serveur.
+Commençons par mettre à jour notre installation (au cas où) et installer les dépendances. Après s'être connecté en `root` via la commande `su -` (ATTENTION le **-** est important), lancez les commandes suivantes.
+
+```bash
+apt update && apt upgrade
+apt install ca-certificates curl
+```
+
+Ajoutons la clé GPG de Docker *(Clé GPG, pour GnuPG, est une clé publique permettant aux utilisateurs de communiquer de manière sûre avec le dépôt.)*
+```
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+```
+
+Ajouter l'adresse du dépôt Docker dans les sources.
+```
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Passons à l'installation.
+
+## Installation de Docker.
+Mettons à jour la liste des paquets de notre distribution (vu que l'on vient de rajouter un dépôt).
+```
+apt update
+```
+
+Lancer l'installation avec la commande suivante.
+```
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Vérifions la version de Docker avec la commande `docker -v` et celle de Docker Compose avec `docker compose version`
+
+Ajouter votre utilisateur au groupe Docker `usermod -aG docker votre_user`, puis vérifiez avec la commande `id votre_user` qu'il y a bien le groupe docker qui apparait.
+
+```bash
+root@mcflypartages:~# id mcfly
+uid=1000(mcfly) gid=1000(mcfly) groups=1000(mcfly),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),108(netdev),998(docker)
+```
+
+Quitter l'utilisateur `root` pour reprendre votre utilisateur avec la commande `su votre_user` puis pointer vers le dossier de ce dernier avec la commande `cd ~`.
+
+Créer un dossier `docker` via la commande `mkdir docker`.
+
+C'est dans ce dernier que nous installerons nos applications Docker à l'aide de Docker Compose. Docker Compose est un outil permettant de définir et d'exécuter des applications multi-conteneurs depuis un fichier `.yaml`. Je trouve que c'est plus simple, plus parlant et plus facile à modifier ou sauvegarder pour le commun des mortels qu'une ligne de `docker run` à rallonge. De plus il permet de mettre dans un seul fichier toutes les applications nécessaires au fonctionnement de votre service (exemple : un CMS et sa base de donnée), mais nous verrons ça avec notre premier conteneur dans un futur article.
+
+
+## Quelques commandes et astuces sur Docker et Docker Compose.
+
+Cette partie est en construction et évoluera au fil du temps. Elle a pour but de réunir des commandes Docker et Docker Compose.
+
+### Docker.
+#### Les Conteneurs
+* Lister les conteneurs.
+`docker ps`
+* Lancer ou stopper un conteneur.
+`docker start nom_du_conteneur` ou `docker stop nom_du_conteneur`
+
+#### Les images
+* Lister les images et leurs versions.
+`docker image ls`
+* Supprimer une image.
+`docker image rm prorietaire_image/image_a_supprimer`
+* Supprimer tout ce qui est inutilisé
+`docker system prune`
+* Supprimer tout ce qui est arrêté et/ou inutilisé.
+`docker system prune -a`
+
+#### Les volumes
+* Lister les volumes
+`docker volume ls`
+* Supprimer les volumes
+`docker volume rm nom_du_volume`
+
+#### Les Networks
+### Docker Compose.
+* Lancer/Exécuter un `docker-compose.yaml`
+Dans le dossier contenant le fichier `docker-compose.yaml` lancer la commande `docker compose up -d`
+
+* Différence entre `ports:` et `expose:`.
+`ports:` permet de "lier" les ports de votre conteneur à votre serveur (donc accessible depuis l'extérieur). 
+`expose:` permet d’exposer les ports de votre conteneur aux autres conteneurs, sans les publier ni les lier aux ports hôtes, par exemple, vous pouvez communiquer avec un autre conteneur via `adresse_ip_interne:port` s'ils ne sont pas sur le même réseau.
+
+## Conclusion.
+Vous avez Docker et Docker Compose installés sur votre serveur et vous pouvez lancer des conteneurs soit en ligne de commande, soit via un fichier `docker-compose.yaml` que nous verrons plus tard.
+
+Nous verrons aussi comment installer Portainer, qui est une interface graphique pour Docker permettant de faire des `docker-compose` dans un autre article, arrêter/redémarrer/supprimer des conteneurs, créer des réseaux, des volumes, etc. Même si je préfère la façon ligne de commande de `docker-compose` qui offre plus de rapidité et de flexibilité.
+
+À très vite ;)
+
+
+#### Sources
+* [Site Officiel Docker](https://docs.docker.com/engine/install/debian/) : Documentation Officiel de Docker.
+* [Composerize](https://www.composerize.com/) : Permet de convertir les commandes docker en docker-compose.
