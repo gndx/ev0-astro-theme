@@ -1,0 +1,178 @@
+---
+draft: false
+title: "Home Assistant - Mon avis/expérience sur le choix du matériel et du type d'installation"
+description: "Perdu dans le choix du matériel ou du type d'installation pour vous lancer dans Home Assistant ? Je vais vous faire part de mon expérience pour essayer de vous orienter vers la solution réunissant simplicité et cout réduit."
+pubDate: 03/25/2024
+heroImage: './ha_installations_avis.png'
+categories: 
+- Home Assistant
+- Domotique
+authors: 
+- mcfly
+tags:
+- Installation
+- HAOS
+- HA supervised
+- Ha container
+- HA Core
+- Home Assistant Yellow
+- Home Assistant Green
+- Raspnerry Pi
+- NUC
+- NAS
+- VM
+---
+
+Je vois passer beaucoup de questions sur le matériel à choisir où le type d'installation pour commencer avec Home Assistant. Sachez qu'il n'y a pas de solution universelle, mais elle peut être orientée en fonction :
+* De vos connaissances en domotique, 
+* De vos connaissances en informatique, 
+* Du matériel déjà disponible,
+* Des objectifs que vous aimeriez atteindre avec votre domotique,
+* Du temps que vous souhaitez consacrer à la domotique elle-même,
+* Du temps que vous souhaitez consacrer à la gestion technique de celle-ci.
+
+Avant de vous faire des profils types, je vais vous parler des différents types d'installation existants pour Home Assistant.
+
+## Types d'installation
+Home Assistant se décline en plusieurs versions, quatre pour être exact :
+* ***HAOS** (Home Assistant Operating System) :* Installation complète de Home Assistant avec son système d'exploitation.
+* ***HA Container** :* Installation autonome de Home Assistant Core dans un conteneur (par exemple, Docker).
+* ***HA Core** :* Installation manuelle à l'aide de l'environnement virtuel Python.
+* ***HA Supervised** :* Installation manuelle de Home Assistant et du superviseur.
+
+Je ne vais pas rentrer dans les détails de ces types d'installations, mais **HAOS** est **clairement recommandé** pour les débutants et **HA Container** peut être utilisé pour ceux **connaissant** déjà le monde de la **conteneurisation**. Quant à **HA Core**, il est prévu pour les **utilisateurs avancés**.
+
+Retenez quand même que HAOS est un système d'exploitation avec Home Assistant d'installé, ce qui veut dire que les **mises à jour du système et de Home Assistant** se feront en un clic **via l'interface** de Home Assistant.
+Pour la version HA Container, c'est à vous de gérer le système d'exploitation ainsi que le système de conteneurisation (mise à jour, etc).
+La version HA Supervised permet d'avoir tous les avantages de Home Assistant OS, **MAIS** il faudra gérer le système accueillant son installation (cas de l'installation en [VM comme dans Proxmox](/blog/ha_haos_proxmox_installation/) ou sur un NAS).
+
+Je vous laisse le tableau officiel des différents types d'installation de Home Assistant ainsi que leurs avantages.
+
+![Tableau comparatif des types d'installation de Home Assistant](./img/tableau_types_installation_home_assistant.png)
+
+## Le Hardware
+Passons aux matériels recevant cette installation, qui peut être tout aussi compliqué. 
+
+### Raspberry Pi
+Le Raspberry a longtemps été la référence pour tous les systèmes domotique (Jeedom, Domoticz, Gladys, Home Assistant), mais ce dernier pose des problèmes de corruption de carte SD lié à la forte écriture des données sur cette dernière. Home Assistant a donc réglé le problème en pouvant déporter tout ce qui est lié aux données sur un support externe tout en gardant le système brut sur la carte micro SD pour conserver la rapidité d'exécution et de démarrage.
+
+Home Assistant est compatible Raspberry Pi 3, 4 et aussi 5..
+
+Pour une installation en production sans se poser de question, il faudra lui ajouter un support de stockage externe, une bonne alimentation, et pour le côté esthétique (et pour la poussière), un boitier. Tous ces achats supplémentaires font monter la facture à plus de 150 euros pour un Pi4 et plus de 200 euros pour un Pi5.
+
+De plus, vous serez limité dans le temps, car il est peu évolutif.
+
+**Mon avis** En 2024, le Raspberry implique trop d'investissement tout en limitant les possibles évolutions. Achat de la Raspberry Pi avec au moins 4 voir 8Go de RAM, l'alimentation, la carte Micro SD, un support SSD ou M.2 externe et d'un boitier (ou un boitier avec support M.2 ou SSD intégré) et parfois, une rallonge et un Hub pour alimenter le matériel USB afin qu'il puisse bénéficier d'une alimentation correcte.
+
+***Note :** Le Raspberry Pi 5 [Amazon(97€)](https://amzn.to/3U0aT7r), apportera quelques améliorations grâce à l'ajout d'un port PCi M.2 (en option [Amazon(17€)](https://amzn.to/3TMX7Vk) n'obligeant plus l'ajout d'un disque externe en USB et faisant disparaitre en natif les problèmes de carte Micro SD. Reste que son prix est relativement élevé pour un kit complet (entre 150/200€), alimentation, boitier (compatible avec le hat m.2), auquel on ajoutera le hat M.2 et le disque M.2*
+
+### Box Home Assistant
+*Quoi de mieux qu'une box créée pour et par Home Assistant*
+Home Assistant s'est mis à vendre ses propres machines à base d'Odroid pour le Home Assistant Blue (plus disponible) ou de Raspberry Pi au format CM pour le [Yellow](https://www.home-assistant.io/yellow) incluant aussi une puce Zigbee compatible Matter et le [Home Assistant Green](https://www.home-assistant.io/green).
+Ces machines peuvent être un bon point de départ, ~~mais ne se trouvent pas sur le marché français de manière officielle~~. La Green est disponible *en précommande* sur [Domadoo (99€)](https://www.domadoo.fr/fr/box-domotique/7046-nabu-casa-box-domotique-home-assistant-green-0794677011758.html?domid=66)
+
+### Odroid
+Home Assistant est aussi compatible avec les Odroid N2+, C4, M1 qui sont des alternatives aux Raspberry Pi, mais avec du stockage en NVME par défaut en plus d'autres options.
+
+### autres
+Home Assistant se veut compatible avec toutes sortes d'installation comme une installation sur des machines génériques x86/64bits [tutoriel ici](/blog/ha_haos_generic_x86-64_installation/), mais aussi des NUC, NAS (en conteneur ou en VM) ce qui vous permet vraiment de trouver chaussure à votre pied.
+
+## Les profils utilisateurs
+***Note :** Ces profils ont été établis par moi-même et n'engagent que moi et mon expérience. J'essaie de répondre à plusieurs cas de figure en me mettant à la place du débutant que j'ai été et à l'utilisateur bidouilleur que je suis, je ne suis aucunement un professionnel de l'informatique ou un geek acharné. Chacun devra donc faire en fonction de ses bagages*
+
+### Profil Débutant
+*Pour les débutants se lançant dans la domotique en partant de zéro ou utilisant actuellement les applications propriétaires voulant juste profiter de la domotique sans se prendre la tête avec la technique.*
+
+Pour ces personnes, je recommande l'utilisation de Home Assistant OS (HAOS) pour que vous puissiez vous concentrer sur la domotique et seulement sur celle-ci. Le matériel adéquat peut être une des solutions Home Assistant clé en main (Green, Yellow), un Raspberry, un Odroid, un NUC ou un mini PC (HP Elite Desk ou Lenovo).
+
+Si vous devez investir dans du matériel et que vous souhaitez faire évoluer votre domotique dans le futur avec de la vidéosurveillance par exemple, partez directement vers un mini PC, sinon prenez un NUC, un Odroid ou Raspberry (regarder d'occasion).
+
+#### Solution clé en main
+* HA Green/ Yellow*
+**Avantages**
+* Carte, alimentation, boitier et stockage intégré,
+* Faible consommation (moins de 10w),
+* Vous n'avez rien à faire, plug and play (je crois que le système est déjà installé),
+* Le Yellow intègre le Zigbee et Matter,
+* Faible encombrement,
+* Ventilation passive,
+* Gestion des mises à jour de Home Assistant et de l'OS depuis l'interface utilisateur de Home Assistant.
+
+**Inconvénients** 
+* Pas d'évolution possible,
+* ~~Indisponible en France.~~ La Green est disponible *en précommande* sur [Domadoo (99€)](https://www.domadoo.fr/fr/box-domotique/7046-nabu-casa-box-domotique-home-assistant-green-0794677011758.html?domid=66)
+* Vidéosurveillance limitée (utilisation de clé Coral USB possible),
+* Limitation dans l'utilisation des add-ons et/ou services (limitée par la mémoire RAM).
+
+#### Solution Raspberry, Odroid
+**Avantages**
+* Faible consommation (moins de 10w),
+* Installation facile ([Tutoriel ici](/blog/ha_haos_installation/)),
+* Gestion des mises à jour de Home Assistant et de l'OS depuis l'interface utilisateur de Home Assistant.
+* *Ventilation passive **ou** active.
+
+**Inconvénients**
+* Achat en sus du boitier, de l'alimentation, d'un disque externe et son boitier (pour certains),
+* Coût plus élevé,
+* Pas d'évolution possible,
+* Un peu plus encombrant (disque externe, Hub USB alimenté)
+* Vidéosurveillance limitée (Utilisation de clé Coral USB possible),
+* Limitation dans l'utilisation des add-ons et/ou services (limitée par la mémoire RAM).
+
+#### Solution NUC, Mini PC
+**Avantages**
+* Faible consommation (moins de 15w),
+* Installation facile ([Tutoriel ici](/blog/ha_haos_generic_x86-64_installation/)),
+* Gestion des mises à jour de Home Assistant et de l'OS depuis l'interface utilisateur de Home Assistant.
+* Évolution possible,
+* Puissance et mémoire bien plus grande,
+* Pas ou peu de limitation dans l'utilisation des add-ons et/ou services,
+* Vidéosurveillance (possibilité d'ajouter une clé Coral en PCie).
+* *Possibilité de passer sur une installation virtualisée (Proxmox) plus tard*
+
+**Inconvénients**
+* Matériel un peu plus encombrent (mais reste assez discret),
+* Ventilation souvent active,
+* Chargeur plus imposant.
+
+### Profil Intermédiaire
+Pour les personnes ayant déjà un peu de bagage informatique, mais débutantes en domotique et/ou Home Assistant. Souhaitant continuer à bidouiller en parallèle de leur version de production et voulant aussi maximiser l'utilisation de leur machine pour y héberger d'autres services non liés à la domotique.
+
+Pour cela, je leur recommande le passage sur un mini PC avec [Proxmox dessus](/blog/proxmox_installation/), permettant d'avoir une machine virtuelle dédiée à Home Assistant de production et de bidouiller sur une autre VM.
+
+#### Solution NUC, Mini PC avec Docker
+**Avantages**
+* Faible consommation (moins de 15w),
+* Installation de Home Assistant Container
+* Évolution possible,
+* Puissance et mémoire ajustable,
+* Hébergement d'autres services en docker.
+
+**Inconvénients**
+* Gestion des mises à jour du système à effectuer vous-même,
+* Gestion des mises à jour de Home Assistant à effectuer vous-même,
+* Pas de superviseur,
+* Gestion des Add-ons en externe (sous Docker par exemple, à vous de faire les liaisons)
+* Gestion des sauvegardes de Home Assistant en manuelle,
+* Vidéosurveillance en externe (possibilité d'ajouter une clé Coral en PCie),
+* Matériel un peu plus encombrent (mais reste assez discret),
+* Ventilation souvent active,
+* Chargeur plus imposant.
+
+#### Solution NAS
+**NAS DIY**
+
+J'ai un NAS DIY sous OpenMediaVault sur lequel il est possible d'installer des conteneurs docker. Pour ma part et pour optimiser ma consommation électrique, mon NAS DIY 4 baies (environ 40/50w) est éteint une grande majorité du temps et ne peut donc pas héberger ma solution domotique. 
+Je n'ai pas testé cette solution, mais je ne vois pas de problème pouvant empêcher cette possibilité.
+
+**NAS grand plublic** 
+
+Idem, je n'ai pas de NAS grand public chez moi, mais je sais que certaines gammes de Synology ou QNAP autorisent les VMs ou la conteneurisation, il est donc possible d'installer Home Assistant dans une de ces versions, cependant cela ajoute de la complexité que je ne peux évaluer personnellement, mais qui a déjà fait de nombreux retours sur les forums (gestion des clés USB par exemple).
+
+## Conclusion
+
+J'espère que cet article vous a éclairé un peu sur le matériel disponible, mais aussi sur les différents types d'installations de Home Assistant.
+
+J'aimerais juste que vous ayez en tête que si vous débutez en domotique allez vers la solution la plus simple techniquement, car sinon vous allez devoir apprendre plusieurs choses en même temps et perdre de l'énergie dans la gestion technique au lieu de la consacrer à comprendre et avancé dans la domotique. Il ne sera jamais trop tard pour changer techniquement une fois des bases solides en domotique acquises, parce que les sauvegardes de Home Assistant sont assez universelles.
+
+Pour ce qui concerne le fait de centraliser ou pas tous ces services au même endroit ou alors de mettre tous dans des VMs séparées, il y aurait possibilité d'en débattre pendant des longues heures. Retenez qu'il est plus facile de n'avoir qu'un seul système à gérer (mise à jour, etc) plutôt que d'en avoir plusieurs et de ne pas les tenir à jour.
