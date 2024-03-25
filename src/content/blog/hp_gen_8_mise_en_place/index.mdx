@@ -5,15 +5,16 @@ description: "Découvrons ensemble le MicoServeur HP Gen 8, la machine idéale p
 pubDate: 01/08/2024
 heroImage: './hp_proliant.webp'
 categories:
-- Auto Hebergement
+- HP Gen 8
 - Linux
 authors: 
 - mcfly
 tags:
-- HP Gen 8
 - OpenMediaVault
 - NAS
 - Proxmox
+- Debian
+- Ubuntu
 ---
 
 J'ai depuis quelques années, un NAS fait maison, qui au début était un PC sous Debian avec une configuration faite à la main, puis j'ai voulu réduire la place que prenait ce PC, j'ai donc acheté le boîtier [Fractal Design Node 804 (Amazon 135€)](https://amzn.to/48Lh5og) qui avait l'avantage d'avoir plusieurs emplacements pour disque dur. Le problème est que j'avais du matériel de PC de bureau à l'intérieur et la consommation était assez importante. J'ai donc décidé de revoir les données stockées puis j'ai pu descendre sur d'autres gammes de produits qui m'ont ensuite amené à découvrir le MicroServer HP Gen 8.
@@ -140,8 +141,9 @@ Ensuite, rendez-vous sur l'adresse IP de votre serveur (pas celle de l'ILO) et c
 
 ## Reinitialiser l'ILO
 *(facultatif)*
-**Arrive prochainement.**
+Il peut être intéressant de reset les paramètres iLO d'origine, surtout si l'ancien propriétaire ne vous a pas fourni les accès à jour. Cela vous permet de remettre les accès avec les paramètres présents à l'arrière du boitier sur une étiquette collée, mais aussi sur une étiquette volante.
 
+Pour le reset de l'iLO je vous invite à voir l'[article sur l'erreur iLO dégradé'](/blog/ilo_degraded/)
 ## Conclusion
 Vous avez, normalement, quelques bases pour vous amuser avec votre serveur.
 
