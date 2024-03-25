@@ -1,65 +1,79 @@
 ---
 draft: true
-title: Redmi Note 8 Pro (begonia) - Liberer le avec TWRP et une Rom personnalisé.
-description: "Description vide"
-pubDate: 02/12/2024
+title: Redmi Note 8 Pro (begonia) - Installer la ROM crDroid (Android 14) avec TWRP (BRP).
+description: "Nous allons voir comment installer la ROM crDroid sous Android 14 sur un Xiaomi Redmi Note 8 Pro pour lui donner une nouvelle jeunesse. Nous utiliserons BRP qui est plus ou moins un fork de TWRP qui n'est pas disponible pour ce smartphone."
+pubDate: 03/25/2024
 heroImage: './img/flatpak-linux-box.webp'
 categories: 
-- Linux
+- Android
 authors: 
 - mcfly
 tags:
-- tag
+- TWRP
+- Begonia
+- Xiaomi
+- Redmi
+- Note 8 Pro
 ---
+**Tuto réalisé avec :**
+* Xiaomi Redmi Note 8 Pro (Begonia) version `Global` v12.0.4.0 QGGEUXM (Android 10)
+* BRP3.5.2v3.1
+* crDroid ???
 
-## Mettre a jour son Xiaomi Redmi Note 8 Pro (begonia)
-Mettez a jour votre Redmi Note 8 Pro vers la versions v12.5 minimum (android 11) (la derniere version officielle de Xiaomi la 12.5.15.0.RGGEUXM, mais je n'ai pas réussie a passer au dessus de la v12.5.14.0)
 
-Pour ma part je suis parti de la v12.0.4.0 QGGEUXM (Android 10), 
-***Note :** C'est la roms Europe dite "Global" mais qui est replacé par la EEA depuis la version 12.0.6.0 aussi a destination de l'Europe.*
+J'ai récupéré un Xiaomi Redmi Note 8 Pro pour que je puisse le vider avant de le filer à quelqu'un, j'en ai profité pour le mettre à jour avec une ROM personnalisée qui permettra de supprimer toutes les pubs intrusives de Xiaomi et de le déconnecter de leurs clouds.
 
-Alors deux choix s'offre a vous :
-1. Jouer sur les régions pour récuperer de maniere officiellle les dernieres roms (recommandé)
-1. Récuperer les roms sur les lien ci dessous puis les installer depuis votre smartphone (elles seront verifiées avant d'etre installé).
-1. Récuperer les roms sur les lien ci dessous puis les installer via ADB.
+Ce smartphone m'a donné du fil à retordre, car la procédure classique via TWRP ne marche pas. TWRP n'est pas à jour pour ce smartphone. Heureusement, la [communauté XDA](https://xdaforums.com/) est toujours là.
+
+Passons à la pratique ! ;)
+
+Pour commencer, il va falloir mettre à jour votre smartphone vers la dernière version officiellement disponible.
+
+## Mettre à jour son Xiaomi Redmi Note 8 Pro (begonia)
+Mettez à jour votre Redmi Note 8 Pro vers la version v12.5 minimum (Android 11) (la dernière version officielle de Xiaomi la 12.5.15.0.RGGEUXM, mais je n'ai pas réussi à passer au-dessus de la v12.5.14.0)
+
+Pour ma part, je suis parti de la v12.0.4.0 QGGEUXM (Android 10), 
+***Note :** C'est la ROM Europe dite "Global" mais qui est remplacée par la EEA depuis la version 12.0.6.0 aussi à destination de l'Europe.*
+
+Alors deux choix s'offrent à vous :
+1. Jouer sur les régions pour récupérer de manière officielle les dernières roms (recommandé)
+1. Récupérer les roms sur les liens ci-dessous, puis les installer depuis votre smartphone (elles seront vérifiées avant d'être installées).
+1. Récupérer les roms sur les liens ci-dessous, puis les installer via ADB.
 
 ### Depuis le téléphone
-Pour mettre a jour directement depuis Xiaomi, il va falloir jouer avec les régions (Guyanne francaise, serbie, gréce, il faut essayer et redemarrer le smartphone a chauqe fois).
+Pour mettre à jour directement depuis Xiaomi, il va falloir jouer avec les régions (Guyane française, Serbie, Grèce, il faut essayer et redémarrer le smartphone à chaque fois).
 Rendez-vous dans les Paramètres supplémentaires `Paramètres -> Paramètres supplémentaires -> Région`
-![Changer de region sur MIUI](./img/miui_changer_region.gif)
+![Changer de région sur MIUI](./img/miui_changer_region.gif)
 
-***Note :** Je me suis donc arrété a la version 12.5.14 car je n'arrivais pas a voir la derniere 12.5.15. **Le pricipal c'est d'etre sur une version 12.5***
+***Note :** Je me suis donc arrêté à la version 12.5.14, car je n'arrivais pas à voir la dernière 12.5.15. **Le principal, c'est d'être sur une version 12.5***
 
 ### Depuis les liens
-Il va falloir récuperer la 12.0.6.0.QGGEUXM via ce lien https://xiaomifirmwareupdater.com/miui/begonia/stable%20beta/V12.0.6.0.QGGEUXM/ puis le coller dans votre téléphone.
+Il va falloir récupérer la 12.0.6.0.QGGEUXM via ce [lien](https://xiaomifirmwareupdater.com/miui/begonia/stable%20beta/V12.0.6.0.QGGEUXM/) puis la coller dans votre téléphone.
 
-Faite de meme avec la derniere version 12.5.15.0.RGGEUXM (2.4Go) recuperable ici https://xiaomifirmwareupdater.com/miui/begonia/stable/V12.5.15.0.RGGEUXM/
+Faites de même avec la dernière version 12.5.15.0.RGGEUXM (2.4Go) récupérable [ici](https://xiaomifirmwareupdater.com/miui/begonia/stable/V12.5.15.0.RGGEUXM/)
 
-***Note :** Cette méthode n'a pas marché chez moi, les roms ne passaient pas le check je me suis donc arrété a la version 12.5.14. Mais je n'avais pas de carte SIM dans le telephone, peut etre est-ce lié a ca. **Le pricipal c'est d'etre sur une version 12.5***
+***Note :** Cette méthode n'a pas marché chez moi, les roms ne passaient pas le check, je me suis donc arrêté à la version 12.5.14. Mais je n'avais pas de carte SIM dans le téléphone, peut-être est-ce lié à ça. **Le principal, c'est d'être sur une version 12.5***
 
-Ensuite, aller dans `Parametres -> A propos du téléphone` puis cliquer sur `Version MIUI` (carré image en haut a gauche)
-Une fois affiché, appuyer 7 fois sur le logo, un popup doit vous afficher `des fonctionnalites de mise a jour supplementaires sont disponnible`.
-![Activation des fonctionalités supplémentaires sur MIUI](./img/miui_activer_mise_a_jour_depuis_interface.gif)
-Cliquer maintenant sur les trois petits point en haut a droite puis `Selectionner une mise a jour a installer` selectionner le fichier telechargé precedemment (d'abord le v12.0.6.0) puis apres une verification il va l'installer et redemarrer.
-![Menu de mise a jour depuis l(interface MIUI)](./img/miui_menu_mise_a_jour_interface.png)
-
+Ensuite, allez dans `Parametres -> A propos du téléphone` puis cliquez sur `Version MIUI` (carré image en haut à gauche)
+Une fois affiché, appuyez sept fois sur le logo, un popup doit vous afficher : des fonctionnalités de mise à jour supplémentaires sont disponibles.
+![Activation des fonctionnalités supplémentaires sur MIUI](./img/miui_activer_mise_a_jour_depuis_interface.gif)
+Cliquez maintenant sur les trois petits points en haut à droite puis `Sélectionner une mise à jour a installer` sélectionner le fichier téléchargé précédemment (d'abord le v12.0.6.0) puis, après une vérification, il va l'installer et redémarrer.
+![Menu de mise à jour depuis l'(interface MIUI)](./img/miui_menu_mise_a_jour_interface.png)
 
 ### Installer TWRP
-
-1. Activez les options developpeur
+1. Activez les options développeur.
 ![Activation du mode développeur sur MIUI](./img/miui_activation_mode_developpeur.gif)
 Rendez-vous dans les options développeur `Paramètres -> Paramètres supplémentaires -> Options développeur`.
-1. Verifiez que le deverouillage oem est désacivé (doit etre grisé)
-1. Verifiez que Statut du déverrouillage Mi est bien `Déverrouillé`
+1. Vérifiez que le déverrouillage OEM est désactivé (doit être grisé)
+1. Vérifiez que le statut du déverrouillage Mi est bien `Déverrouillé`
 1. Activez le débogage USB
 ![Activation du débogage USB sur MIUI](./img/miui_activation_debug_usb.gif)
-1. Branhez votre smartphone a votre PC et validez le popup d'autorisation du debogage USB.
+1. Branchez votre smartphone à votre PC et validez le popup d'autorisation du débogage USB.
 
-Récuperer le fichier `fastboot-zip/MIUI12.5/BRP3.5.2v3.1-fastboot.zip` a cette adresse https://sourceforge.net/projects/begonianon-cfw/ et dézipper le pour récuperer le fichier `BRP3.5.2v3.1.img`
-Assurez vous d'avoir le fichier ZIP de la version de MUI installée sur votre smartphone (miui_BEGONIAEEAGlobal_V12.5.14.0.RGGEUXM_d0012c6e24_11.0.zip) qu'il faut déziper pour récuperer le fichier `vbmeta.img`
+Récupérez le fichier `fastboot-zip/MIUI12.5/BRP3.5.2v3.1-fastboot.zip` à [cette adresse](https://sourceforge.net/projects/begonianon-cfw/) et dézippez-lee pour récupérer le fichier `BRP3.5.2v3.1.img`
+Assurez-vous d'avoir le fichier ZIP de la version de MUI installée sur votre smartphone (miui_BEGONIAEEAGlobal_V12.5.14.0.RGGEUXM_d0012c6e24_11.0.zip) qu'il faut dézipper pour récupérer le fichier `vbmeta.img`
 
-Mintenant pour lancer les commandes suivantes il vous faut ADB et Fastboot sur votre machine
-I vous faut ADB et fastoot sur votre PC.
+Maintenant, pour lancer les commandes suivantes, il vous faut ADB et Fastboot sur votre machine.
 Pour Linux
 ```bash
 anthony@McFly-Bureau:~/Téléchargements/MiUnlockTool/platform-tools_r34.0.5-linux
@@ -67,7 +81,6 @@ anthony@McFly-Bureau:~/Téléchargements/MiUnlockTool/platform-tools_r34.0.5-lin
 Android Debug Bridge version 1.0.41
 Version 34.0.0-9570255
 Installed as /usr/lib/android-sdk/platform-tools/adb
-
 ```
 
 ```bash
@@ -75,13 +88,10 @@ anthony@McFly-Bureau:~/Téléchargements/MiUnlockTool/platform-tools_r34.0.5-lin
 /platform-tools$ fastboot --version
 fastboot version 34.0.5-10900879
 Installed as /usr/lib/android-sdk/platform-tools/fastboot
-
 ```
-Pour Windaub
 
-
-
-
+?????????????????????????????????????????????????????????????
+?????????????????????????????????????????????????????????????
  et récuperer le fichier 
 
 Dans le dossier platformtool????, copiez le fichier `vbmeta.img` (remplacez celui existant) et le fichier `BRP3.5.2v3.1.img` de votre version de MIUI et lancez les commandes suivantes dans un Terminal depuis le dossier Platformtools??????
