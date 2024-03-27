@@ -1,0 +1,204 @@
+---
+draft: true
+title: Portainer - Une interface graphique pour la gestion de vos conteneurs Docker
+description: ""
+pubDate: 03/27/2024
+heroImage: './Docker01.png'
+categories: 
+- Docker
+- Linux
+authors: 
+- mcfly
+tags:
+- Portainer
+- Docker
+- Docker Compose
+- Debian
+- Ubuntu
+---
+
+**Tuto réalisé avec :**
+* Debian 12.50 sur VM Proxmox
+* Docker Version v26.0.0
+* Docker Compose v2.25.0
+
+
+Portainer est une interface graphique pour gérer ses conteneurs Docker.
+Il permet de créer des containers, et d'utiliser des fichiers Docker-compose ou Kubernetes pour créer des stacks (ensemble de conteneurs). Nous verrons cela dans d'autres articles.
+
+Portainer BLABLBAMLABALMA
+
+PORTAINER AGENT BLMABLMABAMAHA
+
+# Installer Portainer et créez,controlez, supprimez vos conteneur Docker.
+
+>INFOS : Avant de passer a l'installation, sachez qu'il est possible de controler plusieurs instance (serveurs) Docker avec une seul installation de Portainer et l'[installation de Portainer Agent](/docker_portainer_agent_installation) sur les autres machines.
+
+## Installation de Portainer.
+Nous allons installer Portainer Entreprise Edition via un fichier `docker-compose.yaml` et ses variables d'environnement dans un fichier `.env`. Elle est gratuite, il suffit juste de créer un compte. Elle vous offre plusieurs avantages comme une pastiqlle de couleur vous indiquant si l'image de vos containeurs est a jour.
+
+* Connectez vous en SSH au serveur avec la commande `ssh votre_user@votre_ip_du_serveur` ou directement depuis [VSCode]LIEN VERS LARTICLE SUR VSCODE ET SSH (plus simple),
+* Se rendre dans le dossier `docker` `cd docker`(si vous avez suivi mon [article sur l'installation de docker sur Debian 12](/blog/linux_debian_docker_installation),
+* Créer un dossier `portainer` puis dans ce dernier un dossier `data` (`mkdir portainer portainer/data`)
+* Rendez vous dans le dossier `portainer` (`cd portainer`)
+* Créer un fichier nommé docker-compose (`nano docker-compose.yml`)
+* Coller le contenu suivant et sauvegarder avec `CTRL+X`:
+
+```yaml
+services:
+#  agent:
+#    ports:
+#      - '9001:9001'
+#    container_name: portainer_agent
+#    restart: always
+#    volumes:
+#      - '/var/run/docker.sock:/var/run/docker.sock'
+#      - '/var/lib/docker/volumes:/var/lib/docker/volumes'
+#    labels:
+#      - "diun.enable=true"
+#    image: 'portainer/agent:2.16.2'
+
+  portainer-ee:
+    container_name: portainer
+    image: portainer/portainer-ee:2.20.0
+    restart: always
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./data:/data
+    labels:
+      - "diun.enable=true"
+    networks:
+      - web
+      - portainer
+    ports:
+        - 8000:8000
+        - 9443:9443
+      
+networks:
+  portainer:
+    name: portainer
+  web:
+    name: web
+```
+
+```yml
+  portainer-ee:
+    container_name: portainer
+    restart: always
+    image: portainer/portainer-ee:2.20.0
+    ports:
+      - 8000:8000
+      - 9443:9443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/data
+    networks:
+      - portainer_net
+
+networks:
+  portainer_net:
+    name: portainer_net
+```
+* Lancer la commande `docker compose up -d` pour recuperer la derniere image du container et lancer le conteneur.
+
+## Premier lancement.
+Votre conteneur est lancé (vous pouvez verifier avec la commande `docker ps`), rendez vous sur `https://votre_adresse_ip:9443`.
+>En fonction de votre navigateur, il se peut qu'il vous informe que le site n'est pas securisé, c'est normale car nous nous connectons via une adresse IP sans un nom de domaine. Pas de panique nous verrons plus tard (dans un autre article) comment faire.
+
+![Portainer premiere connexion](./img/portainer_installation.png "Portainer premiere connexion")
+
+Dans cette fenetre :
+* Rentrer un nom d'utilisateur,
+* Un mot de passe **FORT**,
+* *Optionnel* Décocher *Allow collection of anonymous statistics*,
+* Cliquer sur `CREATE USER`.
+
+>Comme vous le voyez, il est possible de reinjecter une sauvegarde d'une precedente installation de portainer. Je vous indique [plus loin dans l'article comment faire une sauvegarde](#Sauvegarde de Portainer.).
+
+Dans la nouvelle fenetre.
+* Selectionner `Get Started`,
+![Portainer selection de l'envirronnement](./img/portainer_environment_wizard.png "Portainer selection de l'envirronnement")
+
+Vous arrivez maintenant sur la page d'accueil de Portainer.
+![Portainer Interface](./img/portainer_interface.png "Interface de Portainer")
+
+### Description de l'interface.
+
+**A FAIRE**
+
+## Passer en Business Edition.
+Avantage de la BE par rapport a la CE
+
+Le gros avantage de la BE c'est, l'affichage d'une pastille rouge ou vert vous indiquant
+### Comment avoir acces a la BE.
+Il faut simplement creer un compte pour beneficier de la BE.
+* Soit directement depuis le site de Portainer,
+* Soit directement depuis votre instance Portainer.
+![Upgrader Portainer vers Business Edition (ee)](./img/portainer_upgrade_ee.gif "Upgrader Portainer vers Business Edition (ee)")
+
+Une fois votre licence recu par mail, il vous suffit de refaire la meme manipulation mais en rentrant cette fois votrre licence au lieu de vous inscrire.
+
+>Vous n'avez pas besoin de changer l'image de votre `docker-compose.yml` même si vous stoppez et relancez le conteneur, il lancera la version Buisness Edition malgres la presence de l'image CE dans le fichier.
+
+>Si vous avez deja une cle de licence, vous pouvez aussi installer directement la version Business Edition en remplacant l'image dans votre `docker-compose.yml` par `image: portainer/portainer-ee:latest` (`ee` pour Enterprise Edition. Logique ;) !!!)
+
+Ce qui devrait donner ca.
+```yml
+services:
+  portainer-ce:
+    container_name: portainer
+    restart: always
+    image: portainer/portainer-ee:2.20.0
+    ports:
+      - 8000:8000
+      - 9443:9443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/data
+    networks:
+      - web
+
+networks:
+  web:
+    name: web
+```
+Biensur, il faut relancer la construction de l'image avec `docker compose up -d` mais ne vous inquietez pas vos donnés ne seront pas effacées.
+
+## Sauvegarde de Portainer.
+Faire une sauvegarde de portainer vous permet de le reinstaller rapidement a un autre endroit ou en cas de probleme.
+
+Pour recuperer la sauvegarde, dans le menu a gauche :
+* Cliquer sur `Settings`,
+* Aller en bas de la page dans "Backup configuration".
+![Portainer Sauvegarder votre conteneur](./img/portainer_backup.png)
+* *Optionnel* Activer la protection par mot de passe,
+* Cliquer sur `Download backup`
+
+Un fichier sous la forme `portainer-backup_2023-06-08_18-52-16.tar.gz` va se telecharger.
+
+>INFOS : Si vous avez la CE, seul "Download backup file" est disponible.
+
+## Mise a jour de Portainer.
+Si une mise a jour de portainer est disponible, vous en serez averti dans la page principale en bas du menu de gauche.
+
+* Connectez vous en SSH,
+* Arreter le conteneur `docker stop portainer`,
+* Supprimer le container `docker rm portainer` (vos données ne seront pas effacées),
+
+**Si vous avez utilisé le tag `latest` dans votre image** (`image: portainer/portainer-ce:latest`)
+* Supprimer l'image `docker image rm portainer/portainer-ce` ou `docker image rm portainer/portainer-ee`
+* Retourner dans votre dossier portainer et lancer la commande `docker compose up -d`.
+
+**Si vous avez utilisé le tag de version**
+* Aller dans le dossier de votre portainer (l'endroit ou est le fichier docker-compose.yaml)
+* Editer et modifier dans le `docker-compose.yaml` la version de votre image par la derniere disponible,
+* Enregistrer,
+* Lancer la commande `docker compose up -d`
+
+## Conclusion
+
+Vous avez à présent la possibilité de tester n'importe quelle application sans devoir toucher un seul fichier de votre système.
+
+### Sources
+* https://github.com/portainer/portainer/releases
+* https://docs.portainer.io/v/ce-2.6/start/install/server/docker/linux
