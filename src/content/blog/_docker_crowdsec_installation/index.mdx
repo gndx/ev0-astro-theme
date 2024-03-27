@@ -1,0 +1,228 @@
+---
+draft: true
+title: Crowdsec - ???
+description: ""
+pubDate: 03/26/2024
+heroImage: './swag_reverse_proxy.png'
+categories: 
+- Docker
+- Linux
+authors: 
+- mcfly
+tags:
+- swag
+- reverse proxy
+- fail2ban
+- crowdsec
+- authelia
+---
+
+**Tuto réalisé avec :**
+* HAOS 11.4, Core 204.1.2
+* Add-on : Zigstar 0.40
+* Matériels : [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) 
+
+
+### Installation de Crowdsec.
+**QUEST CE QUE C'EST**
+
+
+Dans le dossier `swag` :
+* créer un dossier `crowdsec` 
+* A l'interieur de ce dernier, deux dossiers nommés `crowdsec-db` et `crowdsec-config`
+* De retour dans le dossier `crowdsec`, créer un fichier `acquis.yaml` et ajouter ceci:
+```
+filenames:
+  - /var/log/nginx/*.log
+labels:
+  type: nginx
+```
+C'est le template d'acquisition pour la [collection nginx](https://hub.crowdsec.net/author/crowdsecurity/collections/nginx)
+
+Ajouter le containeur Crowdsec a notre docker `docker-compose.yaml` se trouvant dans le dossier `swag`
+```yaml
+  crowdsec:
+    container_name: crowdsec
+    image: crowdsecurity/crowdsec
+    restart: unless-stopped
+    environment:
+      - COLLECTIONS=crowdsecurity/nginx
+      - GID=$PGID
+    depends_on:
+      - swag
+    volumes:
+      - ./config/log/nginx:/var/log/nginx
+      - ./crowdsec/acquis.yaml:/etc/crowdsec/acquis.yaml
+      - ./crowdsec/crowdsec-db:/var/lib/crowdsec/data/
+      - ./crowdsec/crowdsec-config:/etc/crowdsec/
+    security_opt:
+      - no-new-privileges=true
+```
+
+On arrete le conteneur `swag` puis on relance la creation du conteneur. (Pour rappel `docker compose up -d`).
+Cela va permettre de recuperer l'image de crowdsec et l'installer.
+
+Garder les conteneurs swag et crowdsec demarrés.
+
+##### Creation du Bouncer.
+C'est quoi un bouncer ?
+
+????????
+
+Depuis le terminal, il faut lancer la commande suivante qui est un conteneur docker qui va s'executer, generer une cle puis se fermer.
+
+```bash
+docker exec -t crowdsec cscli bouncers add bouncer-swag
+```
+Résultat :
+```bash
+anthony@Docker:/docker/swag$ docker exec -t crowdsec cscli bouncers add bouncer-swag
+Api key for 'bouncer-swag':
+
+   0a93axxxxxxxxxxxxxxxxxxxxxx
+
+Please keep this key since you will not be able to retrieve it!
+```
+
+Retourner dans le `docker-compose.yaml` puis decommenter les lignes 
+```yaml
+      - DOCKER_MODS=linuxserver/mods:swag-crowdsec #|linuxserver/mods:swag-dbip #|linuxserver/mods:swag-dashboard #|linuxserver/mods:swag-maxmind
+      - CROWDSEC_API_KEY=$CROWDSEC_API_KEY ## Genere avec docker exec -t crowdsec cscli bouncers add bouncer-swag
+      - CROWDSEC_LAPI_URL=http://crowdsec:8080
+```
+
+Ajouter `CROWDSEC_API_KEY=` dans le fichier `.env` puis coller votre cle apres le `=`
+
+Stopper le conteneur `swag` et relancer sa creation (vous connaissez la commande maintenant).
+Logs (seulement la partie crowdsec):
+```
+**** Configuring CrowdSec nginx Bouncer ****
+**** Successfully configured CrowdSec nginx Bouncer v1.0.5 ****
+[mod-init] **** Installing all mod packages ****
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz
+(1/14) Installing libgomp (12.2.1_git20220924-r4)
+(2/14) Installing gettext-libs (0.21.1-r1)
+(3/14) Installing gettext (0.21.1-r1)
+(4/14) Installing luajit (2.1_p20210510-r3)
+(5/14) Installing lua-resty-http (0.16.1-r1)
+(6/14) Installing lua-sec (1.2.0-r1)
+(7/14) Installing lua5.1-libs (5.1.5-r11)
+(8/14) Installing lua5.1 (5.1.5-r11)
+(9/14) Installing lua5.1-socket (3.1.0-r0)
+(10/14) Installing lua5.1-sec (1.2.0-r1)
+(11/14) Installing lua5.1-cjson (2.1.0-r10)
+(12/14) Installing lua-resty-lrucache (0.13-r0)
+(13/14) Installing lua-resty-core (0.1.24-r0)
+(14/14) Installing nginx-mod-http-lua (1.22.1-r0)
+Executing busybox-1.35.0-r29.trigger
+OK: 212 MiB in 219 packages
+[custom-init] No custom files found, skipping...
+[ls.io-init] done.
+nginx: [error] [lua] crowdsec.lua:48: init(): error loading captcha plugin: no recaptcha site key provided, can't use recaptcha
+nginx: [alert] [lua] init_by_lua:8: [Crowdsec] Initialisation done
+Server ready
+```
+
+>l'erreur de captcha plugin est normale car nous l'utilisons pas. [Plus d'information (EN Off)](https://github.com/linuxserver/docker-mods/tree/swag-crowdsec#recaptcha-support-notes)ou [FR](https://www.forum-nas.fr/threads/tuto-installation-et-configuration-de-crowdsec-avec-le-reverse-proxy-swag.18327/post-118080). Cela permet a une IP bannie de pouvoir quand meme se connecter a votre site en entrant un Captcha.
+
+### Ajouter le blocage géographique.
+**BLABLABLABLA**
+
+Dans le `docker-compose.yaml`, 
+* decommenter et supprimer l'espace devant devant `|linuxserver/mods:swag-dbip`
+```yaml
+      - DOCKER_MODS=linuxserver/mods:swag-crowdsec|linuxserver/mods:swag-dbip #|linuxserver/mods:swag-dashboard #|linuxserver/mods:swag-maxmind
+```
+* Créer un dossier `geoip2db` dans le dossier `/swag/config/`,
+* Sauvegarder, Stopper puis recréer le conteneur.
+Logs:
+```
+**** Configuring CrowdSec nginx Bouncer ****
+Applying the dbip mod...
+Downloading GeoIP2 City database.
+Connecting to download.db-ip.com (104.26.5.15:443)
+saving to '/tmp/dbip-country-lite.mmdb.gz'
+dbip-country-lite.mm  17% |*****                           |  639k  0:00:04 ETA
+**** Successfully configured CrowdSec nginx Bouncer v1.0.5 ****
+[mod-init] **** Installing all mod packages ****
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz
+dbip-country-lite.mm  39% |************                    | 1470k  0:00:03 ETA
+dbip-country-lite.mm  63% |********************            | 2334k  0:00:01 ETA
+dbip-country-lite.mm  89% |****************************    | 3294k  0:00:00 ETA
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz
+dbip-country-lite.mm 100% |********************************| 3700k  0:00:00 ETA
+'/tmp/dbip-country-lite.mmdb.gz' saved
+Applied the dbip mod
+(1/14) Installing libgomp (12.2.1_git20220924-r4)
+(2/14) Installing gettext-libs (0.21.1-r1)
+(3/14) Installing gettext (0.21.1-r1)
+(4/14) Installing luajit (2.1_p20210510-r3)
+(5/14) Installing lua-resty-http (0.16.1-r1)
+(6/14) Installing lua-sec (1.2.0-r1)
+(7/14) Installing lua5.1-libs (5.1.5-r11)
+(8/14) Installing lua5.1 (5.1.5-r11)
+(9/14) Installing lua5.1-socket (3.1.0-r0)
+(10/14) Installing lua5.1-sec (1.2.0-r1)
+(11/14) Installing lua5.1-cjson (2.1.0-r10)
+(12/14) Installing lua-resty-lrucache (0.13-r0)
+(13/14) Installing lua-resty-core (0.1.24-r0)
+(14/14) Installing nginx-mod-http-lua (1.22.1-r0)
+Executing busybox-1.35.0-r29.trigger
+OK: 212 MiB in 219 packages
+[custom-init] No custom files found, skipping...
+[ls.io-init] done.
+nginx: [error] [lua] crowdsec.lua:48: init(): error loading captcha plugin: no recaptcha site key provided, can't use recaptcha
+nginx: [alert] [lua] init_by_lua:8: [Crowdsec] Initialisation done
+Server ready
+```
+Ensuite editer le fichier `/swag/config/nginx/nginx.conf` pour ajouter `include /config/nginx/dbip.conf;` dans la section `http`.
+
+Résulat:
+```
+http {
+    include /config/nginx/dbip.conf;
+    # Includes mapping of file name extensions to MIME types of responses
+    # and defines the default type.
+```
+
+Dans le fichier `/swag/config/nginx/dbip.conf` modifier $geo-whitelist et $geo-blacklist en vous aidant de [Wikipedia](https://en.wikipedia.org/wiki/ISO_3166-2)
+
+>Le fichier a été créé avec docker-compose, il se peut qu'il appartienne a l'utilisateur `root` donc soit vous le modifiez en passant par l'utilisateur `root` soit vous lui changez les droits. Dans les deux cas il faudra se connecter en root avec la commande `su root` puis soit `nano /chemindufichier/dbip.conf` ou alors `chown votre_user:votre_user /chemin_vers_fichier/dbip.conf`
+ 
+`$geo-whitelist` n'accepte rien, sauf les pays listés, `$geo-blacklist` accepte tout, sauf les pays listés.
+
+Il vous faudra ajouter dans chaque fichier `proxy-confs` (configuration de vos services) les deux ligne ci-dessous avant `location /`:
+```
+    if ($lan-ip = yes) { set $geo-whitelist yes; }
+    if ($geo-whitelist = no) { return 404; }
+```
+
+Exemple:
+```
+ server {
+     listen 443 ssl;
+     listen [::]:443 ssl;
+
+     server_name some-app.*;
+     include /config/nginx/ssl.conf;
+     client_max_body_size 0;
+
+     if ($lan-ip = yes) { set $geo-whitelist yes; }
+     if ($geo-whitelist = no) { return 404; }
+
+     location / {
+[...]
+```
+A vous de bloquer les pays qui ne doivent pas se connecter votre serveur.
+
+
+### Redirection d'une application indisponible ou inexistante.
+Si vous souhaitez rediriger vos visiteurs (ou les sniffeurs) plutot que leur afficher une page d'erreur, il faut ajouter dans chaque fichier `proxy-conf` :
+* `error_page 404 500 502 503 504 = @fallback;` apres la ligne `proxy_pass $upstream_proto://$upstream_app:$upstream_port;`
+* et avant le dernier `}` de votre fichier :
+```
+    location @fallback {
+        rewrite ^/(.*) https://page_erreur.ndd.fr/?;
+    }
+```
