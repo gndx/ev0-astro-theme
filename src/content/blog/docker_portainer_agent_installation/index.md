@@ -1,9 +1,9 @@
 ---
-draft: true
+draft: false
 title: Portainer Agent - Contrôler tous vos serveurs Docker depuis une seule instance Portainer
 description: "Portainer Agent s'installe sur vos serveurs, permettant à ces derniers, une liaison avec votre instance Portainer afin de tout contrôler depuis une seule instance."
 pubDate: 03/27/2024
-heroImage: './portainer.png'
+heroImage: './portainer_agent.png'
 categories: 
 - Docker
 - Linux
