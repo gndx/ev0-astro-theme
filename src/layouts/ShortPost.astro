@@ -1,5 +1,5 @@
 ---
-import Base from "@layouts/Base.astro";
+import BaseShort from "@layouts/BaseShort.astro";
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
 import CalendarIcon from "@icons/CalendarIcon.astro";
@@ -8,15 +8,15 @@ import { Image } from "astro:assets";
 import config from "@config/config.json";
 import { slugify } from "@utils/slug";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"short">["data"];
 
 const { title, description, pubDate, heroImage, categories, tags } =
   Astro.props;
 ---
 
-<Base meta_title={title} description={description} image={heroImage} blogpost>
+<BaseShort meta_title={title} description={description} image={heroImage} shortpost>
   <article>
-    <div class=" grid justify-items-center rounded-lg block overflow-hidden mb-8">
+    <div class="grid justify-items-center rounded-lg block overflow-hidden mb-8">
       {
         heroImage && (
           <figure class="w-auto h-auto md:h-[480px] object-cover">
@@ -57,7 +57,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
         <div class="mx-3 flex items-center flex-wrap font-medium mt-2">
           <CategoryIcon />
           {
-            categories?.slice(0, 1).map((category) => (
+            categories?.slice(0, 4).map((category) => (
               <a
                 href={`/categories/${slugify(category)}`}
                 class="mr-2 hover:text-primary font-medium capitalize"
@@ -85,4 +85,4 @@ const { title, description, pubDate, heroImage, categories, tags } =
       }
     </div>
   </article>
-</Base>
+</BaseShort>

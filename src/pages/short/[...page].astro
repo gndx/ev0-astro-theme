@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@layouts/Base.astro";
+import Shorts from "@layouts/Shorts.astro";
+import Pagination from "@components/Pagination.astro";
+import config from "@config/config.json";
+
+export async function getStaticPaths({ paginate }) {
+  const allShorts = await getCollection('short', ({ data }) => import.meta.env.PROD ? data.draft !== true : true);
+  const formattedShorts = allShorts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  return paginate(formattedShorts, {
+    pageSize: config.site.pageSize,
+  });
+}
+const { page } = Astro.props;
+---
+
+<Base meta_title="Actualités, Astuces, Articles courts">
+  <h1 class="text-2xl md:text-3xl font-bold mb-8">Actualités, Astuces, Articles courts</h1>
+  <Shorts shorts={page.data} />
+  <Pagination
+    length={page.lastPage}
+    currentUrl={page.url.current}
+    currentPage={page.currentPage}
+    firstUrl={`/short/`}
+    prevUrl={page.url.prev}
+    nextUrl={page.url.next}
+    lastUrl={`/short/${page.lastPage}`}
+  />
+</Base>

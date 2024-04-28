@@ -1,10 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import HomePagination from "@components/HomePagination.astro";
+import ShortsPagination from "@components//ShortsPagination.astro";
 import Base from "@layouts/Base.astro";
 import Posts from "@layouts/Posts.astro";
+import Shorts from "@layouts/Shorts.astro";
 
-
+const shorts = ( await getCollection('short', ({ data }) => import.meta.env.PROD ? data.draft !== true : true)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
 const posts = ( await getCollection('blog', ({ data }) => import.meta.env.PROD ? data.draft !== true : true)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -12,6 +16,9 @@ const posts = ( await getCollection('blog', ({ data }) => import.meta.env.PROD ?
 ---
 
 <Base>
+  <Shorts shorts={shorts} />
+  <ShortsPagination />
+  <div class="mb-4"></div>
   <Posts posts={posts} />
   <HomePagination />
 </Base>
