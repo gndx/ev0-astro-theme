@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import FormattedDate from "@components/FormattedDate.astro";
+import config from "@config/config.json";
+import { slugify } from "@utils/slug";
+
+const { shorts } = Astro.props;
+
+type ShortType = {
+  id: string;
+  slug: string;
+  body: string;
+  collection: string;
+  data: {
+    draft: boolean;
+    title: string;
+    description: string;
+    heroImage: string;
+    pubDate: Date;
+    categories: string[];
+    tags: string[];
+    autors: string[];
+  };
+};
+---
+<div>
+  <h2 class="mt-3 text-xl text-center font-semibold leading-6 text-zinc-900 dark:text-white group-hover:text-zinc-600">News, Actus, Shorts</h2>
+</div>
+<div
+  class="mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4"
+>
+  {
+    shorts?.slice(0, 4).map((short: ShortType) => (
+      <a class="shadow-md hover:shadow-xl" href={`/short/${short.slug}/`}>
+        <div class="p-6 lg:text-start">
+          <h3 class="mt-3 text-l font-semibold leading-6 text-zinc-900 dark:text-white group-hover:text-zinc-600">
+              {short.data.title}
+          </h3>
+          <p class="mt-5 line-clamp-3 text-sm leading-6 text-zinc-600">{short.data.description}</p>
+        </div>
+      </a>
+
+    ))
+  }
+</div>

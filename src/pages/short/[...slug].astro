@@ -1,0 +1,23 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+
+import ShortPost from "@layouts/ShortPost.astro";
+import Code from "@components/mdx/Code.astro";
+
+
+export async function getStaticPaths() {
+  const shorts = await getCollection("short");
+  return shorts.map((short) => ({
+    params: { slug: short.slug },
+    props: short,
+  }));
+}
+type Props = CollectionEntry<"short">;
+
+const short = Astro.props;
+const { Content } = await short.render();
+---
+
+<ShortPost {...short.data}>
+  <Content components={{ pre: Code }} />
+</ShortPost>
