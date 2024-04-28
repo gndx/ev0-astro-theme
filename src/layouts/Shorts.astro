@@ -32,8 +32,8 @@ type ShortType = {
   {
     shorts?.slice(0, 4).map((short: ShortType) => (
       <a class="shadow-md hover:shadow-xl" href={`/short/${short.slug}/`}>
-        <div class="p-6 lg:text-start">
-          <h3 class="mt-3 text-l font-semibold leading-6 text-zinc-900 dark:text-white group-hover:text-zinc-600">
+        <div class="p-1 lg:text-start">
+          <h3 class="mt-3 mt-md-1 text-l font-semibold leading-6 text-zinc-900 dark:text-white group-hover:text-zinc-600">
               {short.data.title}
           </h3>
           <p class="mt-5 line-clamp-3 text-sm leading-6 text-zinc-600">{short.data.description}</p>
