@@ -3,6 +3,7 @@ draft: false
 title: "Domotique - Introduction et comparatif des solutions les plus utilisées"
 description: "Pourquoi j'ai choisi Home Assistant et mon avis sur les trois principales solutions domotique utilisées en France."
 pubDate: 12/05/2023
+upDate: 04/29/2024
 heroImage: './smart-home-2769210_1920.jpg'
 categories: 
 - Domotique
@@ -25,6 +26,8 @@ Ayant essayé trois (presque quatre) des solutions domotiques les plus connues d
 Bien-sur les goûts et les couleurs étant propres à chacun, **ce n'est que mon avis**, libre a chacun de penser ce qu'il veut ou de tester toutes les **solutions** pour voir celle **qui** lui **convient** le mieux.
 
 Je vais essayer d'être entièrement objectif et donc par transparence avec vous, je suis resté environ **un an** sur [**Jeedom**](https://www.jeedom.com/fr/), **six mois** sur [**Domoticz**](https://www.domoticz.com/) et je suis **depuis 2020** sur [**Home Assistant**](https://www.home-assistant.io/).
+
+Depuis le début de l'année 2024, j'ai voulu tester Gladys Assistant, une solution domotique made in France et je peux vous dire que j'ai été très bluffé par la simplicité de prise en main, que ce soit des intégrations ou des automatisations (scènes). Son interface moderne et intuitive fait de cette solution, selon moi, la plus adaptée à un public débutant et conviendra à 90% des personnes non-geek pour une domotique simple et épurée. J'ai fait un article de présentation [ici](/blog/gladys_assistant_intro/).
 
 ## Posons les bases
 
@@ -143,19 +146,54 @@ Il semblerait que, depuis la version 2023.1, une amélioration de l'interface so
 
 ---
 
+### Gladys Assistant
+
+>![Interface de GladysAssistant](./img/gladysassistant.webp)
+
+**Open-source :** Oui / Gratuit
+**App Mobile :** Oui / Gratuite
+**Intégrations / Add-ons :** Gratuit dans sa grande majorité avec une option payante sécurisant l'accès de l'extérieur, ajoutant les assistants vocaux, la sauvegarde automatique en chiffré, l'intégration avec ChatGPT et d'autres options.
+
+Début 2024, j'ai voulu tester Gladys Assistant, que j'avais déjà essayé dans le passé, mais trop de code encore à l'époque. Je peux vous dire que j'ai vraiment été surpris. Certes, elle a moins d'intégrations disponibles que Home Assistant, mais elle est d'une grande simplicité à prendre en main, que ce soit dans l'ajout d'une intégration, dans la création de scènes (automatisations) ou alors dans la gestion de l'interface. J'en ai même fait un [article introductif](/blog/gladys_assistant_intro/) tellement je suis convaincu qu'elle suffit amplement à l'utilisateur, débutant ou non, cherchant une solution domotique simple, stable et efficace sans avoir besoin de coder quoi que ce soit.
+
+* Intégrations **simples à installer**,
+* Une **documentation exemplaire et très complète** en français et en anglais.
+* Une seule **interface**, complètement **Responsive**,
+* Pas d'application mobile, car c'est une application web progressive (PWA),
+* Une communauté [internationale](https://en-community.gladysassistant.com/) et [francophone](https://community.gladysassistant.com/),
+* Des **développeurs** internationaux et francophones,
+* L'utilisation de technologies et de langages actuels et reconnus (NodeJS, Docker) permettant l'ajout de **nouvelles intégrations**.
+* Des mises à jour continues,
+* L'utilisation de services connus et reconnus au lieu de réinventer la roue,
+* Pleins d'autres choses encore...
+
+Voici quelques liens :
+* [Site Officiel de Home Assistant](https://gladysassistant.com/)
+* [Lien de la communauté Francophone](https://community.gladysassistant.com/)
+* [Une formation complète en partant de zéro de qualité](https://formation.gladysassistant.com/gladys-starter-pack-2024/25ut8)
+---
+
+Contrairement à son principal concurrent (Home Assistant), Gladys Assistant met l'utilisateur en avant en travaillant d'abord sur l'utilisation plutôt que sur la technique, ce qui lui permet d'être très facile à prendre en main, même pour des grands débutants. Il y a certes moins d'intégrations, mais elles sont complètement intégrées dans l'interface et ne nécessitent, pour la plupart, aucun réglage.
+
+Je trouve que c'est ce qui permet d'avoir rapidement un beau rendu et une domotique rapidement opérationnelle et stable.
+
+Si vous débutez en domotique, je vous invite vraiment à l'essayer.
+
+Il existe un abonnement **facultatif** en deux versions vous permettant de vous simplifier et de sécuriser l'accès depuis l'extérieur, d'intégrer les assistants vocaux Alexa et Google et de stocker une sauvegarde chiffrée de manière automatique et journalière . D'autres services comme ChatGPT permettant de discuter avec votre domotique dans un langage humain sont aussi présents. Ce n'est **aucunement obligatoire**.
+---
+
 ### Home Assistant
 
 ![Interface de Home Assistant](./img/home-assistant.webp)
 
 **Open-source :** Oui / Gratuit
 **App Mobile :** Oui / Gratuite
-**Intégrations / Add-ons :** Tous est gratuit
-
+**Intégrations / Add-ons :** Tous est gratuit avec une option payante facilitant l'accès de l'extérieur et l'ajout des assistants vocaux.
 Home Assistant est la solution en place chez moi depuis 2020, **sans aucune envie de la remplacer**.
 
 Pour la petite histoire, j'avais déjà entendu parler de Home Assistant lors de mes recherches sur la domotique à ses débuts, mais son côté international sans sources françaises était un frein pour moi. Un autre de ses problèmes (à l'époque) était le recours à l'utilisation de ligne de code pour le configurer. Il n'était pas très "User Friendly", il fallait être "barbu" pour l'utiliser.
 
-Mais **depuis 2020**, tout ceci a bien changé, permettant maintenant de ne **plus** avoir recours à la **ligne de code** pour l'utilisation de M et Mme TOUTLEMONDE, en voici un petit résumé :
+Mais **depuis 2020**, tout ceci a bien changé, permettant maintenant de limiter le recours à la **ligne de code** pour l'utilisation de M et Mme TOUTLEMONDE, en voici un petit résumé :
 
 * La grande majorité des intégrations sont **configurables depuis l'interface utilisateur**,
 * Une **documentation très complète, dans un langage simple et pédagogique** (En anglais, mais peut être traduite facilement par [Deepl](https://www.deepl.com/translator)),
@@ -177,7 +215,7 @@ Voici quelques liens :
 
 On peut penser que je ne suis pas très objectif sur ce choix, mais ce sont des points que j'avais déjà remarqués avant de lancer [HACF, la communauté francophone](https://hacf.fr).
 
->Vous l'avez compris, je pense que c'est **la solution domotique** du moment. Elle est complètement évolutive, avec plus de 1800 intégrations disponibles nativement. Les plus grandes et plus petites marques sont déjà intégrables via des passerelles prioritaires ou universelles. Il y a du développement continu avec la totalité des add-ons/intégrations accessibles en open-source, ce qui la rend perenne.
+>Vous l'avez compris, je pense que c'est **la solution domotique** du moment pour les geek et non débutant en domotique. Elle est complètement évolutive, avec plus de 1900 intégrations disponibles nativement. Les plus grandes et plus petites marques sont déjà intégrables via des passerelles prioritaires ou universelles. Il y a du développement continu avec la totalité des add-ons/intégrations accessibles en open-source, ce qui la rend perenne.
 
 En 2023, Home Assistant s'est donné un objectif de réussir à intégrer un assistant vocal complètement local et ça, c'est une très bonne nouvelle pour une domotique libre, sans cloud et commandable à la voix.
 
@@ -186,10 +224,6 @@ En 2023, Home Assistant s'est donné un objectif de réussir à intégrer un ass
 
 ## Conclusion
 
-Il n'y a pas de surprise, mon choix et ma **recommandation** vont vers **Home Assistant**.
+Il n'y a pas de surprise, mes choix et ma **recommandation** vont vers **Home Assistant**.
 
-Vous trouverez donc des articles domotique largement orientés Home Assistant, mais mes anciens articles sur Jeedom ou Domoticz pourraient revenir dans une catégorie archive, si le temps me le permet.
-
->Pour information, j'ai aussi testé, très peu de temps certes, la solution française [GladysAssistant](https://gladysassistant.com/fr/) qui nécessitait aussi beaucoup de configuration manuelle à l'époque. 
->Il semble que cela ait changé, même si je pense que nous allons avoir le même problème que Jeedom avec une solution quasi francophone, mais sans pression des "professionnel", donc surement moins évolutive que Home Assistant, mais sûrement suffisante pour certains.
->![Interface de GladysAssistant](./img/gladysassistant.webp)
+Vous trouverez donc des articles sur la domotique largement orientés Home Assistant et Gladys Assistant, mais mes anciens articles sur Jeedom ou Domoticz pourraient revenir dans une catégorie archive, si le temps me le permet.

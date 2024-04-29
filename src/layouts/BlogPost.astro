@@ -7,10 +7,11 @@ import CategoryIcon from "@icons/CategoryIcon.astro";
 import { Image } from "astro:assets";
 import config from "@config/config.json";
 import { slugify } from "@utils/slug";
+import AffiliateLink from "@components/AffiliateLink.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, heroImage, categories, tags } =
+const { title, description, pubDate, heroImage, categories, tags, affiliateLink } =
   Astro.props;
 ---
 
@@ -70,6 +71,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
       </div>
     </div>
     <div class="prose prose-green prose-md md:prose-lg min-w-full">
+      {affiliateLink && <AffiliateLink />}
       <slot />
     </div>
     <div class="mt-8">
