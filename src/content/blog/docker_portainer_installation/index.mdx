@@ -16,6 +16,8 @@ tags:
 - Debian
 - Ubuntu
 ---
+import Alert from "@components/mdx/Alert.astro";
+
 **Tuto réalisé avec :**
 * Debian 12.50 sur VM Proxmox
 * Docker Version v26.0.0
@@ -33,7 +35,7 @@ Pour un utilisateur lambda comme nous, la Community Edition est largement suffis
 
 Un des avantages pour nous, les utilisateurs lambda, c'est l'affichage d'une pastille verte ou rouge devant le conteneur, indiquant si celui-ci est à jour ou pas. Pour le reste, c'est plus orienté pro.
 
-***Astuces :** Dans un prochain article, je vais vous parler de [Portainer Agent](/blog/docker_portainer_agent_installation) qui vous permet depuis une seule instance Portainer d'en contrôler plusieurs. Dans ce cas, vous n'utiliserez toujours qu'un seul nœud Portainer et donc la limite des trois nœuds ne vous impacte plus.*
+<Alert type="info"> Dans un prochain article, je vais vous parler de [Portainer Agent](/blog/docker_portainer_agent_installation) qui vous permet depuis une seule instance Portainer d'en contrôler plusieurs. Dans ce cas, vous n'utiliserez toujours qu'un seul nœud Portainer et donc la limite des trois nœuds ne vous impacte plus.</Alert>
 
 Je pars toujours d'une installation de [Debian 12](/blog/linux_debian_12_installation/), puis de [Docker](/blog/linux_debian_docker_installation/) en suivant mes articles.
 
@@ -70,7 +72,7 @@ networks:
 ## Premier lancement.
 Votre conteneur est lancé (vous pouvez vérifier avec la commande `docker ps`), rendez-vous sur `https://ip_serveur:9443`.
 
-***Note :** En fonction de votre navigateur, il se peut qu'il vous informe que le site n'est pas sécurisé, c'est normale, car nous nous connectons via une adresse IP et non un nom de domaine.*
+<Alert type="info">En fonction de votre navigateur, il se peut qu'il vous informe que le site n'est pas sécurisé, c'est normale, car nous nous connectons via une adresse IP et non un nom de domaine.</Alert>
 
 ![Première connexion à Portainer](./img/portainer_installation.png)
 
@@ -80,7 +82,7 @@ Dans cette fenêtre :
 * *Optionnel* Décochez *Allow collection of anonymous statistics*,
 * Cliquez sur `CREATE USER`.
 
-***Note :** Comme vous le voyez, il est possible de réinjecter une sauvegarde d'une précédente installation de Portainer. Je vous indique plus loin dans l'article comment faire une sauvegarde.*
+<Alert type="info">Comme vous le voyez, il est possible de réinjecter une sauvegarde d'une précédente installation de Portainer. Je vous indique plus loin dans l'article comment faire une sauvegarde.</Alert>
 
 Dans la nouvelle fenêtre.
 * Sélectionnez `Get Started`,
@@ -109,7 +111,7 @@ Il faut simplement créer un compte pour bénéficier de la BE.
 
 Une fois votre licence reçu par mail, il vous suffit de refaire la même manipulation, mais en rentrant cette fois votre licence au lieu de vous inscrire.
 
-***Note :** Vous n'avez pas besoin de changer l'image de votre `docker-compose.yml`, même si vous stoppez et relancez le conteneur, il lancera la version Buisness Edition malgré la présence de l'image CE dans le fichier.*
+<Alert type="info">Vous n'avez pas besoin de changer l'image de votre `docker-compose.yml`, même si vous stoppez et relancez le conteneur, il lancera la version Buisness Edition malgré la présence de l'image CE dans le fichier.</Alert>
 
 Si vous souhaitez quand même changer l'image dans le Docker Compose vous devriez avoir ça.
 ```yml
@@ -145,12 +147,12 @@ Pour récupérer la sauvegarde, dans le menu à gauche :
 
 Un fichier sous la forme `portainer-backup_2023-06-08_18-52-16.tar.gz` va se télécharger.
 
-***Note :** En Comunity Edition, seul `Download backup file` est disponible.*
+<Alert type="info">En Comunity Edition, seul `Download backup file` est disponible.</Alert>
 
 ## Mise à jour de Portainer.
 Quand une nouvelle version de Portainer est disponible, vous en serez averti dans la page principale en bas à gauche.
 
-***Note :** Pas le choix de passer en ligne de commande, car depuis l'interface de Portainer, vous ne pouvez pas gérer Portainer, logique)*
+<Alert type="info">Pas le choix de passer en ligne de commande, car depuis l'interface de Portainer, vous ne pouvez pas gérer Portainer, logique)</Alert>
 
 1. Connectez-vous en SSH,
 1. Arrêtez le conteneur `docker stop portainer`,

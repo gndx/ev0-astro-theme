@@ -18,11 +18,13 @@ tags:
 affiliateLink: True
 ---
 
+import Alert from "@components/mdx/Alert.astro";
+
 **Tuto réalisé avec :**
 * HAOS 11.5,
 * Matériels : HP EliteDesk G3 800 ([Amazon (124€)](https://amzn.to/3UDJWa0)) et un Dell OptiPlex 3050 ([Amazon OptiPlmex 7040 (139€)](https://amzn.to/3HZNjRa))
 
-***Note :** Cet article est en partie une traduction issue de la procédure officielle que vous pouvez trouver [ici](https://www.home-assistant.io/installation/#install-home-assistant-on-x86-64-machines), réalisée avec un HP EliteDesk 800 G3 qui est l'appareil faisant tourner mon Home Assistant dans une VM avec Proxmox comme détaillé dans [cet article](https://mcflypartages.fr/blog/ha_haos_proxmox_installation/).*
+<Alert type="info">Cet article est en partie une traduction issue de la procédure officielle que vous pouvez trouver [ici](https://www.home-assistant.io/installation/#install-home-assistant-on-x86-64-machines), réalisée avec un HP EliteDesk 800 G3 qui est l'appareil faisant tourner mon Home Assistant dans une VM avec Proxmox comme détaillé dans [cet article](https://mcflypartages.fr/blog/ha_haos_proxmox_installation/).</Alert>
 
 **Pourquoi cet article si je n'utilise pas ce type d'installation ?**
 Comme expliqué dans l'article sur le choix du matériel pour installer Home Assistant (en cours), je trouve que le Raspberry revient, en 2024, relativement cher s'il faut ajouter l'achat d'une carte SD, d'une Alimentation, d'un boitier, mais aussi disgracieux en lui ajoutant un disque dur SSD ou M2 avec son boitier, et surement un Hub USB pour alimenter tous ses périphériques. De plus, l'évolution de ce dernier est impossible, il faudra acheter du nouveau matériel et ses accessoires (si changement).
@@ -89,10 +91,10 @@ Pour écrire l'image HAOS sur le support de stockage de votre matériel, il exis
 * **Méthode 1 :** La plus facile si vous avez un support de stockage amovible (SSD, M.2 et bien sûr un boitier externe pouvant l'accueillir),
 * **Méthode 2 :** Pour les systèmes avec le support de stockage soudé.
 
-***NOTE :** Home Assistant annonce la méthode **2** (attention, j'ai inversé les numéros par rapport à l'article officiel), comme étant la plus simple, personnellement, je préfère la **1**, car elle enlève une étape, mais je vous expose les deux méthodes pour couvrir le plus possible de cas.*
+<Alert type="info">Home Assistant annonce la méthode **2** (attention, j'ai inversé les numéros par rapport à l'article officiel), comme étant la plus simple, personnellement, je préfère la **1**, car elle enlève une étape, mais je vous expose les deux méthodes pour couvrir le plus possible de cas.</Alert>
 
 ### Méthode 1 : Installation de HAOS directement sur le support de stockage
-***ATTENTION :** Cela signifie que vous perdrez toutes les données ainsi que le système d'exploitation précédemment installé.*
+<Alert type="danger">Cela signifie que vous perdrez toutes les données ainsi que le système d'exploitation précédemment installé.</Alert>
 
 **Matériels nécessaires :**
 * Un lecteur de disque SSD externe (SATA vers USB) ([Amazon (9€)](https://amzn.to/49a9Yq7)),
@@ -105,7 +107,7 @@ Pour écrire l'image HAOS sur le support de stockage de votre matériel, il exis
 1. Récupérez l'image de Home Assistant OS [ici](https://github.com/home-assistant/operating-system/releases) (idéale pour les connexions ADSL) en prenant celle nommée `haos_generic-x86-64-11.5.img.xz` à la date de l'écriture de l'article,
 1. Dans Balena Etcher, sélectionnez l'image téléchargée précédemment, le disque de stockage et cliquez sur `Flash`.
 
-***NOTE :** Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher, privilégiez donc la récupération de l'OS avant la copie sur votre support*
+<Alert type="info">Home Assistant signale qu'il peut y avoir des problèmes en passant par la copie depuis l'URL avec Balena Etcher, privilégiez donc la récupération de l'OS avant la copie sur votre support</Alert>
 
 Une fois la copie réussie, réinstallez le support de stockage dans votre ordinateur, branchez un câble Ethernet connecté au réseau, puis démarrez.
 
@@ -113,7 +115,7 @@ Dans le navigateur de votre système de bureau, dans quelques minutes, vous pour
 
 ![Démarrage de Home Assistant](./img/ecran_demarrage_home_assistant.png)
 
-***NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
+<Alert type="info">Vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur</Alert>
 
 
 ### Méthode 2 : Installation de HAOS depuis un live d'Ubuntu
@@ -146,7 +148,7 @@ Une fois le live lancé :
 
 Une fois la copie terminée, éteignez votre PC, débranchez la clé USB puis redémarrez.
 
-***NOTE :** vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur*
+<Alert type="info">Vérifiez que vous avez sélectionné le démarrage sur le bon support de stockage s'il y en a plusieurs. Sur HP, <kbd>F9</kbd> au démarrage puis sélectionnez votre disque dur</Alert>
 
 Dans le navigateur de votre système de bureau, dans quelques minutes, vous pourrez accéder à votre nouveau Home Assistant à l'adresse `homeassistant.local:8123`, `homeassistant:8123` ou `http://X.X.X.X:8123` (remplacez X.X.X.X par l'adresse IP de votre Generic x86-64).
 

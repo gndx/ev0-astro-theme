@@ -17,6 +17,7 @@ tags:
 - Ventoy
 - USB Bootable
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 Marre de passer son temps à effacer votre clé USB pour y copier un nouvel OS et perdre du temps à chaque test ou installation d'OS ? Avec [Ventoy](https://www.ventoy.net/), c'est fini. Vous créez la clé une fois et ensuite un simple copier-coller de votre ou vos OS sur la clé et c'est prêt.
 
@@ -46,7 +47,7 @@ Donc, vous récupérez l'archive `ventoy-1.0.96-linux.tar.gz`, puis dans le doss
 ```bash
 sudo bash Ventoy2Disk.sh -i /dev/sdd #a remplacer par votre chemin sans le numero derriere.
 ```
-**ATTENTION :** Ceci supprimera toutes les données présentes sur la clé USB, il vous demande par deux fois de confirmer.
+<Alert type="danger">Ceci supprimera toutes les données présentes sur la clé USB, il vous demande par deux fois de confirmer.</Alert>
 
 ![Terminal de l'installation de Ventoy sur Ubuntu](./img/ventoy_installation.png)
 

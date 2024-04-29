@@ -5,6 +5,12 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      colors: {
+        'success': '#06764b',
+        'danger': '#c0151d',
+        'warning': '#a05b08',
+        'info': '#1d5cb0',
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

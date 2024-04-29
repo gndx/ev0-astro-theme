@@ -15,8 +15,7 @@ tags:
 - Debian
 - Passthrough
 ---
-
----
+import Alert from "@components/mdx/Alert.astro";
 
 *Proxmox Virtual Environnement est une solution de virtualisation libre (licence AGPLv3) basée sur l'hyperviseur Linux KVM, et offre aussi une solution de conteneurs avec LXC. Elle propose un support payant.
 Elle est fournie avec un packaging par Proxmox Server Solutions GmbH.*
@@ -48,7 +47,7 @@ Il faut aussi activer, depuis le bios, la/les options de virtualisation.
 Par exemple :
 **HP Elite Desk 800 G3 :** 
 Appuyez plusieurs fois sur <kbd>F10</kbd> au démarrage pour accéder au Bios, puis dans `Advanced` cocher les cases `Virtualization Technology (VTx)` et `Virtualization Technology for Directed I/O (VTd)`.
-** Sur Dell OptiPlex 3050 :**
+**Sur Dell OptiPlex 3050 :**
 Appuyez plusieurs fois sur <kbd>F2</kbd> au démarrage puis dans la page qui s'affiche rendez-vous dans `Virtualization -> Virtualization` puis activez `Enable Intel Virtualization Technology` et pareil pour `Virtualization -> VT for Direct I/O` pour activez `Enable VT for Direct I/O`.
 * Ensuite, cliquez sur `Apply` puis `Exit`.
 
@@ -164,7 +163,7 @@ Votre première VM est créée, il vous faut la lancer et ouvrir la console pour
 ### Ajouter du hardware a votre VM
 Nous avons maintenant notre VM, mais nous aimerions lui connecter une clé Zigbee USB (marche avec d'autres choses). Nous allons donc lier la clé USB à notre VM et **seulement** à celle-ci.
 
-***NOTE :** Vous ne pouvez **attribuer** un matériel (USB, carte PCiE Coral ou autres) qu'à **une seule VM**, cela veut dire que votre clé Zigbee ne pourra être vu **QUE** sur la VM à laquelle vous l'avez associé.
+<Alert type="info">Vous ne pouvez **attribuer** un matériel (USB, carte PCiE Coral ou autres) qu'à **une seule VM**, cela veut dire que votre clé Zigbee ne pourra être vu **QUE** sur la VM à laquelle vous l'avez associé.</Alert>
 
 Donc, pour associer une clé USB à une VM, il faut que votre VM soit éteinte et :
 1. Cliquer sur la VM,
@@ -172,7 +171,7 @@ Donc, pour associer une clé USB à une VM, il faut que votre VM soit éteinte e
 1. Cliquez sur `Add` puis sélectionnez le périphérique que vous souhaitez ajouter,
 1. Pour une USB, sélectionnez `Use USB Vendor/Device ID` et sélectionnez votre clé USB (s'il y en a plusieurs).
 
-**NOTE :** `Vendor/Device ID` permet de sélectionner un USB par son ID qui est unique, ce qui permet de le changer de port USB sans conséquence. `USB Port` permet de sélectionner un USB par son emplacement sur votre matériel.
+<Alert type="info">`Vendor/Device ID` permet de sélectionner un USB par son ID qui est unique, ce qui permet de le changer de port USB sans conséquence. `USB Port` permet de sélectionner un USB par son emplacement sur votre matériel.</Alert>
 
 ![Associer un matériel a votre VM](./img/proxmox_ajouter_hardware.gif)
 
@@ -182,7 +181,7 @@ De plus, les sauvegardes et la restauration sont simplifiées, et vous pouvez me
 
 Sur le site de TTeck, il y a plein de VM ou de LXC installables à partir d'une simple ligne de commande, alors n'hésitez pas à y jeter un œil, tous les scripts sont consultables sur son GitHub si vous souhaitez vérifier les actions effectuées.
 
-***IMPORTANT :** Ce n'est pas parce qu'il est possible de tout mettre au même endroit qu'il faut forcément le faire, il y a des services plus ou moins importants qui nécessiteront peut-être d'avoir le propre matériel. À vous de juger.*
+<Alert type="warning">Ce n'est pas parce qu'il est possible de tout mettre au même endroit qu'il faut forcément le faire, il y a des services plus ou moins importants qui nécessiteront peut-être d'avoir le propre matériel. À vous de juger.</Alert>
 
 Vous pouvez dès maintenant [installer Home Assistant](/blog/ha_haos_proxmox_installation/) sur votre Proxmox via une simple ligne de code. Merci TTeck ;).
 

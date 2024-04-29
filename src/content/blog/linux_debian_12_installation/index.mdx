@@ -13,6 +13,7 @@ tags:
 - Debian 12
 - serveur
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 **Tuto réalisé avec :**
 * Proxmox 8.1.4 (facultatif),
@@ -62,9 +63,9 @@ C'est au tour des comptes et des mots de passe de l'utilisateur root et du vôtr
 ![Choix du login de votre utilisateur](./img/debian_intallation_utilisateur_login.png)
 1. Prochaine étape, le partitionnement des disques en choisissant `Assisté - utiliser un disque entier`, ensuite, on sélectionne le disque ou le système sera installé puis on choisit le schéma de partitionnement, dans mon cas `Tout dans une seule partition`. On finira par une double confirmation
 
-***Note :** avec ou sans LVM, chiffre ou pas, à vous de voir (plus d'[info sur LVM](https://doc.ubuntu-fr.org/lvm)) *(Personnellement, je n'utilise pas le LVM, car je ne retouche pas les partitions système derrière, mais peut-être que pour le chiffrement ça peut être intéressant, je ne me suis jamais penché sur la question)*.
+<Alert type="info">Avec ou sans LVM, chiffre ou pas, à vous de voir (plus d'[info sur LVM](https://doc.ubuntu-fr.org/lvm)) *(Personnellement, je n'utilise pas le LVM, car je ne retouche pas les partitions système derrière, mais peut-être que pour le chiffrement ça peut être intéressant, je ne me suis jamais penché sur la question).</Alert>
 
-***ATTENTION :** tout ce qui est dessus sera supprimé, alors ne vous trompez pas de disque si vous en avez plusieurs. *
+<Alert type="danger">tout ce qui est dessus sera supprimé, alors ne vous trompez pas de disque si vous en avez plusieurs.</Alert>
 
 ![Partitionnement assisté du disque](./img/debian_intallation_disque_partitionnement_assiste.png)
 ![Choix du disque à partitionner](./img/debian_intallation_disque_selection.png)
@@ -84,7 +85,7 @@ C'est au tour des comptes et des mots de passe de l'utilisateur root et du vôtr
 
 1. Installation du GRUB sur le disque principal et fin de l'installation.
 
-***Note :** Qu'est-ce que le GRUB ? C'est un logiciel permettant de charger un système d'exploitation. Il pourra amorcer lui-même des systèmes compatibles avec la norme POSIX (GNU/Linux, *BSD, Mac OS, etc.) ou enchaîner vers un autre chargeur d’amorçage pour les autres systèmes. **Sources :** [Doc Ubuntu](https://doc.ubuntu-fr.org/grub-pc)*
+<Alert type="info">Qu'est-ce que le GRUB ? C'est un logiciel permettant de charger un système d'exploitation. Il pourra amorcer lui-même des systèmes compatibles avec la norme POSIX (GNU/Linux, *BSD, Mac OS, etc.) ou enchaîner vers un autre chargeur d’amorçage pour les autres systèmes. **Sources :** [Doc Ubuntu](https://doc.ubuntu-fr.org/grub-pc)</Alert>
 ![Installation du GRUB](./img/debian_intallation_grub.png)
 ![Choix du disque pour l'installation du GRUB](./img/debian_intallation_grub_disque.png)
 ![Fin de l'installation](./img/debian_intallation_terminee.png)

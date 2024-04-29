@@ -14,6 +14,7 @@ tags:
 - Reset ilo
 affiliateLink: True
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 **Tuto réalisé avec :**
 * iLO Firmware : V2.82
@@ -41,7 +42,7 @@ Dans le menu `Information -> Diagnostics`.
 
 Voyons ensemble quelques pistes pour essayer de retrouver un iLO complètement fonctionnel et réinstaller l'application Intelligent Provisioning de HP permettant l'accès au HPE Smart Storage Administrator.
 
-***NOTE :** Si c'est la puce iLO qui est défectueuse, cette procédure ne changera rien.*
+<Alert type="info">Si c'est la puce iLO qui est défectueuse, cette procédure ne changera rien.</Alert>
 
 Passons à la pratique !
 
@@ -112,7 +113,7 @@ Une fois récupéré (5.8Go) :
 
 Il devrait démarrer sur l'image du Service Pack Proliant Gen 8.1.
 
-***Note :** S'il ne démarre pas sur le disque, vous pouvez toujours forcer le démarrage en sélectionnant <kbd>F11</kbd> (Boot menu) sur le dashbord de chargement HP.*
+<Alert type="info">S'il ne démarre pas sur le disque, vous pouvez toujours forcer le démarrage en sélectionnant <kbd>F11</kbd> (Boot menu) sur le dashbord de chargement HP.</Alert>
 
 Une fois démarré, lors de la première fenêtre, sélectionnez `Interactive Firmware Update Version Gen 8.1`
 ![Sélection entre automatique ou interactive firmware update](./img/spp_interactive_firmware_update.png)

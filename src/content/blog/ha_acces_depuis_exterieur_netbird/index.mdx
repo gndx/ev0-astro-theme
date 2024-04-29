@@ -16,6 +16,7 @@ tags:
 - Netbird
 - remote
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 **Tuto réalisé avec :**
 * HAOS 12.0, Core 2024.3.0, Supervisor 2024.03.0
@@ -141,7 +142,7 @@ Une fois confirmé, le `Journal` de l'add-on se met à jour comme ceci :
 2024-03-13T11:12:03+01:00 INFO client/internal/acl/manager.go:52: ACL rules processed in: 224.225µs, total rules count: 0
 ```
 
-***Note :** Remarquez l'adresse IP 100.81.118.229 qui est celle de votre instance Home Assistant depuis NetBird.*
+<Alert type="info"> Remarquez l'adresse IP 100.81.118.229 qui est celle de votre instance Home Assistant depuis NetBird.</Alert>
 
 Vous pouvez vérifier dans votre [tableau de bord Netbird](https://app.netbird.io/peers) que votre Home Assistant apparait bien et vous avez de nouveau l'adresse IP de votre instance (ici : 100.81.118.229).
 ![Vérification de l'ajout de Home Assistant au tableau de bord de NetBird](./img/netbird_tableau_de_bord_verification.png)
@@ -153,7 +154,7 @@ Pour se connecter, il suffit de cliquer sur le logo au milieu de l'écran et il 
 Vous pouvez vérifier que votre smartphone est bien connecté depuis le [tableau de bord Netbird](https://app.netbird.io/peers) comme nous l'avons fait précédemment.
 
 Ouvrez l'application mobile Home Assistant, puis dans `Paramètres -> Application Companion -> Servers & Devices` cliquez sur votre Maison et changer l'adresse IP externe par celle donnée par NetBird `http://100.81.118.229:8123`. 
-***Note :** Ne pas mettre de https, car c'est comme si vous vous connectiez depuis chez vous, et **n'oubliez pas** le **:8123** à la fin.
+<Alert type="info"> Ne pas mettre de https, car c'est comme si vous vous connectiez depuis chez vous, et **n'oubliez pas** le **:8123** à la fin.</Alert>
 
 Vous pouvez dupliquer cette section sur tous les appareils devant accéder à Home Assistant depuis l'extérieur.
 

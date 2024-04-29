@@ -14,6 +14,8 @@ tags:
 - duckdns
 ---
 
+import Alert from "@components/mdx/Alert.astro";
+
 **Tuto réalisé avec :**
 * HAOS 12.0, Core 2024.3.0, Supervisor 2024.02.1
 * Add-on : DuckDNS 1.15.0
@@ -27,7 +29,7 @@ Nous allons voir ensemble comment donner rapidement un accès depuis l'extérieu
 DuckDNS va vous permettre d’obtenir simplement et gratuitement un **sous domaine** DuckDNS (exemple : mcflydomo.duckdns.org) qui sera relié via l'add-on DuckDNS installé sur votre Home Assistant et permettra d’associer votre adresse IP publique au domaine DuckDNS (même si elle change).
 Par contre, il faudra ouvrir un port sur votre Box/Routeur pour rediriger les demandes de l'extérieur vers votre instance Home Assistant.
 
-***ATTENTION :** Cette solution n'est pas la plus sécurisée, car elle nécessite d'ouvrir un port sur votre Box/Routeur ce qui est une porte d’entrée pour des attaques potentielles. **Je vous la suggère uniquement parce qu'elle est assez simple à mettre en œuvre et elle vous permet d'avoir un nom de domaine gratuit. Je vais vous proposer prochainement un autre article sur une méthode bien plus sécurisée, mais ne permettant pas l'utilisation des assistants vocaux grand public.***
+<Alert type="danger"> Cette solution n'est pas la plus sécurisée, car elle nécessite d'ouvrir un port sur votre Box/Routeur ce qui est une porte d’entrée pour des attaques potentielles. **Je vous la suggère uniquement parce qu'elle est assez simple à mettre en œuvre et elle vous permet d'avoir un nom de domaine gratuit**. Je vais vous proposer prochainement un autre article sur une méthode bien plus sécurisée, mais ne permettant pas l'utilisation des assistants vocaux grand public.</Alert>
 
 ## Prérequis
 Avant de configurer Home Assistant, vous devez :
@@ -116,8 +118,9 @@ OK + Requesting certificate...
  + Done!
 ```
 
-***Note :** En cas d'erreur, vérifier que le domaine n'est pas vide ou basculer en mode `yaml` en cliquant sur les `...` en haut à droite.*
-*Voici ma configuration en mode `YAML`*
+<Alert type="info"> En cas d'erreur, vérifier que le domaine n'est pas vide ou basculer en mode `yaml` en cliquant sur les `...` en haut à droite.</Alert>
+
+Voici ma configuration en mode `YAML`
 ```yaml
 domains:
   - mcflydomo.duckdns.org
@@ -149,7 +152,7 @@ Essayez de vous connecter avec votre domaine nouvellement créé `https://mcflyd
 
 ![Vérification du bon fonctionnement de l'accès extérieur depuis l'adresse DuckDNS](./img/duckdns_acces_exterieur.png)
 
-**Note :** Si vous n'arrivez pas à accéder à votre instance depuis l'extérieur, essayez depuis votre mobile en 4G, sinon reconnectez-vous en local via l'adresse `http**S**://votre_ip:8123`.
+<Alert type="info"> Si vous n'arrivez pas à accéder à votre instance depuis l'extérieur, essayez depuis votre mobile en 4G, sinon reconnectez-vous en local via l'adresse `http**S**://votre_ip:8123`.</Alert>
 
 Il vous faut modifier l'adresse externe de votre Home Assistant sur votre application mobile pour profiter de votre nouvel accès extérieur.
 

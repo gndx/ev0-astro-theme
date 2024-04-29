@@ -17,6 +17,8 @@ tags:
 - Débutants
 ---
 
+import Alert from "@components/mdx/Alert.astro";
+
 Nous voyons fleurir dans le commerce, depuis quelques années, une multitude d'**appareils connectés** vendus pour nous **faciliter la vie** (surtout nous rendre plus fainéants)
 
 Cela fait maintenant plus de cinq ans que j'ai mis le pied dedans et il y a du bon et du moins bon. Malheureusement, ce n'**est pas** forcément les **solutions** qui ont **pignon sur rue** qui sont les **meilleures**, voire complètement l'inverse.
@@ -109,12 +111,12 @@ Dernier point, l'application payante, qui était encore très buguée, il y a qu
 
 [Site Officiel de Jeedom](https://jeedom.fr)
 
-**Si vous souhaitez économiser de l'argent et ne pas perdre de temps avant un changement de solution, je ne vous la recommande pas.**
+<Alert type="warning">Si vous souhaitez économiser de l'argent et ne pas perdre de temps avant un changement de solution, je ne vous la recommande pas.</Alert>
 
 _Un grand nombre de personnes quittent Jeedom pour une autre solution, mais très peu, voire aucunes, ne font l'inverse._
 _Beaucoup restent, car ils ont passé tellement de temps sur leurs automatisatons et tableaux de bord, que basculer sur une autre solution demanderait trop de travail._
 
-**Si vous partez de zéro, ne commencez pas par Jeedom.**
+<Alert type="info">Si vous partez de zéro, ne commencez pas par Jeedom.</Alert>
 
 ---
 
@@ -140,7 +142,7 @@ Ses principaux atouts sont sa "**vraie gratuité**" (seule l'application mobile 
 
 ---
 
-_Je pense que ce n'est pas une solution vraiment accessible au grand public, il faudra quand même mettre les mains dans du code._
+<Alert type="info">Je pense que ce n'est pas une solution vraiment accessible au grand public, il faudra quand même mettre les mains dans du code.</Alert>
 
 Il semblerait que, depuis la version 2023.1, une amélioration de l'interface soit apparue. À vous de tester.
 
@@ -177,9 +179,10 @@ Contrairement à son principal concurrent (Home Assistant), Gladys Assistant met
 
 Je trouve que c'est ce qui permet d'avoir rapidement un beau rendu et une domotique rapidement opérationnelle et stable.
 
-Si vous débutez en domotique, je vous invite vraiment à l'essayer.
+<Alert type="success">Si vous débutez en domotique, je vous invite vraiment à l'essayer.</Alert>
 
 Il existe un abonnement **facultatif** en deux versions vous permettant de vous simplifier et de sécuriser l'accès depuis l'extérieur, d'intégrer les assistants vocaux Alexa et Google et de stocker une sauvegarde chiffrée de manière automatique et journalière . D'autres services comme ChatGPT permettant de discuter avec votre domotique dans un langage humain sont aussi présents. Ce n'est **aucunement obligatoire**.
+
 ---
 
 ### Home Assistant
@@ -215,15 +218,15 @@ Voici quelques liens :
 
 On peut penser que je ne suis pas très objectif sur ce choix, mais ce sont des points que j'avais déjà remarqués avant de lancer [HACF, la communauté francophone](https://hacf.fr).
 
->Vous l'avez compris, je pense que c'est **la solution domotique** du moment pour les geek et non débutant en domotique. Elle est complètement évolutive, avec plus de 1900 intégrations disponibles nativement. Les plus grandes et plus petites marques sont déjà intégrables via des passerelles prioritaires ou universelles. Il y a du développement continu avec la totalité des add-ons/intégrations accessibles en open-source, ce qui la rend perenne.
+Vous l'avez compris, je pense que c'est **la solution domotique** du moment pour les geek et non débutant en domotique. Elle est complètement évolutive, avec plus de 1900 intégrations disponibles nativement. Les plus grandes et plus petites marques sont déjà intégrables via des passerelles prioritaires ou universelles. Il y a du développement continu avec la totalité des add-ons/intégrations accessibles en open-source, ce qui la rend perenne.
 
 En 2023, Home Assistant s'est donné un objectif de réussir à intégrer un assistant vocal complètement local et ça, c'est une très bonne nouvelle pour une domotique libre, sans cloud et commandable à la voix.
 
->Il existe un abonnement **facultatif** vous permettant de simplifier la mise en place d'un accès depuis l'extérieur et l'intégration simplifiée des assistants vocaux Alexa et Google. Ce n'est **aucunement obligatoire** et il n'est **pas difficile de le faire sans l'abonnement**.
+Il existe un abonnement **facultatif** vous permettant de simplifier la mise en place d'un accès depuis l'extérieur et l'intégration simplifiée des assistants vocaux Alexa et Google. Ce n'est **aucunement obligatoire** et il n'est **pas difficile de le faire sans l'abonnement**.
 
-
+<Alert type="info">Home Assistant est la solution domotique du moment, mais elle n'est pas aussi simple qu'elle pourrait le faire croire.</Alert>
 ## Conclusion
 
-Il n'y a pas de surprise, mes choix et ma **recommandation** vont vers **Home Assistant**.
+Il n'y a pas de surprise, mes choix et ma **recommandation** vont vers **Home Assistant** et **Gladys Assistant**.
 
 Vous trouverez donc des articles sur la domotique largement orientés Home Assistant et Gladys Assistant, mais mes anciens articles sur Jeedom ou Domoticz pourraient revenir dans une catégorie archive, si le temps me le permet.

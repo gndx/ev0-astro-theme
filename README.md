@@ -1,5 +1,14 @@
 Simplement pour update
 
+Ajout d'un composant personalisé Alert
+Importer d'abord le composant dans le fichier MDX avec `import Alert from "@components/mdx/Alert.astro";`
+Puis editer votre MDX avec les informations suivan,te
+
+```mdx
+<Alert type="warning"> Votre contenu en **markdown**</Alert>
+Type disponible `warning`, `success`, `info`, `danger`
+
+```
 ## 🔥 Features
 
 - ✅ Minimal styling (Tailwind CSS)

@@ -17,6 +17,7 @@ tags:
 - Open-source
 affiliateLink: True
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 **Tuto réalisé avec :**
 * Mi AIoT Router AX3600 [Amazon](https://amzn.to/42ieCzo) 
@@ -60,7 +61,7 @@ Pour le configurer, vous avez deux méthodes :
 * Via l'application Mi Wi-Fi (permet de garder internet sur votre PC) 
 * Via un câble Ethernet branché entre votre PC et un port LAN du routeur.
 
-***Note :** Quand j'ai acheté le mien, il n'était pas réinitialisé, il fallait un mot de passe. J'ai dû le réinitialiser en restant appuyé 10 secondes sur le bouton `reset` situé derrière.*
+<Alert type="info">Quand j'ai acheté le mien, il n'était pas réinitialisé, il fallait un mot de passe. J'ai dû le réinitialiser en restant appuyé 10 secondes sur le bouton `reset` situé derrière.</Alert>
 
 #### Avec l'application Mi Wi-Fi
 
@@ -174,7 +175,7 @@ Un popup s'affiche vous demandant de saisir un mot de passe SSH. Mettez un mot d
 
 Ouvrez un Terminal puis lancez la commande suivante `ssh -oHostKeyAlgorithms=+ssh-rsa root@192.168.31.1`
 
-***Note :** La commande classique `ssh root@192.168.31.1` indiquée dans la documentation ne marche pas.*
+<Alert type="info">La commande classique `ssh root@192.168.31.1` indiquée dans la documentation ne marche pas.</Alert>
 
 Retour de la commande :
 ```bash
@@ -235,7 +236,7 @@ L'installation se fait par la méthode ubiformat, via SSH.
 1. Ouvrez le Terminal et connectez-vous en SSH à votre routeur.
 1. Récupérez le fichier `.ubi` avec la commande `wget` sous Linux (ou `scp` sous windaub) dans le dossier `/tmp`
 *Le lien vers la dernière version [ici](https://openwrt.org/toh/xiaomi/ax3600#firmware_download) (prenez la stable).*
-***Note :** Les noms des fichiers correspondent à la version au moment où j'écris cet article, alors n'hésitez pas à vérifier.*
+<Alert type="info">Les noms des fichiers correspondent à la version au moment où j'écris cet article, alors n'hésitez pas à vérifier.</Alert>
 
 ```bash
 cd /tmp/
@@ -335,7 +336,7 @@ Nous venons de flasher un initramfs OpenWrt ubinisé qui servira d'étape interm
 Nous allons quasiment suivre les mêmes étapes pour récupérer le fichier `sysupgrade.bin` que pour la récupération du fichier `openwrt-23.05.2-ipq807x-generic-xiaomi_ax3600-initramfs-factory.ubi`.
 
 1. Connexion en SSH,
-***ATTENTION :** L'adresse IP a changé, elle est maintenant `192.168.1.1` donc `ssh root@192.168.1.1`
+<Alert type="warning">L'adresse IP a changé, elle est maintenant `192.168.1.1` donc `ssh root@192.168.1.1`</Alert>
 1. Se rendre dans le dossier `/tmp` puis récupérer le fichier `openwrt-23.05.2-ipq807x-generic-xiaomi_ax3600-squashfs-sysupgrade.bin`
 
 ```bash
@@ -407,7 +408,7 @@ Rendez-vous sur l'adresse `http:/192.168.1.1` puis connectez-vous sans mots de p
 Ensuite, allez mettre un mot de passe solide, cette fois, car lui il va rester soit en passant par le bandeau en haut de l'écran, soit depuis les menus `System -> Administration` onglet `Router Password`.
 ![Ajouter un mot de passe fort](./img/openwrt_popup_password.png)
 
-***ATTENTION :** Par défaut, l'adresse IP d'OpenWRT est 192.168.1.1, il se peut que votre Box internet soit aussi sur la même réseau et cela va créer des problèmes. Il faut donc changer votre adresse sur OpenWRT pour éviter les incompatibilités. Le mieux est de débrancher le routeur OpenWRT de votre box Internet le temps de faire la manipulation.*
+<Alert type="warning">Par défaut, l'adresse IP d'OpenWRT est 192.168.1.1, il se peut que votre Box internet soit aussi sur la même réseau et cela va créer des problèmes. Il faut donc changer votre adresse sur OpenWRT pour éviter les incompatibilités. Le mieux est de débrancher le routeur OpenWRT de votre box Internet le temps de faire la manipulation.</Alert>
 
 #### Changer son IP
 Allez dans `Network -> Interfaces` puis dans l'onglet interfaces, éditez l'interface `lan`. Ensuite, dans l'onglet `General Settings` changer l'adresse dans `IPv4 adress` (Ex 192.168.20.1 ici).
@@ -417,7 +418,7 @@ Allez dans `Network -> Interfaces` puis dans l'onglet interfaces, éditez l'inte
 ### Connexion par Ethernet
 Normalement, à ce stade, vous devriez avoir Internet sur les ports Ethernet de votre routeur, mais toujours pas de Wi-Fi configuré.
 
-***Note :** Je n'ai jamais réussi à avoir internet en désactivant le DHCP de ma box opérateur (Sosh). J'ai donc dû laisser le DHCP sur le réseau 192.168.1.1 géré par la box internet, mais par contre, j'ai réduit la plage d'attribution à deux IP seulement*
+<Alert type="info">Je n'ai jamais réussi à avoir internet en désactivant le DHCP de ma box opérateur (Sosh). J'ai donc dû laisser le DHCP sur le réseau 192.168.1.1 géré par la box internet, mais par contre, j'ai réduit la plage d'attribution à deux IP seulement</Alert>
 
 ## Ajouter un point d'accès Wi-Fi
 Nous allons ajouter deux interfaces Wi-Fi dans cet article, une 2.4GHz et une 5GHz, libre à vous d'en ajouter d'autres.
@@ -447,7 +448,7 @@ Dans l'onglet `Wireless Security` :
 
 Répétez ces opérations avec les trois bandes présentes, puis sauvegardez et appliquez les modifications.
 
-***Note :** Pour un usage domotique, j'aime bien dissocier le nom des bandes 2.4 et 5GHz, ça évite les problèmes de connexion des appareils ne pouvant fonctionner que sur le 2.4GHz (la plupart des appareils domotique)*
+<Alert type="info">Pour un usage domotique, j'aime bien dissocier le nom des bandes 2.4 et 5GHz, ça évite les problèmes de connexion des appareils ne pouvant fonctionner que sur le 2.4GHz (la plupart des appareils domotique)</Alert>
 
 Maintenant, vos interfaces étant toujours désactivées, il faut les activer en cliquant sur le bouton `Enable` en face de chaque interface radio. Une fois activée, la LED bleue sur l'antenne centrale de votre routeur devrait s'allumer.
 
