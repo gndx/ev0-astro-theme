@@ -12,6 +12,7 @@ const blog = defineCollection({
     categories: z.array(z.string()).default(['others']),
     tags: z.array(z.string()).default(['others']),
     authors: z.array(z.string()).default(['mcfly']),
+    affiliate_link: z.boolean().optional(),
   }),
 });
 
@@ -27,6 +28,7 @@ const short = defineCollection({
     categories: z.array(z.string()).default(['others']),
     tags: z.array(z.string()).default(['others']),
     authors: z.array(z.string()).default(['mcfly']),
+    affiliate_link: z.boolean().optional(),
   }),
 });
 
