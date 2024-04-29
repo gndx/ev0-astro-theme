@@ -18,6 +18,8 @@ tags:
 - App-deamon
 - Thème
 ---
+import Alert from "@components/mdx/Alert.astro";
+
 **Tuto réalisé avec :**
 * HAOS 11.4, Core 2024.1.3
 * Add-on : SSH Web Terminal
@@ -72,7 +74,7 @@ Pour ajouter et configurer HACS, rendez-vous dans `Paramètres -> Appareils et s
 1. Cliquer sur `+ AJOUTER UNE INTEGRATION` et rechercher `HACS`,
 ![Intégration HACS depuis Home Assistant](./img/integration_hacs_home_assistant.png)
 
-***Note :** Si vous ne trouvez pas HACS, il faudra supprimer le cache de votre navigateur, un simple F5 ne semble pas fonctionner sur les navigateurs. S'il n'apparaît toujours pas, redémarrer Home Assistant
+<Alert type="info">Si vous ne trouvez pas HACS, il faudra supprimer le cache de votre navigateur, un simple F5 ne semble pas fonctionner sur les navigateurs. S'il n'apparaît toujours pas, redémarrer Home Assistant</Alert>
 
 1. Cocher toutes les cases commençant par `I know` et à vous de voir si vous souhaitez cocher les options expérimentales (il est possible de les activer plus tard),
 1. Cliquer sur `VALIDER`.
@@ -108,12 +110,12 @@ Si vous voulez activer les options expérimentales et l'App-Deamon ou peaufiner 
 * Cliquer dessus, lire le descriptif puis `TELECHARGER`,
 * Vérifier votre configuration et redémarrer Home Assistant.
 
-***Note :** Il est possible de choisir une version précise ou d'essayer une version bêta lors de l'installation d'un dépôt, bien sûr, cela est à vos risques.*
+<Alert type="info"> Il est possible de choisir une version précise ou d'essayer une version bêta lors de l'installation d'un dépôt, bien sûr, cela est à vos risques.</Alert>
 
 ## Conclusion
 Vous avez dorénavant accès à plus de possibilités pour ajouter ou personnaliser votre solution domotique préférée. Alors, n'oubliez pas les [sauvegardes](/blog/ha_backups/) et amusez-vous.
 
-***Note :** HACS est intéressant, mais n'en profitez pas pour installer tout et n'importe quoi, car lorsque Home Assistant est mis à jour, les services installés avec HACS ne sont pas testés et certains peuvent ne plus fonctionner. Il faudra attendre une mise à jour de l'auteur pour que tout revienne dans l'ordre. **N'oubliez pas de faire une sauvegarde avant chaque mise à jour**.*
+<Alert type="note"> HACS est intéressant, mais n'en profitez pas pour installer tout et n'importe quoi, car lorsque Home Assistant est mis à jour, les services installés avec HACS ne sont pas testés et certains peuvent ne plus fonctionner. Il faudra attendre une mise à jour de l'auteur pour que tout revienne dans l'ordre. **N'oubliez pas de faire une sauvegarde avant chaque mise à jour**.</Alert>
 
 ### Sources
 * [Site officiel](https://hacs.xyz/)

@@ -16,6 +16,7 @@ tags:
 - Z-stack
 affiliateLink: True
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 **Tuto réalisé avec :**
 * HAOS 11.4, Core 204.1.2
@@ -33,9 +34,7 @@ Voici donc comment flasher votre clé [Sonoff Zigbee 3.0 USB Dongle Plus **P**](
 
 Merci à lui. ;)
 
-Pour en savoir plus sur quel firmware (nom) choisir, 
-
-***IMPORTANT :** Vous utiliserez la version coordinateur par défaut. La version routeur permet, si vous avez plusieurs clés USB Zigbee, d'en passer une en tant que routeur et donc d'étendre votre réseau comme le ferait une prise Zigbee ou la plupart des appareils branchés en permanence au 220v.*
+<Alert type="warning">Vous utiliserez la version coordinateur par défaut. La version routeur permet, si vous avez plusieurs clés USB Zigbee, d'en passer une en tant que routeur et donc d'étendre votre réseau comme le ferait une prise Zigbee ou la plupart des appareils branchés en permanence au 220v.</Alert>
 
 ## Add-on Zigstar
 ### Installation
@@ -58,7 +57,7 @@ Cochez :
 
 Enregistrer puis démarrer l'add-on et rendez-vous dans `journal` pour voir si tout se passe bien.
 
-***ATTENTION :** Il faut que les add-ons Mosquitto Broker et Zigbee2MQTT soient arrêtés, sinon ça ne marchera pas.*
+<Alert type="warning"> Il faut que les add-ons Mosquitto Broker et Zigbee2MQTT soient arrêtés, sinon ça ne marchera pas.</Alert>
 
 Voici mes logs:
 ```
@@ -148,7 +147,7 @@ Voici le lien pour le firmware 20221216 `https://github.com/Koenkk/Z-Stack-firmw
 Voici la méthode la moins prise de tête pour flasher sa clé Sonoff [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) depuis Home Assistant directement.
 Vous pouvez bien sûr désactiver l'add-on et le réutiliser le jour où une nouvelle version du firmware sera disponible.
 
-***Bon a savoir :**Vous n'avez pas besoin de réappairer vos appareils (contrairement au flash par les méthodes traditionnelles dans mes souvenirs) que ce soit d'un firmware 2022 vers 2023 ou l'inverse.*
+<Alert type="info">Vous n'avez pas besoin de réappairer vos appareils (contrairement au flash par les méthodes traditionnelles dans mes souvenirs) que ce soit d'un firmware 2022 vers 2023 ou l'inverse.</Alert>
 
 ## Sources :
 * https://github.com/mercenaruss/zigstar_addons

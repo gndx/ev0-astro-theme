@@ -17,6 +17,7 @@ tags:
 - MQTT
 affiliateLink: True
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 **Le Zigbee, un protocole à la mode**
 
@@ -84,11 +85,11 @@ Voici quelques passerelles USB Zigbee universelles recommandées pour Zigbee2MQT
 Elles sont principalement basées sur le chipset CC2652, sauf pour la Sonoff Zigbee 3.0 USB Dongle Plus **E** à base de chipset EFR32MG21, compatible Zigbee et **Matter** (**MAIS pas en même temps**), celle-ci étant encore en expérimentation avec Zigbee2MQTT.
 
 *Home Assistant propose une clé compatible Zigbee et **Matter** très intéressante appelée [SkyConnect](https://www.home-assistant.io/skyconnect/). Elle permet de préparer l'arrivée du protocole Matter, qui est censé révolutionner la domotique, mais ça fait deux ans qu'on nous en parle ;).*
-***Note :** Je n'ai cependant pas trouvé d'information sur sa compatibilité avec Zigbee2MQTT, ce qui vous obligera à utiliser ZHA*
+<Alert type="info"> Je n'ai cependant pas trouvé d'information sur sa compatibilité avec Zigbee2MQTT, ce qui vous obligera à utiliser ZHA</Alert>
 
 *Sachez que des clés faisant fonctionner Zigbee et Matter en même temps devrait arriver, mais quand ???, alors pour 20 euros, prenez une [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/41W8f4W) et amusez-vous*
 
-***IMPORTANT :** La clé [Sonoff Zigbee 3.0 USB Dongle Plus **P** ou E](https://amzn.to/41W8f4W) est par défaut livrée avec un firmware bridant le nombre d'appareils intégrables à 40 ! Pourquoi ? Il faudrait demander à Sonoff, mais comme d'habitude, il est possible de passer outre cette limitation en flashant ce firmware d'origine par un autre, débridant ainsi à 50 appareils (enfants) directs et 100/200 routeurs (routes). Voici l'[article à suivre](/blog/ha_flasher_sonoff_zigbee/)*
+<Alert type="info">La clé [Sonoff Zigbee 3.0 USB Dongle Plus **P** ou E](https://amzn.to/41W8f4W) est par défaut livrée avec un firmware bridant le nombre d'appareils intégrables à 40 ! Pourquoi ? Il faudrait demander à Sonoff, mais comme d'habitude, il est possible de passer outre cette limitation en flashant ce firmware d'origine par un autre, débridant ainsi à 50 appareils (enfants) directs et 100/200 routeurs (routes). Voici l'[article à suivre](/blog/ha_flasher_sonoff_zigbee/)</Alert>
 
 *Enfants directs : Nombre d'enfants qui peuvent rejoindre directement le coordinateur. Notez qu'il ne s'agit pas de la taille maximale du réseau. Pour plus d'informations, lisez la [FAQ Zigbee2MQTT sur la limite des périphériques (EN)](https://www.zigbee2mqtt.io/guide/faq/#i-read-that-zigbee2mqtt-has-a-limit-of-20-devices-when-using-a-cc2530-cc2531-adapter-is-this-true).
 Routes : Ceci indique combien de routes le coordinateur peut garder en mémoire. Par exemple, 100/200 signifie que : 100 routes normales et 200 routes sources peuvent être gardées en mémoire. 0 route source signifie que le routage source est désactivé. Les routes sources améliorent les performances des réseaux de grande taille (plus de 40 nœuds). Pour plus d'informations, lisez [Large ZigBee Networks and Source Routing (EN)](https://www.digi.com/resources/documentation/digidocs/90001537/references/r_large_zigbee_networks-source_routing.htm?TocPath=Working%20with%20Zigbee%7C_____14) (Réseaux ZigBee de grande taille et routage de sources).*
@@ -256,9 +257,9 @@ Pour accéder au dossier de l'add-on, il vous faut soit l'add-on File Editor, so
 Parmi les paramètres intéressants, il y a :
 **Le canal** qui est la bande de fréquence sur laquelle les appareils vont communiquer. Comme vous le savez (je l'ai écrit au tout début), le Zigbee travaille autour du 2.4 GHz qui est aussi la fréquence du Wi-Fi (pas le Wi-Fi 5 GHz) mais aussi du Bluetooth. Par défaut, c'est le canal 11 qui est sélectionné, mais vous pouvez le changer.
 
-***Note :** Pour ma part, j'utilise le canal 25, car c'est une bande de fréquence qui n'est pas utilisée par la plupart des routeurs/Box disponibles sur le marché Européen, ce qui évite les interférences avec le Wi-Fi.*
+<Alert type="info">Pour ma part, j'utilise le canal 25, car c'est une bande de fréquence qui n'est pas utilisée par la plupart des routeurs/Box disponibles sur le marché Européen, ce qui évite les interférences avec le Wi-Fi.</Alert>
 
-***ATTENTION :** Un changement de canal vous oblige à tout réappairer.*
+<Alert type="warning">Un changement de canal vous oblige à tout réappairer.</Alert>
 *Les paramètres sont disponibles [ici](https://www.zigbee2mqtt.io/guide/configuration/)*
 
 Via l'interface de Zigbee2MQTT.
@@ -299,7 +300,7 @@ Si vous souhaitez séparer les deux fichiers (intéressant quand votre installat
 devices: devices.yaml
 ```
 
-***IMPORTANT :** Si vous devez quelle qu'en soit la raison supprimer et réinstaller Zigbee2MQTT, sauvegardez ou copiez/collez ce fichier, ce qui permettra, lors de l'appairage, de conserver les noms de vos appareils qui seront donc reconnus dans vos automatisations, scènes, scripts et interfaces Home Assistant.*
+<Alert type="warning">Si vous devez, quelle qu'en soit la raison, supprimer et réinstaller Zigbee2MQTT, sauvegardez ou copiez/collez ce fichier, ce qui permettra, lors de l'appairage, de conserver les noms de vos appareils qui seront donc reconnus dans vos automatisations, scènes, scripts et interfaces Home Assistant.</Alert>
 
 ## Conclusion.
 

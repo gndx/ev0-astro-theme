@@ -23,6 +23,7 @@ tags:
 - VM
 affiliateLink: True
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 Je vois passer beaucoup de questions sur le matériel à choisir où le type d'installation pour commencer avec Home Assistant. Sachez qu'il n'y a pas de solution universelle, mais elle peut être orientée en fonction :
 * De vos connaissances en domotique, 
@@ -63,9 +64,9 @@ Pour une installation en production sans se poser de question, il faudra lui ajo
 
 De plus, vous serez limité dans le temps, car il est peu évolutif.
 
-**Mon avis** En 2024, le Raspberry implique trop d'investissement tout en limitant les possibles évolutions. Achat de la Raspberry Pi avec au moins 4 voir 8Go de RAM, l'alimentation, la carte Micro SD, un support SSD ou M.2 externe et d'un boitier (ou un boitier avec support M.2 ou SSD intégré) et parfois, une rallonge et un Hub pour alimenter le matériel USB afin qu'il puisse bénéficier d'une alimentation correcte.
+<Alert type="success">**Mon avis** En 2024, le Raspberry implique trop d'investissement tout en limitant les possibles évolutions. Achat de la Raspberry Pi avec au moins 4 voir 8Go de RAM, l'alimentation, la carte Micro SD, un support SSD ou M.2 externe et d'un boitier (ou un boitier avec support M.2 ou SSD intégré) et parfois, une rallonge et un Hub pour alimenter le matériel USB afin qu'il puisse bénéficier d'une alimentation correcte.</Alert>
 
-***Note :** Le Raspberry Pi 5 [Amazon(97€)](https://amzn.to/3U0aT7r), apportera quelques améliorations grâce à l'ajout d'un port PCi M.2 (en option [Amazon(17€)](https://amzn.to/3TMX7Vk) n'obligeant plus l'ajout d'un disque externe en USB et faisant disparaitre en natif les problèmes de carte Micro SD. Reste que son prix est relativement élevé pour un kit complet (entre 150/200€), alimentation, boitier (compatible avec le hat m.2), auquel on ajoutera le hat M.2 et le disque M.2*
+<Alert type="info">Le Raspberry Pi 5 [Amazon(97€)](https://amzn.to/3U0aT7r), apportera quelques améliorations grâce à l'ajout d'un port PCi M.2 (en option [Amazon(17€)](https://amzn.to/3TMX7Vk) n'obligeant plus l'ajout d'un disque externe en USB et faisant disparaitre en natif les problèmes de carte Micro SD. Reste que son prix est relativement élevé pour un kit complet (entre 150/200€), alimentation, boitier (compatible avec le hat m.2), auquel on ajoutera le hat M.2 et le disque M.2</Alert>
 
 ### Box Home Assistant
 *Quoi de mieux qu'une box créée pour et par Home Assistant*
@@ -79,7 +80,7 @@ Home Assistant est aussi compatible avec les Odroid N2+, C4, M1 qui sont des alt
 Home Assistant se veut compatible avec toutes sortes d'installation comme une installation sur des machines génériques x86/64bits [tutoriel ici](/blog/ha_haos_generic_x86-64_installation/), mais aussi des NUC, NAS (en conteneur ou en VM) ce qui vous permet vraiment de trouver chaussure à votre pied.
 
 ## Les profils utilisateurs
-***Note :** Ces profils ont été établis par moi-même et n'engagent que moi et mon expérience. J'essaie de répondre à plusieurs cas de figure en me mettant à la place du débutant que j'ai été et à l'utilisateur bidouilleur que je suis, je ne suis aucunement un professionnel de l'informatique ou un geek acharné. Chacun devra donc faire en fonction de ses bagages*
+<Alert type="info">Ces profils ont été établis par moi-même et n'engagent que moi et mon expérience. J'essaie de répondre à plusieurs cas de figure en me mettant à la place du débutant que j'ai été et à l'utilisateur bidouilleur que je suis, je ne suis aucunement un professionnel de l'informatique ou un geek acharné. Chacun devra donc faire en fonction de ses bagages</Alert>
 
 ### Profil Débutant
 *Pour les débutants se lançant dans la domotique en partant de zéro ou utilisant actuellement les applications propriétaires voulant juste profiter de la domotique sans se prendre la tête avec la technique.*

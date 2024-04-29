@@ -16,6 +16,7 @@ tags:
 - vscode
 - Codium
 ---
+import Alert from "@components/mdx/Alert.astro";
 
 Dès que l'on commence à travailler avec des serveurs, il est important de penser sécurité et la connexion en SSH, qui devient obligatoire, n'y échappe pas.
 
@@ -145,7 +146,7 @@ Après chaque modification, il faudra sauvegarder et relancer le service SSH via
 *Attention, avant de rendre une valeur inaccessible ou interdite, il faut vérifier que vous arrivez à garder la main sur votre serveur.*
 
 ### Activer la connexion par clé publique 
-***Note :** Activé par défaut sous Debian 12.*
+<Alert type="info">Activé par défaut sous Debian 12.</Alert>
 
 ```bash
  nano /etc/ssh/sshd_config
@@ -172,7 +173,7 @@ Pour désactiver la connexion par mot de passe, c'est la ligne suivante.
 PasswordAuthentication no
 ```
 
-***ATTENTION :** Vérifiez que vous avez la main, pour cela, il suffit de vous connecter en SSH et s'il ne vous demande pas le mot de passe de l'utilisateur, c'est qu'il s'est connecté en SSH, sinon vous pouvez aussi utiliser la commande suivante pour forcer la connexion via la clé SSH `ssh -ri ~/.ssh/nom_de_votre_cle votre_utilisateur@ip_de_votre_serveur`*
+<Alert type="danger">Vérifiez que vous avez la main, pour cela, il suffit de vous connecter en SSH et s'il ne vous demande pas le mot de passe de l'utilisateur, c'est qu'il s'est connecté en SSH, sinon vous pouvez aussi utiliser la commande suivante pour forcer la connexion via la clé SSH `ssh -ri ~/.ssh/nom_de_votre_cle votre_utilisateur@ip_de_votre_serveur`</Alert>
 
 Pour tester, voici la commande et son retour :
 ```bash
@@ -199,7 +200,7 @@ ssh -p num_port user@ndd_ou_ip_du_serveur
 ssh user@ndd_ou_ip_du_serveur -p num_port
 ```
 
-***NOTE :** Changer le port n'est pas une protection en soi, car il est facile de scanner et voir les ports ouverts, mais cela permet déjà d'éviter les robots cherchant ce dernier de manière automatique.*
+<Alert type="info">Changer le port n'est pas une protection en soi, car il est facile de scanner et voir les ports ouverts, mais cela permet déjà d'éviter les robots cherchant ce dernier de manière automatique.</Alert>
 
 ### Désactiver l'accès SSH du compte `root`
 Dans les bonnes pratiques, il y a l'utilisation minimum du compte `root` et son accès direct en SSH en fait partie.
@@ -208,7 +209,7 @@ Dans les bonnes pratiques, il y a l'utilisation minimum du compte `root` et son 
 PermitRootLogin No
 ```
 
-***Note :** Désactivé par défaut sous Debian 12.*
+<Alert type="info">Désactivé par défaut sous Debian 12.</Alert>
 
 Une fois les paramètres changés, n'oubliez pas de sauvegarder et relancer le service `ssh`.
 * <span><kbd>CTRL</kbd>+<kbd>X</kbd></span> pour sauvegarder
@@ -230,7 +231,7 @@ ssh -o "PreferredAuthentications=password" votre_utilisateur@ip_de_votre_serveur
 
 
 ## Connexion SSH avec Visual Studio Code ou Codium
-*Codium est une version, Opensource et débarrassée des mouchards Microsoft, de Visual Studio Code.*
+<Alert type="info">Codium est une version, Opensource et débarrassée des mouchards Microsoft, de Visual Studio Code.</Alert>
 
 Quand on commence à bidouiller, c'est un super outil.
 
