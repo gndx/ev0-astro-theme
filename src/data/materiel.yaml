@@ -1,0 +1,75 @@
+{
+  "server": [
+    {
+      "name": "Raspberry Pi 4 8Go",
+      "az": "https://amzn.to/4dphxLO",
+      "ae": "https://s.click.aliexpress.com/e/_DmypGBH",
+      "do": "/",
+      "link": "/"
+    },
+    {
+      "name": "Raspberry Pi 5 8Go",
+      "az": "https://amzn.to/4a0rAnR",
+      "ae": "https://s.click.aliexpress.com/e/_DBk8nNl",
+      "do": "/",
+      "link": "/"
+    },
+    {
+      "name": "HP EliteDesk G3 800",
+      "az": "https://amzn.to/4bbyYOo",
+      "ae": "/",
+      "do": "/",
+      "link": "/"
+    },
+    {
+      "name": "Home Assistant Yellow",
+      "az": "",
+      "ae": "",
+      "do": "https://www.domadoo.fr/fr/box-domotique/7113-nabu-casa-kit-home-assistant-yellow-avec-alimentation.html?domid=66",
+      "link": "/"
+    },
+    {
+      "name": "Home Assistant Green",
+      "az": "",
+      "ae": "",
+      "do": "https://www.domadoo.fr/fr/produits-compatibles-home-assistant/7046-nabu-casa-box-domotique-home-assistant-green-0794677011758.html?domid=66",
+      "link": "/"
+    },
+  ],
+
+"device": [
+    {
+      "name": "Owon PC321-Z",
+      "description": "jdkfkishfkis",
+      "az": "/",
+      "ae": "/",
+      "do": "/",
+      "integration" : "ZigbeeToMQTT",
+      "GA" : True,
+      "HA" : True,
+      "link": "/"
+    },
+    {
+      "name": "Lixee ZlinkyTIC",
+      "description": "jdkfkishfkis",
+      "az": "/",
+      "ae": "/",
+      "do": "/",
+      "integration" : "ZigbeeToMQTT",
+      "GA" : True,
+      "HA" : True,
+      "link": "/"
+    },
+    {
+      "name": "Sonoff ZBMiniL2",
+      "description": "jdkfkishfkis",
+      "az": "/",
+      "ae": "/",
+      "do": "/",
+      "integration" : "ZigbeeToMQTT",
+      "GA" : True,
+      "HA" : True,
+      "link": "/"
+    }
+  ]
+}
