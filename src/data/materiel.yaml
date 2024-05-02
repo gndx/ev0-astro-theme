@@ -50,6 +50,20 @@
       "link": "/"
     },
     {
+      "name": "Sonoff Zigbee USB Dongle Plus P (CC2652P)",
+      "az": "https://amzn.to/4a0zXQf",
+      "ae": "",
+      "do": "",
+      "link": "/"
+    },
+   {
+      "name": "Sonoff Zigbee USB Dongle Plus E (EFR32MG21)",
+      "az": "https://amzn.to/3UpzWPX",
+      "ae": "https://s.click.aliexpress.com/e/_DmnOkph",
+      "do": "https://www.domadoo.fr/fr/produits-compatibles-home-assistant/7046-nabu-casa-box-domotique-home-assistant-green-0794677011758.html?domid=66",
+      "link": "/"
+    },
+    {
       "name": "Lixee ZlinkyTIC",
       "description": "jdkfkishfkis",
       "az": "/",
