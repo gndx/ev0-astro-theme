@@ -1,8 +1,8 @@
 ---
-draft: True
+draft: false
 title: Gladys Assistant - Ajouter vos appareils Zigbee avec Zigbee2MQTT
 description: "Le Zigbee étant mon protocole domotique de prédilection, nous allons voir comment l'ajouter à Gladys Assistant, que ce soit en interne ou via une installation existante."
-pubDate: 05/05/2024
+pubDate: 05/06/2024
 heroImage: './gladys_zigbee2mqtt.png'
 categories: 
 - Gladys Assistant
@@ -11,8 +11,8 @@ authors:
 - mcfly
 affiliateLink: True
 tags:
-- Domotique
 - Gladys Assistant
+- Domotique
 - Zigbee
 - MQTT
 - Zigbee2mqtt
@@ -20,10 +20,11 @@ tags:
 import Alert from "@components/mdx/Alert.astro";
 
 **Tuto réalisé avec :**
-* Gladys Assistant v4.39
+* Gladys Assistant v4.40
 * Intégration : Zigbee2MQTT
 * Matériels : [Sonoff Zigbee 3.0 USB Dongle Plus **P**](https://amzn.to/4a0zXQf)
 
+<Alert type="success">Depuis la v4.40 de ce jour, Gladys Assistant supporte les instances externes de Zigbee2MQTT, vous n'avez donc plus d'excuse pour ne pas tester Gladys.</Alert>
 
 Zigbee est un protocole de communication sans fil conçu pour les applications domotiques. Il permet de connecter des appareils intelligents tels que des ampoules, des thermostats, des serrures et des capteurs à un réseau domestique.
 
