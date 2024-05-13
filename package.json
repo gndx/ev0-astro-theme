@@ -67,6 +67,7 @@
   "dependencies": {
     "@jridgewell/sourcemap-codec": "^1.4.15",
     "@rollup/plugin-terser": "^0.4.4",
-    "astro-compressor": "^0.4.1"
+    "astro-compressor": "^0.4.1",
+    "rehype-external-links": "^3.0.0"
   }
 }
