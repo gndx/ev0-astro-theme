@@ -10,7 +10,7 @@ EV0 Astro Theme is a free and open-source serverless blog template, built with A
 
 ## 🔥 DEMOS
 
-- [EV0 Astro Theme - DEMO](https://ev0.gndx.io/)
+- [EV0 Astro Theme - DEMO](https://ev0.gndx.dev/)
 - [GNDX - My Personal Blog (ES)](https://gndx.dev)
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gndx/ev0-astro-theme#NODE_VERSION=18)
@@ -39,6 +39,11 @@ EV0 Astro Theme is a free and open-source serverless blog template, built with A
   <img align="center" alt="Lighthouse Score" src="https://s3.amazonaws.com/gndx.dev/EV0-astro-theme-lighthouse.png"/>
 </p>
 
+
+## 👨🏻‍💻 VIP Support (optional) $25
+Includes personalized assistance via messages/emails, customization of up to 1 feature, assistance for implementation in your hosting and deployment, and advice for future changes.  [Buy VIP Support](https://gndx.gumroad.com/l/zwaeqz). 
+
+
 ## 🚀 Getting Started
 
 Clone this repository to your local machine using Git.
@@ -66,7 +71,7 @@ To configure your blog, edit the `src/config/config.json` file. This file contai
 {
   "site": {
     "title": "EV0 Astro Theme",
-    "base_url": "https://ev0.gndx.io",
+    "base_url": "https://ev0.gndx.dev/",
     "base_path": "/",
     "favicon": "/favicon.png",
     "logo": "https://s3.amazonaws.com/gndx.dev/ev0-astro-logo.png",

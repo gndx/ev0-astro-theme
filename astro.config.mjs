@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
-import Compress from 'astro-compress';
+import compressor from "astro-compressor";
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -30,7 +30,7 @@ export default defineConfig({
       },
       drafts: true,
     }),
-    Compress(),
+    compressor({ gzip: true, brotli: true }),
     sitemap(),
     tailwind(),
     robotsTxt(),
