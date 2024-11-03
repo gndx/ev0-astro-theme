@@ -56,21 +56,21 @@ input#nav-toggle:checked ~ #nav-menu {
 .moon {
   @apply stroke-transparent transition-all;
 }
-.dark .sun {
+.dark .moon {
   @apply stroke-transparent;
 }
-.dark .moon {
+.dark .sun {
   @apply stroke-zinc-400;
 }
-#themeToggle:hover .sun {
+#themeToggle:hover .moon {
   @apply stroke-zinc-800;
 }
-#themeToggle:hover .moon {
-  @apply stroke-transparent;
-}
-.dark #themeToggle:hover .sun {
+#themeToggle:hover .sun {
   @apply stroke-transparent;
 }
 .dark #themeToggle:hover .moon {
+  @apply stroke-transparent;
+}
+.dark #themeToggle:hover .sun {
   @apply stroke-zinc-200;
 }
