@@ -17,7 +17,7 @@ interface Post {
 export function getAllTags(posts: MDXInstance<Post>[] = []) {
   const allTags = new Set<string>();
   posts.forEach((post) => {
-    post.data?.tags?.map((tag: string) => allTags.add(tag.toLowerCase()));
+    post?.data?.tags?.map((tag: string) => allTags.add(tag.toLowerCase()));
   });
   return [...allTags];
 }

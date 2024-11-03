@@ -1,18 +1,18 @@
 ---
-import Base from "@layouts/Base.astro";
-import { getTaxonomy } from "@utils/getAllTags";
+import Base from '@layouts/Base.astro';
+import { getTaxonomy } from '@utils/getAllTags';
 
-const tags = await getTaxonomy("blog", "tags");
+const tags = await getTaxonomy('blog', 'tags');
 
 const textClasses: string[] = [
-  "text-3xl text-cyan-400 capitalize",
-  "text-xl text-teal-400 capitalize",
-  "text-md text-red-400 capitalize",
-  "text-lg text-green-400 capitalize",
-  "text-sm text-orange-400 capitalize",
-  "text-lg text-zinc-400 capitalize",
-  "text-4xl text-red-400 capitalize",
-  "text-xs text-cyan-400 capitalize",
+  'text-3xl text-cyan-400 capitalize',
+  'text-xl text-teal-400 capitalize',
+  'text-md text-red-400 capitalize',
+  'text-lg text-green-400 capitalize',
+  'text-sm text-orange-400 capitalize',
+  'text-lg text-zinc-400 capitalize',
+  'text-4xl text-red-400 capitalize',
+  'text-xs text-cyan-400 capitalize',
 ];
 
 const getRandomClass = (classList: string[]): string => {
@@ -23,8 +23,8 @@ const getRandomClass = (classList: string[]): string => {
 
 <Base>
   <section class="grid grid-cols-1">
-    <h1 class="text-2xl md:text-3xl font-bold mb-8">Tags:</h1>
-    <ul class="flex justify-center flex-wrap align-center gap-3">
+    <h1 class="mb-8 text-2xl font-bold md:text-3xl">Tags:</h1>
+    <ul class="align-center flex flex-wrap justify-center gap-3">
       {
         tags.map((tag) => (
           <li>

@@ -1,25 +1,24 @@
 ---
-import Base from "@layouts/Base.astro";
-import type { CollectionEntry } from "astro:content";
-import FormattedDate from "@components/FormattedDate.astro";
-import CalendarIcon from "@icons/CalendarIcon.astro";
-import CategoryIcon from "@icons/CategoryIcon.astro";
-import { Image } from "astro:assets";
-import config from "@config/config.json";
-import { slugify } from "@utils/slug";
+import Base from '@layouts/Base.astro';
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from '@components/FormattedDate.astro';
+import CalendarIcon from '@icons/CalendarIcon.astro';
+import CategoryIcon from '@icons/CategoryIcon.astro';
+import { Image } from 'astro:assets';
+import config from '@config/config.json';
+import { slugify } from '@utils/slug';
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, heroImage, categories, tags } =
-  Astro.props;
+const { title, description, pubDate, heroImage, categories, tags } = Astro.props;
 ---
 
 <Base meta_title={title} description={description} image={heroImage} blogpost>
   <article>
-    <div class="rounded-lg block overflow-hidden mb-8">
+    <div class="mb-8 block overflow-hidden rounded-lg">
       {
         heroImage && (
-          <figure class="w-auto h-auto md:h-[480px] object-cover">
+          <figure class="h-auto w-auto object-cover md:h-[480px]">
             <Image
               class="transition duration-300 ease-in-out hover:scale-110"
               src={heroImage}
@@ -33,10 +32,10 @@ const { title, description, pubDate, heroImage, categories, tags } =
         )
       }
     </div>
-    <div class="md:col-10 text-center mb-12">
-      <h1 class="text-2xl md:text-4xl font-bold">{title}</h1>
-      <div class="mt-4 flex flex-wrap items-center justify-center text-text text-zinc-800 dark:text-zinc-200">
-        <div class="mx-3 flex items-center flex-wrap font-medium mt-2">
+    <div class="md:col-10 mb-12 text-center">
+      <h1 class="text-2xl font-bold md:text-4xl">{title}</h1>
+      <div class="text-text mt-4 flex flex-wrap items-center justify-center text-zinc-800 dark:text-zinc-200">
+        <div class="mx-3 mt-2 flex flex-wrap items-center font-medium">
           <figure>
             <Image
               alt={config.author.name}
@@ -50,18 +49,15 @@ const { title, description, pubDate, heroImage, categories, tags } =
           </figure>
           <span>{config.author.name}</span>
         </div>
-        <div class="mx-3 flex items-center flex-wrap font-medium mt-2">
+        <div class="mx-3 mt-2 flex flex-wrap items-center font-medium">
           <CalendarIcon />
           <FormattedDate date={pubDate} />
         </div>
-        <div class="mx-3 flex items-center flex-wrap font-medium mt-2">
+        <div class="mx-3 mt-2 flex flex-wrap items-center font-medium">
           <CategoryIcon />
           {
             categories?.slice(0, 1).map((category) => (
-              <a
-                href={`/categories/${slugify(category)}`}
-                class="mr-2 hover:text-primary font-medium capitalize"
-              >
+              <a href={`/categories/${slugify(category)}`} class="hover:text-primary mr-2 font-medium capitalize">
                 {category}
               </a>
             ))
@@ -69,7 +65,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
         </div>
       </div>
     </div>
-    <div class="prose prose-green prose-md md:prose-lg min-w-full">
+    <div class="prose-md prose prose-green min-w-full md:prose-lg">
       <slot />
     </div>
     <div class="mt-8">
@@ -77,7 +73,7 @@ const { title, description, pubDate, heroImage, categories, tags } =
         tags?.map((tag) => (
           <a
             href={`/tags/${slugify(tag)}`}
-            class="capitalize inline-block bg-zinc-200 rounded-full px-3 py-1 text-sm font-semibold text-zinc-700 mr-2 mb-2 dark:bg-zinc-900 dark:text-zinc-400"
+            class="mb-2 mr-2 inline-block rounded-full bg-zinc-200 px-3 py-1 text-sm font-semibold capitalize text-zinc-700 dark:bg-zinc-900 dark:text-zinc-400"
           >
             #{tag}
           </a>
