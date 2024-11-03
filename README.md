@@ -190,6 +190,7 @@ Contributions to this project are welcome. If you find a bug or have a suggestio
       <td align="center" valign="top" width="14.28%"><a href="https://jhonachata.dev/"><img src="https://avatars.githubusercontent.com/u/7337141?v=4?s=100" width="100px;" alt="Jhon Achata Limachi"/><br /><sub><b>Jhon Achata Limachi</b></sub></a><br /><a href="#bug-dcyar" title="Bug reports">🐛</a> <a href="#ideas-dcyar" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://erasmoh.dev"><img src="https://avatars.githubusercontent.com/u/12125288?v=4?s=100" width="100px;" alt="Erasmo Hernández"/><br /><sub><b>Erasmo Hernández</b></sub></a><br /><a href="#bug-erasmoh" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://francisco-araujo.com"><img src="https://avatars.githubusercontent.com/u/49659840?v=4?s=100" width="100px;" alt="Francisco Araujo"/><br /><sub><b>Francisco Araujo</b></sub></a><br /><a href="#design-franciscoagx" title="Design">🎨</a> <a href="#bug-franciscoagx" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.linkedin.com/in/jhoandris-baron"><img src="https://avatars.githubusercontent.com/u/46359791?v=4?s=100" width="100px;" alt="Jhoandris Barón"/><br /><sub><b>Jhoandris Barón</b></sub></a><br /><a href="#bug-andybaronp" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
