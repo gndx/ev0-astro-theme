@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.1.8] 2024-11-03
+
+### Updates and Improvements 🛠️
+
+- Linter Warnings
+
 ## [1.1.7] 2024-11-03
 
 ### Updates and Improvements 🛠️
