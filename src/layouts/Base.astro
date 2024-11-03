@@ -1,14 +1,14 @@
 ---
-import Header from "@components/Header.astro";
-import Hero from "@components/Hero.astro";
-import FeaturedVideos from "@components/FeaturedVideos.astro";
-import Footer from "@components/Footer.astro";
-import config from "@config/config.json";
-import { createOgImage } from "@utils/createOgImage";
+import Header from '@components/Header.astro';
+import Hero from '@components/Hero.astro';
+import FeaturedVideos from '@components/FeaturedVideos.astro';
+import Footer from '@components/Footer.astro';
+import config from '@config/config.json';
+import { createOgImage } from '@utils/createOgImage';
 
-import "@styles/global.css";
+import '@styles/global.css';
 
-import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title?: string;
@@ -24,7 +24,7 @@ const { title, meta_title, description, noindex, blogpost } = Astro.props;
 
 const ogImage = createOgImage({
   title: meta_title ? meta_title : title ? title : config.site.title,
-  meta: [config.site.title, config.site.base_url].join(" · "),
+  meta: [config.site.title, config.site.base_url].join(' · '),
 });
 ---
 
@@ -36,62 +36,30 @@ const ogImage = createOgImage({
     <!-- theme meta -->
     <meta name="theme-name" content="bookworm-light-astro" />
     <meta name="msapplication-TileColor" content="#000000" />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="#fff"
-    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- responsive meta -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
     <title>{meta_title ? meta_title : title ? title : config.site.title}</title>
-    <meta
-      name="title"
-      content={meta_title ? meta_title : title ? title : config.site.title}
-    />
-    <link
-      rel="canonical"
-      href={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
-      item-prop="url"
-    />
+    <meta name="title" content={meta_title ? meta_title : title ? title : config.site.title} />
+    <link rel="canonical" href={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`} item-prop="url" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
-    <meta
-      name="description"
-      content={description ? description : config.metadata.meta_description}
-    />
+    <meta name="description" content={description ? description : config.metadata.meta_description} />
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />
     <!-- og-title -->
-    <meta
-      property="og:title"
-      content={meta_title ? meta_title : title ? title : config.site.title}
-    />
+    <meta property="og:title" content={meta_title ? meta_title : title ? title : config.site.title} />
     <!-- og-description -->
-    <meta
-      property="og:description"
-      content={description ? description : config.metadata.meta_description}
-    />
+    <meta property="og:description" content={description ? description : config.metadata.meta_description} />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
-    />
+    <meta property="og:url" content={`${config.site.base_url}/${Astro.url.pathname.replace('/', '')}`} />
 
     <!-- twitter-title -->
-    <meta
-      name="twitter:title"
-      content={meta_title ? meta_title : title ? title : config.site.title}
-    />
+    <meta name="twitter:title" content={meta_title ? meta_title : title ? title : config.site.title} />
     <!-- twitter-description -->
-    <meta
-      name="twitter:description"
-      content={description ? description : config.metadata.meta_description}
-    />
+    <meta name="twitter:description" content={description ? description : config.metadata.meta_description} />
     <!-- og-image -->
     <meta property="og:image" content={ogImage} />
     <!-- twitter-image -->
